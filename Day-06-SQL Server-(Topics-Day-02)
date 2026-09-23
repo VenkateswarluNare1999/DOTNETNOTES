@@ -1,0 +1,107 @@
+Use DotNet11AmBatch
+
+select * from Employees
+
+-- Topic 6 : BETWEEN Operator
+
+-- Query 
+
+Select * From Employees WHERE Salary BETWEEN 50000 AND 70000;
+
+-- Topic 7 : In Operator
+
+-- Without IN Operator
+
+Select * From Employees WHERE Department = 'IT' OR Department = 'HR';
+
+-- With IN Operator
+
+Select * From Employees WHERE Department IN('IT', 'HR');
+
+-- Topic 8 : NOT Operator
+
+--Query
+
+Select * From Employees WHERE Department NOT IN('Finance');
+
+-- Topic 9 : DISTINCT Keyword
+
+-- Query
+
+Select DISTINCT Department From Employees;
+
+-- Topic 10 : TOP Keyword
+
+-- Query
+
+Select TOP 3 * From Employees ORDER BY Salary DESC;
+
+-- Topic 11 : NULL Values
+
+-- Query
+
+Select * From Employees WHERE City IS NULL;
+
+-- Topic 12 : GROUP BY
+
+-- Query
+
+Select Department, COUNT(*) As TotalEmployees From Employees GROUP BY Department;
+
+-- Topic 13 : HAVING Clause
+
+-- Query
+
+Select Department, COUNT(*) As TotalEmployees From Employees GROUP BY Department HAVING COUNT(*) > 1;
+
+-- Topic 14 : UPDATE Command
+
+-- Example 1 : Update Single Records
+
+-- Query 
+
+UPDATE Employees SET Salary = 75000 WHERE EmployeeId = 1;
+
+-- Important Warning About Update
+
+-- Query 
+
+UPDATE Employees SET Salary = 90000
+
+-- Example 2 : Update Multiple Records
+
+-- Query
+
+UPDATE Employees SET Department = 'Technology' WHERE Department = 'IT'
+
+-- Query
+
+UPDATE Employees SET Salary = 73500 WHERE EmployeeId IN (2, 3)
+
+-- Topic 15 : DELETE Command
+
+-- Example 1 : Delete Specific Record
+
+-- Query 
+
+DELETE From Employees WHERE EmployeeId = 4;
+
+-- Danger Of Delete Without WHERE
+
+-- Query
+
+DELETE From Employees;
+
+-- Topic 16 : TRUNCATE Table
+
+-- Query
+
+TRUNCATE TABLE Employees
+
+-- What is the difference between DELETE and TRUNCATE
+
+-- DELETE : It Removes rows one by one and can use WHERE and slower.
+
+-- TRUNCATE : It removes all rows at once and cannot use WHERE and faster.
+
+-- Tomorrow : DCL -> Data Control Language

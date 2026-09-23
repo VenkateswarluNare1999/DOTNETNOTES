@@ -1,0 +1,31 @@
+1. SQL Server Editions Overview
+
+* Express Edition 
+
+* Developer Edition
+
+* Standard Edition
+
+* Enterprise Edition
+
+-- How To Create New Database
+
+-- Query
+
+CREATE DATABASE DotNet11AmBatch
+
+-- How To Delete Database
+
+-- Query
+
+DROP DATABASE DotNet11AmBatch
+
+-- Master : It stores system-level information such as login accounts and configuration settings
+
+-- Model : This database acts as a template. Whenever a new database is created, SQL Server copies the structure from the model.
+
+-- MSDB : It is used for SQL Server Agent jobs, scheduling, and maintenance tasks
+
+-- TEMPDB : This a temporary database used to store temporary objects and intermediate query results. It is recreated every time SQL Server restarts.
+
+Tomorrow : SQL Language Categories

@@ -1,0 +1,120 @@
+Database Fundamentals
+---------------------
+
+1. What exactly is data?
+
+* Data is collection of raw facts and values.
+
+* Raw means the information has not yet been processed or organized into meaningful information.
+
+For Example : 
+
+* Suppose I write : 
+	
+	101
+	Ravi
+	25
+	Hyderabad
+	50000
+	
+	EmployeeId : 101
+	Name : Ravi
+	Age : 25
+	City : Hyderabad
+	Salary : 50000
+
+* Data is raw facts
+
+* Information is processed and meaningful data.
+
+* A database stores data, and application retrieve and process that data to produce useful information.
+
+2. Need for Database
+
+* A database is an organized collection of data that can be stored, managed, accessed, and modified efficiently.
+
+* A database provides facilities for :
+	
+	1. Storing large amounts of data
+	2. Searching data
+	3. Updating data
+	4. Deleting data
+	5. Maintaining data consistency
+	6. Managing multiple users
+	7. Controlling access
+	8. Providing security
+	9. Supporting transactions
+	10. Generating reports
+
+3. File System vs Database System
+
+1. File System :
+	
+	1. Data is stored in individual files.
+	2. Searching and organizing large amounts of data can become difficult.
+	3. Data duplication can occur.
+	4. Maintaining consistency becomes difficult.
+	5. Security and access are more limited.
+	6. Concurrent access is harder to manage
+	7. Backup and recovery need additional mechanisms.
+
+2. Database System :
+	
+	1. Data is organized and managed centrally.
+	2. Queries can retrieve data efficiently.
+	3. Redundancy can be reduced through proper database design.
+	4. Constraints help maintain data integrity.
+	5. Security mechanisms are available.
+	6. Multiple users can work with data concurrently.
+	7. Transactions help maintain consistency.
+	8. Backup and recovery mechanisms are supported.
+	
+4. Introduction to DBMS
+
+* DBMS stands for : Database Management System.
+
+* A DBMS is software used to create, store, manage, retrieve, and manipulate data in databases.
+
+Example :
+
+EmployeeId : 101   102    103
+Name :       Ravi  Priya  Arun
+Department : IT    HR     Finance
+Salary :     50000 60000  55000
+
+Select * from Employees Where Department = 'IT'
+
+5. What is RDBMS
+
+* RDBMS stands for : Relational Database Management System
+
+* A relational database stores data in the form of tables.
+
+Each table contains : 
+	
+	* Rows
+	* Columns
+
+Example :
+
+EmployeeId Name  Department Salary
+101   	   Ravi  IT         50000
+102        Priya HR         60000
+103		   Arun  Finance    55000
+
+Question : What is the difference between DBMS and RDBMS?
+
+* A DBMS is a general database management system.
+
+* An RDBMS is a DBMS based on the relational model, where data is primarily organized into related tables.
+
+6. Popular Database Systems
+
+1. Microsoft SQL Server
+2. Oracle Database
+3. MySQL
+4. PostgreSQL
+5. IBM Db2
+
+Tomorrow : Introduction to SQL Server
+	

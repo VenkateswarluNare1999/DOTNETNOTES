@@ -1,0 +1,90 @@
+1. Introduction to SQL Server
+
+* Microsoft SQL Server is a Relational Database Management SYstem developed by Microsoft.
+
+* It is designed to store, organize, manage, retrieve, and protect application data.
+
+* SQL Server allows us to store large amounts of structured data and provides mechanisms to efficiently manage that data.
+
+1. Database : A Database is a logical collection of related data and database objects.
+
+Example : EmployeeDB
+
+2. Table : A Table stores data in rows and columns.
+
+Example : Employees
+
+3. Column : A column represents a particular property of the data.
+
+Example : EmployeeId, EmployeeName, Email, Salary, Department
+
+4. Row : A row represents one record
+
+Example : 101 | Ravi | ravi@gmail.com | 60000 | IT
+
+Relationship : Database -> Tables -> Columns and Rows
+
+SQL stands for : Structured Query Language.
+
+Select * from Employees
+
+SELECT statement
+
+INSERT statement
+
+DELETE statement
+
+UPDATE statement
+
+CRUD stands for : 
+	
+	C -> Create
+	R -> Read
+	U -> Update
+	D -> Delete
+	
+* HTTP POST : can be used to create an employee
+
+* HTTP GET : ca be used retrieve employees
+
+* HTTP PUT : can be used to update employee
+
+* HTTP DELETE : can be used to delete an employee
+
+How ASP.NET Core Web API Communicated with SQL Server? 
+
+* GET : /api/employees
+
+Flow : Client -> HTTP Request -> ASP.NET Core Web API -> Controller -> Service / Repository -> Entity Framework Core -> SQL Server -> Database -> Result -> ASP.NET Core Web API -> HTTP Response -> Client.
+
+Example : GET Employees
+
+GET : /api/employees
+
+Select * from Employees
+
+[
+	{
+		"employeeId" : 101,
+		"employeeName" : "Ravi",
+		"department" : "IT"
+	},
+	{
+		"employeeId" : 102,
+		"employeeName" : "Priya",
+		"department" : "HR"
+	}
+]	
+	
+SQL Server Objects
+------------------
+1. Tables
+2. Views
+3. Stored Procedures
+4. Functions
+5. Indexes
+6. Triggers
+7. Constraints
+8. Schemas
+
+Tomorrow : Installing SQL Server Software	

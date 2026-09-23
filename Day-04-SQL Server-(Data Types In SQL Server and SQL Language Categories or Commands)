@@ -1,0 +1,119 @@
+Data Types In SQL Server
+------------------------
+* SQL Server provides multiple data types : 
+
+	1. Numeric Data Types : Int, Bigint, Decimal, Float
+	2. Character Data Types : Char, Varchar, NVarchar
+	3. Date/Time Data Types : Date, DateTime, Time
+	4. True / False : Bit
+
+SQL Language Categories or Commands
+-----------------------------------
+* SQL Commands are categorized to help us understand their purpose : 
+
+1. DDL -> Data Definition Language : It is Used to define or alter database objects like tables, schemas, and databases.
+	
+	* Commands Include : CREATE, ALTER, DROP, and TRUNCATE
+
+2. DML -> Data Manipulation Language : It is Used to manipulate data inside tables.
+	
+	* Commands Include : INSERT, UPDATE, DELETE
+
+3. DQL -> Data Query Language : It is Used to retrieve data.
+		
+	* Commands Include : SELECT
+
+4. TCL -> Transaction Control Language : It is Used to manage transactions in the database.
+
+	* Commands Include : BEGIN TRANSACTION, COMMIT, ROLLBACK
+
+5. DCL -> Data Control Language : It is Used to control access and permissions on database objects.
+
+	* Commands Include : GRANT, REVOKE
+
+1. Data Definition Language(DDL)
+
+* DDL Commands are used to define database objects.
+
+Example 1 : CREATE Table
+
+* Table Syntax :
+
+CREATE TABLE Table_Name
+(
+	col 1 dataType1,
+	col 2 dataType2
+)
+
+Table :
+
+CREATE TABLE Students
+(
+	StudentId Int,
+	Name Varchar(100),
+	Age Int
+);
+
+
+CREATE TABLE Table_Name : This creates a new table	
+
+Example 2 : ALTER Table
+
+Syntax : ALTER TABLE Table_Name ADD Column_Name dataType;
+
+Example 3 : DROP Table
+
+Syntax : DROP TABLE Table_Name
+
+Example 4 : TRUNCATE Table
+
+Syntax : TRUNCATE TABLE Table_Name
+
+2. Data Manipulation Language(DML)
+
+* It is used to manipulate table data.
+
+Example 1 : Insert Data
+
+Syntax : INSERT INTO Table_Name Values(...);
+
+CREATE TABLE Employees
+(
+	EmployeeId Int,
+	EmployeeName Varchar(100),
+	Department Varchar(50),
+	Salary Decimal(10,2),
+	JoinDate Date
+);
+
+-- Possibility 1
+
+INSERT INTO Employees (EmployeeId, EmployeeName, Department, Salary, JoinDate) 
+Values(1, 'Ravi', 'IT', 50000.00, '2026-09-18');
+
+-- Possibility 2
+
+INSERT INTO Employees Values(1, 'Ravi', 'IT', 50000.00, '2026-09-18');
+
+-- Insert Multiple Rows
+
+INSERT INTO Employees Values
+(2, 'Priya', 'HR', 60000.00, '2026-09-17'), 
+(3, 'Suresh', 'Finance', 55000.00, '2026-09-16');
+
+3. Data Query Language(DQL)
+
+* To view data in tables, We use SELECT Command.
+
+Syntax : SELECT * FROM Table_Name;
+
+Example 1 : Select All Columns
+
+SELECT * FROM Employees
+
+Example 2 : Select Specific Columns
+
+SELECT EmployeeName, Salary, JoinDate FROM Employees
+
+Tomorrow : Where Clause
+

@@ -1,0 +1,50 @@
+Step 1 : Create Database
+
+Command : CREATE DATABASE Database_Name
+
+Command : USE Database_Name
+
+Step 2 : Create Table
+
+CREATE TABLE Table_Name
+(
+	column 1 dataType1,
+	column 2 dataType2
+);
+
+Step 3 : Insert Sample Data	
+
+INSERT INTO Table_Name Values(..);
+
+Topic 1 - WHERE CLAUSE
+----------------------
+Query : Select * From Employees WHERE Salary > 60000;
+
+* In Real-Time Projects, WHERE Clauses are used in : 
+	
+	1. employee filtering
+	2. customer search
+	3. product search
+	4. transaction reports
+	5. attendance systems
+	6. hospital patient records
+
+Topic 2 : AND Operator
+----------------------
+Query : Select EmployeeName, Department, Salary From Employees Where Department = 'IT' AND Salary >= 70000;
+
+Topic 3 : OR Operator
+---------------------
+Query : Select * From Employees Where Department = 'HR' OR City = 'Mumbai';
+
+Topic 4 : ORDER BY
+------------------
+Query 1 : Select * From Employees ORDER BY Salary DESC;
+
+Query 2 : Select * From Employees ORDER BY Salary ASC;
+
+Topic 5 : LIKE Operator
+-----------------------
+Query : Select * From Employees WHERE EmployeeName LIKE'R%';
+
+-- % : Wildcard Charcater

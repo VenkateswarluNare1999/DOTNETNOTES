@@ -1,0 +1,107 @@
+DCL - Data Control Language
+---------------------------
+* The main DCL Commands are :
+	
+	1. GRANT
+	2. REVOKE
+
+Example :
+
+-- Step 1 : Create a New Database
+
+-- Query
+
+CREATE DATABASE SecurityDemoDB;
+
+Use SecurityDemoDB;
+
+-- Step 2 : Create Secured Table
+
+-- Query
+
+CREATE TABLE ProjectReports
+(
+	ReportId Int,
+	ProjectName Varchar(50),
+	Budget decimal(10,2),
+	ConfidentialNotes Varchar(200)
+)
+
+-- Step 3 : Insert Sample Data
+
+-- Query
+
+INSERT INTO ProjectReports Values
+(1, 'Banking Project', 500000, 'Confidential Banking APIs'),
+(2, 'Hospital Project', 300000, 'Patient data migration'),
+(3, 'E-Commerce Project', 450000, 'Payment gateway integration');
+
+-- Step 4 : Create Login
+
+-- Query
+
+CREATE LOGIN JuniorEmployees WITH PASSWORD = 'Junior@123';
+
+-- Step 5 : Create Database User
+
+-- Query
+
+CREATE USER JuniorEmployees FOR LOGIN JuniorEmployees;
+
+-- Step 6 : Test Access Before Permission
+
+-- Query
+
+EXECUTE AS USER = 'JuniorEmployees'
+
+Select * From ProjectReports;
+
+REVERT;
+
+-- Step 7 : GRANT Select Permission
+
+-- Query
+
+GRANT Select ON ProjectReports To JuniorEmployees;
+
+-- Step 8 : Test Select Access
+
+-- Query
+
+EXECUTE AS USER = 'JuniorEmployees'
+
+Select * From ProjectReports;
+
+REVERT;
+
+-- Step 9 : Try Insert Without Permission
+
+-- Query
+
+EXECUTE AS USER = 'JuniorEmployees';
+
+INSERT INTO ProjectReports Values(4, 'Insurance Project', 250000, 'Policy migration');
+
+REVERT;
+
+-- Step 10 : GRANT Insert Permission
+
+-- Query
+
+GRANT INSERT ON ProjectReports TO JuniorEmployees;
+
+-- Step 11 : REVOKE Select Permission
+
+-- Query
+
+REVOKE SELECT ON ProjectReports FROM JuniorEmployees;
+
+-- Step 12 : Test After Revoke
+
+-- Query
+
+EXECUTE AS USER = 'JuniorEmployees'
+
+Select * From ProjectReports;
+
+REVERT;	

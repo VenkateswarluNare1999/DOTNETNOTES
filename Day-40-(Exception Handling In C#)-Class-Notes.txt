@@ -1,0 +1,195 @@
+Multiple Catch Blocks In C#
+---------------------------
+
+Example : 
+	
+	1. user input
+	2. database operations
+	3. file handling
+	4. APIs
+	5. cloud services
+	6. payment gateways
+	
+* Multiple Catch Blocks allow handling different exceptions separately, This improves : 
+	
+	1. debugging
+	2. readability
+	3. error tracking
+	4. enterprise logging
+	5. application stability
+
+In large enterprise applications, different exceptions require different business actions.
+
+Example : 
+	
+	1. Database failure : retry operation
+	2. Invalid input : show validation message
+	3. File missing : create file
+	4. Payment failure : rollback transaction
+
+How Multiple Catch Blocks Work?
+
+Suppose exception occurs inside try block.
+
+CLR internally : 
+	
+	1. checks first catch block
+	2. if not matched -> checks next catch
+	3. continues until matching catch found.
+
+Once matching catch executes, remaining catch blocks skipped.
+
+Important Rule
+--------------
+* Specific exceptions must come before general exceptions.
+
+Correct : 
+		
+	catch(DivideByZeroException)
+	catch(Exception)
+
+Wrong : 
+	
+	catch(Exception)
+	catch(DivideByZeroException)
+	
+Example : 
+
+namespace TryCatchFinallyBlocks
+{
+    internal class Calculations
+    {
+        public void GetAllCalculations()
+        {
+            try
+            {
+                Console.Write("Enter First Number : ");
+                int num1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Enter Second Number : ");
+                int num2 = Convert.ToInt32(Console.ReadLine());
+
+                int result = num1 / num2;
+
+                Console.WriteLine("Division Result : " + result);
+
+                string data = File.ReadAllText(@"C:\Users\HP\Desktop\AshokIT\DotNetCoreFullStackDevelopment-29-06-2026\C#-CLass_Notes\Day-01-IntroductionClass.txt");
+
+                Console.WriteLine(data);
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine("Cannot divide by zero.");
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Invalid number format");
+                Console.WriteLine(ex.Message);
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("File Not Found");
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("General Exception");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Application Execution Completed.");
+            }
+        }
+    }
+}
+
+namespace TryCatchFinallyBlocks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Calculations calculations = new Calculations();
+
+            calculations.GetAllCalculations();
+        }
+    }
+}
+
+Custom Exceptions In C#
+-----------------------
+* Custom Exceptions allow developers to create their own exception classes based on business requirements.
+
+* This is extremely important in enterprise applications because : 
+	
+	1. business rules vary company-to-company.
+	2. applications require meaningful error handling
+	3. business validation becomes centralized
+	4. debugging becomes easier
+
+Example : 
+
+namespace TryCatchFinallyBlocks
+{
+    internal class BankAccount
+    {
+        private double balance = 5000;
+
+        public void Withdraw(double amount)
+        {
+            if (amount > balance)
+            {
+                throw new InsufficientBalanceException("Insufficient Balance In Account.");
+            }
+
+            balance -= amount;
+
+            Console.WriteLine("Withdrawal Successful");
+            Console.WriteLine("Remaining Balance : " + balance);
+        }
+    }
+}
+
+
+namespace TryCatchFinallyBlocks
+{
+    [Serializable]
+    internal class InsufficientBalanceException : Exception
+    {
+        public InsufficientBalanceException(string? message) : base(message)
+        {
+        }
+    }
+}
+
+namespace TryCatchFinallyBlocks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                BankAccount bankAccount = new BankAccount();
+
+                Console.Write("Enter Withdrawal Amount : ");
+                double amount = Convert.ToDouble(Console.ReadLine());
+
+                bankAccount.Withdraw(amount);
+            }
+            catch (InsufficientBalanceException ex)
+            {
+                Console.WriteLine("Custom Exception Triggered");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Bank Transaction Completed");
+            }
+        }
+    }
+}
+
+Tomorrow : File and FileStream Classes In C#	

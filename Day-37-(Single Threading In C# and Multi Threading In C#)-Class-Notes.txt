@@ -1,0 +1,220 @@
+Single Threading In C# and Multi Threading In C#
+-------------------------------------------------
+
+What is Thread?
+
+* A Thread is the smallest unit of execution inside a process.
+
+* In Single Threading, only one thread executes tasks sequentially. this means tasks are processed one after another. until one task completes, the next task cannot start.
+
+* Small applications can work properly with Single Threading, but enterprise applications become slow if long-running operations block execution.
+
+* Suppose an e-commerce application is processing : 
+	
+	1. payment
+	2. invoice generation
+	3. email notification
+	4. inventory update
+
+* MultiThreading allows multiple threads to execute tasks simultaneously. Instead of waiting for one operation to complete, different operations can run independently in parallel.
+
+* Modern enterprise applications heavily depend on MultiThreading, because real-time systems perform multiple operations simultaneously
+		
+	1. chat applications
+	2. banking systems
+	3. stock market systems
+	4. gaming engines
+	5. video straming platform
+	6. cloud systems
+
+* Without MultiThreading, modern applications cannot achieve scalability and responsiveness.
+
+Example 1 : Single Threading
+
+namespace SingleThreading
+{
+    class Program
+    {
+        static void PrintNumbers()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine("Numbers : " + i);
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        static void PrintCharacters()
+        {
+            for (char ch = 'A'; ch <= 'E'; ch++)
+            {
+                Console.WriteLine("Characters : " + ch);
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            PrintNumbers();
+
+            PrintCharacters();
+        }
+    }
+}
+
+Example 2 : Multi Threading
+
+namespace MultiThreading
+{
+    class Program
+    {
+        static void PrintNumbers()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine("Numbers : " + i);
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        static void PrintCharacters()
+        {
+            for (char ch = 'A'; ch <= 'E'; ch++)
+            {
+                Console.WriteLine("Characters : " + ch);
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(PrintNumbers);
+
+            Thread t2 = new Thread(PrintCharacters);
+
+            t1.Start();
+            t2.Start();
+        }
+    }
+}
+
+Thread Life Cycle In C#
+-----------------------
+* A Thread mainly goes through these states : 
+	
+	1. Unstarted
+	2. Running
+	3. Wait / Sleep / Blocked
+	4. Stopped
+
+Example : Thread t1 = new Thread(MyMethod);
+
+Example : t1.Start();
+
+Example : Thread.Sleep(3000);	
+
+Complete Thread Life Cycle Flow : Unstarted -> Start() -> Sleep / Wait / Blocked -> Running Again -> Execution Completed -> Stopped.
+
+Example 3 : 
+
+namespace MultiThreading
+{
+    class Program
+    {
+        static void ProcessOrder()
+        {
+            Console.WriteLine("Order Processing Started.");
+
+            Thread.Sleep(3000);
+
+            Console.WriteLine("Order Processing Completed.");
+        }
+
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(ProcessOrder);
+
+            Console.WriteLine("Thread State After Creation : ");
+            Console.WriteLine(t1.ThreadState);
+
+            t1.Start();
+
+            Console.WriteLine("Thread State After Start : ");
+            Console.WriteLine(t1.ThreadState);
+
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Thread State During Sleep : ");
+            Console.WriteLine(t1.ThreadState);
+
+            t1.Join();
+
+            Console.WriteLine("Thread State After Completion : ");
+            Console.WriteLine(t1.ThreadState);
+        }
+    }
+}
+
+When To Use Thread Life Cycle Knowledge
+----------------------------------------
+* Use thread lifecycle knowledge when : 
+	
+	1. debugging applications
+	2. optimizing performance
+	3. handling background processing
+	4. managing API requests
+	5. building enterprise systems
+	6. developing cloud applications
+
+Simple Syncronization Example
+-----------------------------
+lock(this)
+{
+	balance += amount;
+}
+
+Where To Use MultiThreading?
+
+MultiThreading used in : 
+	
+	1. Banking systems
+	2. Gaming applications
+	3. Chat applications
+	4. Video Streaming
+	5. Cloud systems
+	6. Background services
+	7. Real-Time dashboards
+
+Why To Use MultiThreading?
+
+Advantages 
+----------
+1. Faster execution
+2. Better responsiveness
+3. Parallel processing
+4. Improved scalability
+5. Better CPU utilization
+
+When to Use MultiThreading?
+
+* Use MultiThreading when : 
+	
+	1. multiple independent tasks exist
+	2. background processing required
+	3. UI freezing must be avoided
+	4. performance optimization needed
+
+When Not To Use MultiThreading?
+
+* Do Not use unnecessarily because : 
+	
+	1. debugging becomes difficult
+	2. synchronization complexity increases
+	3. memory usage increases
+	4. race conditions possible
+
+Tomorrow : Race Condition	

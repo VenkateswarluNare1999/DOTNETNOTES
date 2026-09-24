@@ -1,0 +1,271 @@
+StreamReader Class and StreamWriter Class In C#
+-----------------------------------------------
+1. StreamWriter 
+
+* It is used to write text data into files.
+
+Using StreamWriter developers can : 
+	
+	1. Create text files
+	2. Write line-by-line content
+	3. append text
+	4. generate reports
+	5. create logs
+
+2. StreamReader
+
+* It is used to read text data from file.
+
+Using StreamReader developers can : 
+	
+	1. read complete file
+	2. read line-by-line
+	3. process large text files
+	4. parse reports
+	5. import data
+
+Why StreamReader/Writer Important?
+
+* Enterprise applications continuously process text files.
+
+Example : 
+	
+	1. application logs
+	2. employee reports
+	3. transaction exports
+	4. invoice generation
+	5. audit tracking
+
+Difference Between File Class and StreamWriter
+----------------------------------------------
+1. File Class : 
+	
+	* Simple direct methods
+	* Entire file operations
+	* Best for small operations
+
+2. StreamWriter :
+	
+	* Stream-based writing
+	* Gradual writing
+	* Better for continuous writing
+
+Difference Between FileStream and StreamWriter
+----------------------------------------------
+1. FileStream : 
+	
+	* Byte-based
+	* Low-Level
+	* More Complex
+
+2. StreamWriter : 
+	
+	* Text-based
+	* High-Level
+	* Easier
+
+Example 1 : StreamWriter
+
+namespace StreamWritterandReader
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StreamWriterMethod streamWriterMethod = new StreamWriterMethod();
+
+            streamWriterMethod.StreamWriterReaderMethod();
+        }
+    }
+}
+
+namespace StreamWritterandReader
+{
+    internal class StreamWriterMethod
+    {
+        public void StreamWriterReaderMethod()
+        {
+            string path = @"";
+
+            StreamWriter writer = new StreamWriter(path);
+
+            writer.WriteLine("Employee Report");
+            writer.WriteLine("---------------");
+            writer.WriteLine("Employee Id : 101");
+            writer.WriteLine("Employee Name : Ravi");
+            writer.WriteLine("Employee Department : IT");
+            writer.WriteLine("Employee Salary : 50000");
+
+            writer.Close();
+
+            Console.WriteLine("Employee Report Generated");
+        }
+    }
+}
+
+Example 2 : StreamReader
+
+namespace StreamWritterandReader
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StreamWriterMethod streamWriterMethod = new StreamWriterMethod();
+
+            streamWriterMethod.StreamWriterReaderMethod();
+        }
+    }
+}
+
+namespace StreamWritterandReader
+{
+    internal class StreamWriterMethod
+    {
+        public void StreamWriterReaderMethod()
+        {
+            string path = @"";
+
+            StreamReader reader = new StreamReader(path);
+
+            string data = reader.ReadToEnd();
+
+            Console.WriteLine(data);
+
+            reader.Close();
+        }
+    }
+}	
+
+BinaryReader and BinaryWriter In C#
+------------------------------------
+* BinaryReader and BinaryWriter are stream-based classes used for reading and writing binary data.
+
+What is Binary Data?
+
+* Binary Data means data stored in : 
+	
+	1. Os and 1s
+	2. byte format
+
+Example : 
+	
+	1. image files
+	2. mp3 songs
+	3. videos
+	4. zip files
+
+1. BinaryWriter 
+
+* It is used to write binary data files.
+
+Usinf BinaryWriter developers can write : 
+	
+	1. integers
+	2. strings
+	3. booleans
+	4. decimal values
+	5. byte arrays
+
+2. BinaryReader
+
+* It is used to read binary data from files.
+
+Why Binary Operations Important?
+
+* Enterprise applications hevaily used in binary operations because : 
+	
+	1. binary processing faster
+	2. compact storage
+	3. secure data handling
+	4. multimedia support
+	5. efficient network transfer
+
+Example : 
+	
+	1. Banking ATM applications
+	2. Fingerprint scanners
+	3. Video streaming platforms
+	4. Gaming engines
+	5. Cloud storage applications
+	
+Example 1 : BinaryWriter	
+
+namespace BinaryReaderandWriter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            BinaryWriterReader binaryWriterReader = new BinaryWriterReader();
+
+            binaryWriterReader.BinaryWriterandReaderMethod();
+        }
+    }
+}
+
+namespace BinaryReaderandWriter
+{
+    internal class BinaryWriterReader
+    {
+        public void BinaryWriterandReaderMethod()
+        {
+            string path = @"C:\Users\HP\Desktop\AshokIT\DotNetCoreFullStackDevelopment-29-06-2026\Files\StudentData.dat";
+
+            FileStream fs = new FileStream(path, FileMode.Create);
+
+            BinaryWriter writer = new BinaryWriter(fs);
+
+            writer.Write(101);
+            writer.Write("Ravi");
+            writer.Write(85.5);
+
+            writer.Close();
+            fs.Close();
+
+            Console.WriteLine("Binary Data Written Successfully");
+        }
+    }
+}
+
+Example 2 : BinaryReader
+
+namespace BinaryReaderandWriter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            BinaryWriterReader binaryWriterReader = new BinaryWriterReader();
+
+            binaryWriterReader.BinaryWriterandReaderMethod();
+        }
+    }
+}
+
+namespace BinaryReaderandWriter
+{
+    internal class BinaryWriterReader
+    {
+        public void BinaryWriterandReaderMethod()
+        {
+            string path = @"C:\Users\HP\Desktop\AshokIT\DotNetCoreFullStackDevelopment-29-06-2026\Files\StudentData.dat";
+
+            FileStream fs = new FileStream(path, FileMode.Open);
+            BinaryReader reader = new BinaryReader(fs);
+
+            int id = reader.ReadInt32();
+            string name = reader.ReadString();
+            double marks = reader.ReadDouble();
+
+            Console.WriteLine("Student Id : " + id);
+            Console.WriteLine("Student Name : " + name);
+            Console.WriteLine("Student Marks : " + marks);
+
+            reader.Close();
+            fs.Close();
+        }
+    }
+}
+
+Tomorrow : FileInfo Class In C#

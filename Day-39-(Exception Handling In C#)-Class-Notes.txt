@@ -1,0 +1,228 @@
+Exception Handling In C#
+------------------------
+* An exception is an abnormal condition that interrupts normal program execution.
+
+For Example : 
+
+	1. dividing by zero
+	2. file not found
+	3. database connection failure
+	4. network timeout
+	5. invalid user input
+	6. null reference access
+
+Exception Handling allows application to : 
+	
+	1. detect errors
+	2. handle errors safely
+	3. continue meangful messages
+	4. maintain application stability
+
+Without exception handling : 
+	
+	1. applications terminate unexpectedly
+	2. users lose data
+	3. transactions fail
+	4. systems become unstable
+
+* Modern enterprise systems heavily depend on exception handling because production applications continuosly interact with : 
+	
+	1. databases
+	2. APIs
+	3. files
+	4. cloud services
+	5. user inputs
+	6. external systems
+
+Structure of Exception Handling
+-------------------------------
+try
+{
+	// code block
+}
+catch
+{
+	// error code block
+}
+finally
+{
+	// success code block	
+}	
+
+1. Try block contains risky code that may generate exception.
+
+Example : 
+	
+	1. file access
+	2. division
+	3. database operations
+	4. API communication
+
+2. Catch block handles exception, If exception occurs inside try block, execution immediately jumps to catch block.
+
+3. Finally block always executes
+
+Whether : exception occurs or exception does not occurs, finally blo' always runs.
+
+Usually used for : 
+	
+	1. closing database connections
+	2. releasing files
+	3. cleanup operations
+
+Example : 
+
+namespace TryCatchFinallyBlocks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+			try
+			{
+                Console.WriteLine("Application Started.");
+
+                Console.Write("Enter First Number : ");
+                int num1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Enter Second Number : ");
+                int num2 = Convert.ToInt32(Console.ReadLine());
+
+                int result = num1 / num2;
+
+                Console.WriteLine("Result : " + result);
+            }
+			catch (DivideByZeroException ex)
+			{
+                Console.WriteLine("Cannot divide by zero.");
+                Console.WriteLine(ex.Message);
+			}
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Invalid Input");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Application Finished.");
+            }
+        }
+    }
+}
+
+Complete Exception Flow : try block starts -> Exception occurs ? Yes -> Matching catch executes -> finally executes -> Program continues.
+
+When To Use Try-Catch?
+
+* Use exception handling when : 
+	
+	1. file operations
+	2. database access
+	3. API communication
+	4. user input processing
+	5. cloud communication
+
+Where To Use Try-Catch?
+
+* Used in : 
+	
+	1. Banking systems
+	2. E-commerce platforms
+	3. ERP systems
+	4. Healthcare software
+	5. ASP.NET Core APIs
+	6. Cloud applications
+	7. Enterprise systems
+
+Why To Use Try-Catch?
+
+Advantages : 
+	
+	1. prevents application crash
+	2. improves reliability
+	3. handles runtime errors
+	4. improves user experience
+	5. protects data integrity
+	6. improves debugging
+
+Example : 
+
+namespace TryCatchFinallyBlocks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Console.Write("Enter Your Name : ");
+                string name = Console.ReadLine();
+
+                Console.Write("Enter Your Age : ");
+                int age = Convert.ToInt32(Console.ReadLine());
+
+                if (age >= 18)
+                {
+                    Console.WriteLine(name + " is an adult.");
+                }
+                else
+                {
+                    Console.WriteLine(name + " is a minor.");
+                }
+
+                Console.WriteLine("\nNumbers from 1 to 5 : ");
+
+                for (int i = 1; i <= 5; i++)
+                {
+                    Console.WriteLine(i);
+                }
+
+                Console.WriteLine("\nChoose an option : ");
+                Console.WriteLine("1. Hello");
+                Console.WriteLine("2. Bye");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Hello " + name);
+                        break;
+                    case 2:
+                        Console.WriteLine("Bye " + name);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice");
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Please enter valid input.");
+            }
+        }
+    }
+}
+
+Assignment Question
+-------------------
+1. Write a C# Program that : 
+	
+	1. Ask the user to enter the student's name
+	2. Ask the user to enter marks for 3 subjects
+	3. Calculate the total and average marks
+	4. Use if-else to display the grades : 
+		
+		1. 90 - 100 -> A
+		2. 75 - 89  -> B
+		3. 50 - 74  -> C
+		4. Below 50 -> Fail
+	5. Use a for loop to enter the marks for all 3 subjects
+	6. Use switch to ask the user whether they want to : 
+		
+		1. Display student details
+		2. Display only the grades
+		3. Exit
+	7. Use try-catch to handle invalid input	
+	
+Tomorrow : Multi Catch Blocks	

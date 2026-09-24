@@ -1,0 +1,149 @@
+FileInfo Class
+--------------
+* FileInfo is used to retrieve detailed information about files and also perform file-related operations.
+
+In real-world enterprise applications, developers not only read and write files, but they also need to : 
+	
+	1. check file size
+	2. get creation date
+	3. rename files
+	4. delete files
+	5. move files
+	6. check extensions
+	7. verify file existence
+
+Common FileInfo Properties
+--------------------------
+1. Name : File name
+2. Length : File size
+3. CreationTime : File created date
+4. Extension : File extension
+5. Exists : File exists or not
+
+Common FileInfo Methods
+-----------------------
+1. Delete() -> Delete File
+2. CopyTo() -> Copy File
+3. MoveTo() -> Move File
+
+Example 1 : Using FileInfo Properties
+
+namespace FileInfoClass
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileInfo file = new FileInfo(@"");
+
+            Console.WriteLine("File Name : " + file.Name);
+            Console.WriteLine("File Size : " + file.Length + " Bytes");
+            Console.WriteLine("File Extension : " + file.Extension);
+            Console.WriteLine("File Created Date : " + file.CreationTime);
+            Console.WriteLine("File Exists : " + file.Exists);
+        }
+    }
+}
+
+Example 2 : File Delete
+
+namespace FileInfoClass
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileInfo file = new FileInfo(@"");
+
+            if (file.Exists)
+            {
+                file.Delete();
+
+                Console.WriteLine("File Deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("File Not Found");
+            }
+        }
+    }
+}	
+
+Example 3 : File Copy
+
+namespace FileInfoClass
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileInfo file = new FileInfo(@"");
+
+            file.CopyTo(@"");
+
+            Console.WriteLine("File Copied Successfully");
+        }
+    }
+}
+
+Example : XLSX File : Create Excel File
+
+using ClosedXML.Excel;
+
+namespace FileInfoClass
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string path = @"";
+
+            using (XLWorkbook workbook = new XLWorkbook())
+            {
+                var ws = workbook.Worksheets.Add("Employees");
+
+                ws.Cell(1, 1).Value = "Id";
+                ws.Cell(1, 2).Value = "Name";
+                ws.Cell(1, 3).Value = "Salary";
+
+                ws.Cell(2, 1).Value = 1;
+                ws.Cell(2, 2).Value = "Ravi";
+                ws.Cell(2, 3).Value = 50000;
+
+                workbook.SaveAs(path);
+            }
+
+            Console.WriteLine("Excel file Created");
+        }
+    }
+}
+
+Example : XLSX File : Read Excel File
+
+using ClosedXML.Excel;
+
+namespace FileInfoClass
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string path = @"";
+
+            using (XLWorkbook workbook = new XLWorkbook(path))
+            {
+                var ws = workbook.Worksheet(1);
+
+                string id = ws.Cell(2, 1).GetValue<string>();
+                string name = ws.Cell(2, 2).GetValue<string>();
+                string salary = ws.Cell(2, 3).GetValue<string>();
+
+                Console.WriteLine(id);
+                Console.WriteLine(name);
+                Console.WriteLine(salary);
+            }
+
+            Console.WriteLine("Excel file Opened");
+        }
+    }
+}

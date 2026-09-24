@@ -1,0 +1,211 @@
+File Handling In C#
+-------------------
+In C#, File Handling mainly works using : 
+	
+	1. File Class
+	2. FileStream Class
+
+Both belong to : System.IO namespace
+
+1. File Class
+
+* 'File' class is high-level utility class provide by .NET.
+
+* It is used for : 
+	
+	1. Creating Files
+	2. Reading Files
+	3. Writing Files
+	4. Copying Files
+	5. Deleting Files
+
+* The File class provides simple methods for quick file operations.
+
+Example : 
+
+	1. File.WriteAllText()
+	2. File.ReadAllText()
+	3. File.Copy()
+	4. FIle.Delete()
+
+2. FileStream Class
+
+* FileStream class is a low-level stream-based class.
+
+* It provides more control over file operations.
+
+* Using FileStream Developers can : 
+	
+	1. read data byte-by-byte
+	2. write data gradually
+	3. process large files
+	4. manage file memory efficiently
+
+Difference Between File and FileStream
+--------------------------------------
+1. File Class : 
+	
+	1. High-Level
+	2. Easy operations
+	3. Simple file handling
+	4. Good for small files
+
+2. FileStream Class : 
+	
+	1. Low-Level
+	2. Detailed control
+	3. Stream-based handling
+	4. Better for large files
+
+Example 1 : File Class
+
+namespace FileandFileStream
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileClass fileClass = new FileClass();
+
+            fileClass.FileClassMethod();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FileandFileStream
+{
+    internal class FileClass
+    {
+        public void FileClassMethod()
+        {
+            string path = @"";
+
+            File.WriteAllText(path, "Employee Id : 101\nEmployee Name : Ravi");
+
+            Console.WriteLine("File Created and Data Written");
+
+            string data = File.ReadAllText(path);
+
+            Console.WriteLine("File Content : ");
+            Console.WriteLine(data);
+        }
+    }
+}
+
+Example 2 : FileStream Class
+
+namespace FileandFileStream
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileClass fileClass = new FileClass();
+
+            fileClass.FileClassMethod();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FileandFileStream
+{
+    internal class FileClass
+    {
+        public void FileClassMethod()
+        {
+            string path = @"";
+
+            FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+
+            string message = "Bank Transaction Successful";
+
+            byte[] data = Encoding.UTF8.GetBytes(message);
+
+            fs.Write(data, 0, data.Length);
+
+            fs.Close();
+
+            Console.WriteLine("Data Written Using FileStream");
+        }
+    }
+}
+	
+Example 3 : 
+
+namespace FileandFileStream
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileClass fileClass = new FileClass();
+
+            fileClass.FileClassMethod();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FileandFileStream
+{
+    internal class FileClass
+    {
+        public void FileClassMethod()
+        {
+            string path = @"";
+
+            // Write
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            {
+                string csv =
+                    "Id, Name, Salary\n" +
+                    "1, Ravi, 50000\n" +
+                    "2, Kiran, 60000";
+
+                byte[] data = Encoding.UTF8.GetBytes(csv);
+
+                fs.Write(data, 0, data.Length);
+            }
+
+            // Read
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                byte[] data = new byte[fs.Length];
+
+                fs.Read(data, 0, data.Length);
+
+                string result = Encoding.UTF8.GetString(data);
+
+                Console.WriteLine(result);
+            }
+        }
+    }
+}
+
+Assignment Questions
+--------------------
+1. Create SQL File - Create, Write, Read
+2. Create DAT File - Create, Write, Read
+3. Create XLSX File - Create, Write, Read
+4. Create PDF File - Create, Write, Read
+5. Create JSON File - Create, Write, Read
+6. Create XML File - Create, Write, Read
+
+Tomorrow : StreamReader and StreamWriter Class In C#

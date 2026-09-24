@@ -1,0 +1,184 @@
+Asynchronous Programming
+-------------------------
+
+* In enterprise applications, many operations take time to complete. 
+
+For Example : 
+	
+	1. API Calls
+	2. Database operations
+	3. File handling
+	4. Payment gateway communication
+	5. Email sending
+	6. Cloud communication. These operations are called long-running operations, because they do not complete immediately.
+
+* Asynchronous Programming allows the application to continue executing other work while waiting for long-running operations to complete. Instead of blocking execution, the thread becomes free temporarily and resumes work one operation completes.
+
+This dramatically improves : 
+		
+	1. responsiveness
+	2. scalability
+	3. performance
+	4. user experience
+
+* Modern applications heavily depend on Asynchronous Programming : 
+	
+	1. ASP.NET Core APIs
+	2. Angular backend services
+	3. Banking systems
+	4. E-commecrce platforms
+	5. Cloud applications
+	6. Microservices
+	7. Chat applications. Without Asynchronous Programming, modern enterprise systems cannot efficiently handle thousands of users simultaneously.
+
+Synchronous and Asynchronous
+-----------------------------
+
+1. Synchronous : In Synchronous Programming, tasks execute one after another.
+
+Example : 
+
+Task 1 -> Complete	
+Task 2 -> Complete	
+Task 3 -> Complete	
+
+2. Asynchronous : In Asynchronous Programming, application does not wait continuosly.
+
+Example : 
+
+Task Completed -> Thread Released -> Other Work Continues -> Task Completes Later.
+
+Why Asynchronous Programming Introduced
+----------------------------------------
+* Suppose 5000 users simultaneously call API.
+
+If every request blocks thread : 
+	
+	1. server memory increases
+	2. thread pool exhausted
+	3. application slows
+
+Asynchronous Programming solves this by : 
+	
+	1. freeing threads during waiting
+	2. improving scalability
+	3. handling more requests efficiently
+
+That is why modern ASP.NET Core APIs heavily use : 
+	
+	1. async : Marks method as Asynchronous.
+		
+		Example : async Task MyMethod()
+		
+	2. await : Pauses method execution temporarily until task completes.
+	
+		Example : await Task.Delay(3000);
+		
+	3. Task : Represents Asynchronous operation
+	
+		Example : Task<string>
+	
+Complete Asynchronous Flow : Method Starts -> Long Operation Starts -> await Encountered -> Thread Released -> Other Work Continues -> Operation Completes -> Method Resumes.	
+
+Example : 
+
+namespace AsynchronousProgramming
+{
+    class Program
+    {
+        static async Task ProcessPayment()
+        {
+            Console.WriteLine("Payment Processing Started.");
+
+            await Task.Delay(5000);
+
+            Console.WriteLine("Payment Successful.");
+        }
+
+        static async Task Main()
+        {
+            Console.WriteLine("Customer Placed Order.");
+
+            Task paymentTask = ProcessPayment();
+
+            Console.WriteLine("Application Still Responsive");
+
+            await paymentTask;
+
+            Console.WriteLine("Order Completed.");
+        }
+    }
+}
+
+Difference Between Asynchronous vs MultiThreading
+--------------------------------------------------
+
+1. MultiThreading : 
+	
+	1. Multiple Threads execute simultaneously
+	2. CPU parallelism
+	3. heavy processing tasks
+
+Example : 
+	
+	1. image processing
+	2. gaming engines
+
+
+2. Asynchronous Programming : 
+	
+	1. Non-blocking operations
+	2. better responsiveness
+	3. waiting optimization
+
+Example : 
+	
+	1. API calls
+	2. database calls
+	3. file operations
+
+Real-Time Industry Usage
+-------------------------
+* Asynchronous Programming used in : 
+	
+	1. ASP.NET Core APIs
+	2. Angular backend APIs
+	3. Banking systems
+	4. Cloud applications
+	5. Payment gateways
+	6. Email services
+	7. Chat systems
+	8. Microservices
+	9. Azure Functions
+
+Why To Use Asynchronous Programming ?
+
+Advantages : 
+	
+	1. Better responsiveness
+	2. High scalability
+	3. Better thread utilization
+	4. Faster applications
+	5. Imrpoved user experience
+	6. Handles more requests
+
+When To Use Asynchronous Programming ?
+
+* Use Asynchronous Programming when : 
+	
+	1. calling APIs
+	2. accessing database
+	3. reading files
+	4. cloud communication
+	5. long-running operations
+	6. network communication
+
+When Not To Use Asynchronous Programming ?
+
+* Do Not Use unnecessarily for : 
+	
+	1. simple calculations
+	2. short operations
+	3. CPU-intensice tasks
+	
+Tomorrow : Try, Catch and Finally Blocks In C#	

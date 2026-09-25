@@ -1,0 +1,227 @@
+1. Constraints and Keys
+
+* A Constraint is a rule applied on table columns that restricts the type of data that can be stored.
+
+* These rules help maintain Data Integrity.
+
+Types of Constraints and Keys
+-----------------------------
+1. Primary Key
+
+* A Primary Key is a column or set of columns that uniquely identifies each record in a table.
+
+* Every table should ideally have a primary key, because it helps us identify rows uniquely.
+
+Important rules of a Primary Key
+--------------------------------
+1. It must contain unique values.
+2. It cannot contain NULL values.
+3. Each table can have only one Primary Key
+4. SQL Server automatically creates an index on the primary key.
+
+Example :
+
+CREATE TABLE Employees
+(
+	EmployeeId Int PRIMARY KEY,
+	Name Varchar(100),
+	Email Varchar(100),
+	Salary decimal(10,2)
+)
+
+-- Good Data
+INSERT INTO Employees VALUES(1, 'Ravi', 'ravi@gmail.com', 50000);
+INSERT INTO Employees VALUES(2, 'Kiran', 'kiran@gmail.com', 60000);
+
+Select * From Employees
+
+-- Incorrect Data
+INSERT INTO Employees VALUES(1, 'Ram', 'ram@gmail.com', 70000);
+
+2. Foreign Key
+
+* A Foreign Key is used to establish a relationship between two tables.
+Example :
+
+CREATE TABLE Departments
+(
+	DepartmentId Int PRIMARY KEY,
+	DepartmentName Varchar(50)
+);
+
+CREATE TABLE Employees
+(
+	EmployeeId Int PRIMARY KEY,
+	Name Varchar(100),
+	DeptId Int,
+	FOREIGN KEY (DeptId) REFERENCES Departments(DepartmentId)
+)
+
+-- Departments Table Data
+
+INSERT INTO Departments VALUES(1, 'HR'), (2, 'IT');
+
+-- Good Data
+
+-- Employees Table Data
+
+INSERT INTO Employees VALUES(1, 'Ravi', 1);
+
+Select * From Employees
+Select * From Departments
+
+-- Invalid Data
+
+INSERT INTO Employees VALUES(2, 'Kiran', 5);
+
+3. Unique Constraint
+
+* The purpose of a Unique Constraint is to ensure that all values in a column are different.
+
+* Unlike Primary Key :
+
+Primary Key :
+	
+	1. does not allow NULL
+	2. only one per table
+
+Unique Constraint :
+	
+	1. allows one NULL
+	2. multiple unique constraints can exist in a table.
+	
+Example :
+
+CREATE TABLE Users
+(
+	UserId Int PRIMARY KEY,
+	EMail Varchar(100) UNIQUE
+);
+
+select * from Users
+
+-- Good Data
+
+-- INSERT DATA
+
+INSERT INTO Users VALUES(1, 'user1@gmail.com');
+INSERT INTO Users VALUES(2, 'user2@gmail.com');
+
+-- Invalid Data
+
+INSERT INTO Users VALUES(3, 'user1@gmail.com');
+
+* This constraint is commonly used for :
+		
+	1. Email
+	2. Phone number
+	3. Username
+	
+4. Check Constraint
+
+* The Check Constraint ensures that data inserted into a column satisfies a specific condition.
+
+Example : A salary should never be nagative
+
+CREATE TABLE Employees
+(
+	Id Int PRIMARY KEY,
+	Name Varchar(50),
+	Salary decimal(10,2),
+	CHECK (Salary > 0)
+);
+
+Select * from Employees
+
+-- Valid Data
+
+INSERT INTO Employees VALUES(1, 'Ravi',50000);
+
+-- Invalid Data
+
+INSERT INTO Employees VALUES(2,'Kiran',-50000);
+
+Check Constraint are commonly used for :
+
+	1. Age > 18
+	2. Salary > 0
+	3. Quantity >= 1
+
+5. Default Constraint
+
+* The Default Constraint automatically inserts a value if the user does not provide one.
+
+Example : Order Date.
+
+CREATE TABLE Orders
+(
+	OrderId Int PRIMARY KEY,
+	OrderDate DATETIME DEFAULT GETDATE()
+);
+
+select * from Orders
+
+-- Valid Data
+
+INSERT INTO Orders (OrderId) VALUES(1);
+
+Default Constraints are commonly used for :
+
+	1. CreatedDate
+	2. Status
+	3. Country
+
+6. NOT NULL Constraint
+
+* A NOT NULL constraint ensures that a column must always have a value.
+
+* It prevents missing data.
+
+Example :
+
+CREATE TABLE Students
+(
+	Id Int PRIMARY KEY,
+	Name Varchar(50) NOT NULL
+);
+
+select * from Students
+
+-- Valid Data
+
+INSERT INTO Students VALUES(1, 'Ravi');
+
+-- Invalid Data
+
+INSERT INTO Students VALUES(2, NULL);
+
+* This constraint is important for fields like :
+	
+	1. Name
+	2. Email
+	3. Password
+	4. Phone Number
+	
+7. Composite Keys
+
+* A Composite Key is a Primary Key formed using multiple columns.
+
+Example :
+
+CREATE TABLE StudentCourses
+(
+	StudentId Int,
+	CourseId Int,
+	PRIMARY KEY(StudentId, CourseId)
+);
+
+-- Valid Data
+INSERT INTO StudentCourses VALUES(1,1);
+
+select * from StudentCourses
+
+-- Invalid Data
+
+INSERT INTO StudentCourses VALUES(1,1);
+
+Tomorrow : SELECT Queries

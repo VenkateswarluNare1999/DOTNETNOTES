@@ -1,0 +1,75 @@
+Functions In SQL Server
+-----------------------
+
+SQL Server Functions are Mainly Categorized Intp 2 Types : 
+
+1. Built-in Functions : These are already provided by SQL Server and are optimized internally.
+2. User Defined Functions : These are created by developers to implement custome business logic.
+
+1. Built-in Functions
+---------------------
+
+* Built-in Functions can be grouped into several categories based on their purpose :
+	
+	1. String Functions
+	2. Numeric Functions
+	3. Date & Time Functions
+	4. Aggregate Functions
+	5. System Functions
+	6. Conversion Functions
+	
+1. String Functions
+
+	1. LEN() Function : It counts the number of characters inside a string.
+	
+		Syntax : LEN(expression);
+		
+		Example : SELECT LEN('SQL SERVER');
+		
+		Real-Time Usage of LEN()
+		------------------------
+		1. Aadhaar Validation
+		2. Mobile Number Validation
+		3. Employee Name Validation
+		4. Account Number Validation
+		5. Product Code Validation
+	
+	2. UPPER() Function : Its purpose is to convert all lowercase characters into uppercase characters
+		
+		Syntax : UPPER(expression);
+		
+		Example : SELECT UPPER('venkatesh');
+		
+		Real-Time Usage of UPPER()
+		--------------------------
+		1. Employee Reports
+		2. Banking Statements
+		3. Passport Systems
+		4. Government Applications
+		5. Hospital Reports
+	
+	3. LOWER() Function : Its purpose is to convert all uppercase characters into lowercase characters
+		
+		Syntax : LOWER(expression);
+		
+		Example : SELECT LOWER('VENKATESH');
+	
+	4. SUBSTRING() Function : Its purpose is Extract a specific portion of text from a larger string.
+	
+		Syntax : SUBSTRING(expression, start, length);
+		
+		Example : SELECT SUBSTRING('DATABASE', 1, 4);
+	
+	5. CONCAT() Function : Its purpose is Combine multiple strings into a single string.
+	
+		Syntax : CONCAT(value1,value2,value3,...);
+		
+		Example : SELECT CONCAT('Hello ', 'Students');
+	
+	6. REPLACE() Function : Its purpose is Search for a specific text and replace it with another text.
+		
+		Syntax : REPLACE(original_string, old_value, new_value);
+		
+		Example : SELECT REPLACE('SQL Server', 'Server', 'Database');
+		
+	Tomorrow :7. TRIM(), LTRIM(), RTRIM() Functions	

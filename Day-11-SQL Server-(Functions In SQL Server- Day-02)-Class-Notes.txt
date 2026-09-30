@@ -1,0 +1,165 @@
+Topic 7 : TRIM(), LTRM(), RTRIM() Functions
+-------------------------------------------
+
+Ravi Kumar
+     Ravi Kumar
+Ravi Kumar        
+     Ravi Kumar        	 
+
+Example : Select * From Employees WHERE EmployeeName = 'Ravi Kumar'
+
+* This creates problem in : 
+	
+	1. Login Systems
+	2. Employee Portals
+	3. Banking Applications
+	4. E-Commerce Systems
+	5. Data Migrations
+	6. Reporting Systems
+
+What is LTRM()?
+
+* LTRM() means : Left Trim, It removes unwanted spaces from the LEFT side (begining) of a string.
+
+Syntax : LTRM(string);
+
+Example : SELECT LTRIM('   SQL Server');
+
+What is RTRIM()?
+
+* RTRIM means : Right Trim, It removes spaces from the RIGHT side (end) of a string.
+
+Syntax : RTRIM(string);
+
+Example : SELECT RTRIM('SQL Server    ');
+
+What is TRIM()?
+
+* TRIM() removes spaces from both sides.
+
+Syntax : TRIM(string);
+
+Example : SELECT TRIM('     SQL Server    ');
+
+* TRIM() performs LTRIM() and RTRIM() together.
+
+Numeric Functions In SQL Server
+-------------------------------
+* Numeric Functions are built-in SQL Server functions used to perform mathematical calculations and numeric operations.
+
+1. ABS() 
+
+	* ABS() returns the absolute value of a number and It removes the negative sign from a negative number.
+
+	Syntax : ABS(numeric_expression)
+	
+	Example 1 : SELECT ABS(-100) AS Result;
+	Example 2 : SELECT ABS(250 - 300) AS Difference;
+
+2. CEILING()
+	
+	* CEILING() returns the smallest integer greater than or equal to a number, In simple terms : always rounds up.
+	
+	Syntax : CEILING(numeric_expression);
+	
+	Example 1 : SELECT CEILING(10.25) As Result;
+	
+	Example 2 : SELECT CEILING(25.01) As Result;
+
+3. FLOOR()
+	
+	* FLOOR() returns the largest integer less than or equal to a number, In simple terms : always rounds down.
+	
+	Syntax : FLOOR(numeric_expression);
+	
+	Example 1 : SELECT FLOOR(10.99) As Result;
+	
+	Example 2 : SELECT FLOOR(25.01) As Result;
+	
+4. ROUND()
+	
+	* ROUND() rounds a numeric value to a specified number of decimal places.
+	
+	Syntax : ROUND(numeric_expression, length);
+	
+	Example 1 : SELECT ROUND(125.6789, 2) AS Result;
+	Example 2 : SELECT ROUND(987.456, 1) AS Result;
+	
+5. POWER()
+	
+	* POWER() returns a number raised to specified power.
+	
+	Syntax : POWER(numeric_expression, y);
+	
+	Example 1 : SELECT POWER(2, 3) AS Result;
+			
+			Output : 8
+			
+			Because : 2 * 2 * 2 = 8
+	Example 2 : SELECT POWER(5, 2) AS Result;
+			
+			Output : 25
+			
+			Because : 5 * 5 = 25
+
+6. SQRT()
+
+	* SQRT() returns the square root of a number.
+	
+	Syntax : SQRT(numeric_expression);
+	
+	Example 1 : SELECT SQRT(25) As Result
+	Example 2 : SELECT SQRT(144) As Result
+
+7. SQUARE()
+	
+	* SQUARE() returns the square of a number
+	
+	Syntax : SQUARE(numeric_expression);
+	
+	Example 1 : SELECT SQUARE(5) As Result;
+	Example 2 : SELECT SQUARE(144) As Result;
+	
+Date & Time Functions In SQL Server
+-----------------------------------
+* Data & Time Functions built-in SQL Server functions used to retrieve, extract, calculate, compare, format, and manipulate dates and times.
+
+1. GETDATE()
+		
+	* GETDATE() returns the current date and time of SQL Server System.
+	
+	Example : SELECT GETDATE() As CurrentDateTime;
+
+2. DATEADD()
+	
+	* DATEADD() adds or subtracts a specified time interval from a date.
+	
+	Syntax : DATEADD(datepart, number, date);
+	
+	Example 1 : Add Days -> SELECT DATEADD(DAY, 10, '2026-09-30') As NewDate;
+	
+	Example 2 : Add Months -> SELECT DATEADD(MONTH, 3, '2026-09-30') As NewDate;
+	
+	Example 3 : Add Years -> SELECT DATEADD(YEAR, 3, '2026-09-30') As NewDate;
+
+3. DATEDIFF()
+	
+	* DATEDIFF() returns the number of date boundaries crossed between two dates for a specified date part.
+	
+	Syntax : DATEDIFF(datepart, startdate, enddate);
+	
+	Example 1 : SELECT DATEDIFF(DAY, '2026-09-01', '2026-09-30') As Days;
+	
+	Example 2 : SELECT DATEDIFF(MONTH, '2026-01-01', '2026-09-01') As Months;
+	
+	Example 3 : SELECT DATEDIFF(YEAR, '2025-01-01', '2026-09-01') As Year;
+	
+4. DATEPART()
+	
+	* DATEPART() returns a specific part of a date as an integer.
+	
+	Syntax : DATEPART(datepart, date);
+	
+	Example : Get Year -> SELECT DATEPART(YEAR, '2026-09-30') As Year;
+	
+Tomorrow : Aggregate Functions In SQL Server	

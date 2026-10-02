@@ -1,0 +1,137 @@
+System Functions In SQL Server
+------------------------------
+* System Functions are built-in SQL Server Functions that provide information about the database, server, current user/session, configuration, objects, errors, and SQL Server environment.
+
+1. DB_NAME()
+	
+	* DB_NAME returns the name of current database.
+	
+	Syntax : DB_NAME(); or DB_NAME(database_Id);
+	
+	Example 1 : SELECT DB_NAME() AS CurrentDatabase;
+	
+	Example 2 : SELECT DB_NAME(5) AS CurrentDatabase;
+	
+	Check Databases Id's : SELECT database_id, name FROM sys.databases;
+
+	Example 3 : Check Execution Time : SELECT DB_NAME() AS DatabaseName, GETDATE() AS ExecutionTime;
+	
+	* Common Use Cases :
+		
+		1. Auditing
+		2. Troubleshooting
+		3. Dynamic SQL
+		4. Logging
+		5. Multi-database environments
+
+2. DB_ID()
+	
+	* DB_ID returns the database Id of the current database or a specified database.
+	
+	Syntax : DB_ID(); or DB_ID(database_name);
+	
+	Example 1 : SELECT DB_ID() AS CurrentDatabaseId;
+	
+	Example 2 : SELECT DB_ID('DotNet11AmBatch') AS DatabaseId;
+	
+	We can also check Whether a database exists :
+	
+	IF DB_ID('DotNet11AmBatch') IS NOT NULL
+		PRINT 'Database exists';
+	ELSE 
+        PRINT 'Database does not exist';
+
+	* Common Use Cases :
+		
+		1. Database existence checks
+		2. Database administration
+		3. Deployment scripts
+		4. Database metadata queries
+
+Conversion Functions In SQL Server
+----------------------------------
+* Conversion functions In SQL Server are used to convert a value from one data type to another data type.
+
+For Example :
+	
+	1. Varchar -> Int
+	2. Varchar -> Date
+	3. DateTime -> Varchar
+	4. Int -> Varchar
+
+The Most Important SQL Server Conversion Functions are :
+	
+	1. CAST()
+	2. CONVERT()
+	3. PARSE()
+	
+1. CAST()
+	
+	* CAST() converts an expression from one data type to another.
+	
+	* It is the standard and commonly used conversion function in SQL Server.
+	
+	Syntax : CAST(expression AS data_type);
+	
+	Example 1 : Varchar -> Int => SELECT CAST('100' AS int) AS NumericValue
+	
+	Example 2 : DateTime -> Date => SELECT CAST(GETDATE() AS DATE) AS CurrentDate;
+	
+	* Common Use Cases :
+		
+		1. Convert string numbers to numeric values
+		2. Remove time from a 'DATETIME'
+		3. Prepare data for calculations
+
+2. CONVERT()
+
+	* CONVERT() converts an expression from one data type another.
+	
+	* Its major advantage over CAST() is that it supports style codes, especially for date/time conversions.
+	
+	Syntax : CONVERT(data_type, expression); or CONVERT(data_type, expression, style);
+	
+	Example 1 : Varchar -> Int => SELECT CONVERT(Int, '500') AS NumberValue;
+	
+	Example 2 : Date formatting => SELECT CONVERT(varchar(10), GETDATE(), 103) AS FormattedDate;
+	
+	* Common Styles :
+		
+		1. 101 : 'mm/dd/yyyy'
+		2. 103 : 'dd/mm/yyyy'
+		3. 120 : 'yyyy-mm-dd hh:mi:ss'
+		4. 112 : 'yyyymmdd'
+		5. 121 : 'yyyy-mm-dd hh:mi:ss.mmm'
+	
+	* Common Use Cases :
+		
+		1. Report formatting
+		2. Data exports
+		3. Date Conversions
+
+3. PARSE()
+	
+	* PARSE() converts a string into a specified data type using .NET culture information.
+	
+	* It is particularly useful when dealing with culture-specific numeric and date formates.
+	
+	Syntax : PARSE(string_value AS data_type [USING culture]);
+	
+	Example 1 : String to Date
+	
+	SELECT PARSE('02/10/2026' AS date USING 'en-GB') AS ConvertedDate;
+	
+	* en-GB interprets the value as : dd/mm/yyyy
+	
+	Example 2 : String to numeric
+	
+	SELECT PARSE('1,234.56' AS decimal(10,2) USING 'en-US') AS Amount;
+	
+	* Common cultures : 
+		
+		1. en-US -> United States
+		2. en-GB -> United Kingdom
+		3. de-DE -> Germany
+		4. fr-FR -> France
+	
+	

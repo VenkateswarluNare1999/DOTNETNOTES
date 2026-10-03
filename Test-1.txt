@@ -1,0 +1,108 @@
+CREATE TABLE Employees
+(
+    EmployeeID INT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    JoiningDate DATE,
+    Email VARCHAR(100),
+    City VARCHAR(50)
+);
+
+INSERT INTO Employees
+VALUES
+(1, 'John', 'Smith', 'IT', 55000, '2020-01-15', 'john.smith@gmail.com', 'Hyderabad'),
+(2, 'Priya', 'Sharma', 'HR', 45000, '2021-03-20', 'priya.sharma@gmail.com', 'Bangalore'),
+(3, 'David', 'Brown', 'Finance', 65000, '2019-07-10', 'david.brown@gmail.com', 'Mumbai'),
+(4, 'Anita', 'Kumar', 'IT', 72000, '2018-11-25', 'anita.kumar@gmail.com', 'Chennai'),
+(5, 'Rahul', 'Verma', 'Sales', 48000, '2022-06-05', 'rahul.verma@gmail.com', 'Delhi'),
+(6, 'Sarah', 'Wilson', 'HR', 52000, '2020-09-12', 'sarah.wilson@gmail.com', 'Pune'),
+(7, 'Mike', 'Taylor', 'Finance', 70000, '2017-04-18', 'mike.taylor@gmail.com', 'Hyderabad'),
+(8, 'Sneha', 'Reddy', 'Sales', 58000, '2021-12-01', 'sneha.reddy@gmail.com', 'Bangalore');
+
+
+Divya :
+-------
+Write a query to display all employee names in uppercase using a SQL Server function.
+
+Write a query to display all employee last names in lowercase.
+
+Write a query to find the length of each employee's first name.
+
+Write a query to combine the first name and last name as a full name.
+
+Write a query to display the first 3 characters of each employee's first name.
+
+Write a query to display the last 3 characters of each employee's last name.
+
+Write a query to extract the first 4 characters from each employee's city.
+
+Write a query to find the position of @ in each employee's email address.
+
+Write a query to replace gmail.com with yahoo.com in employee email addresses.
+
+Write a query to remove leading and trailing spaces from a string using a function.
+
+Write a query to round employee salaries to the nearest thousand.
+
+Write a query to round employee salaries upward to the nearest thousand.
+
+Write a query to round employee salaries downward to the nearest thousand.
+
+Write a query to find the absolute difference between each salary and 50,000.
+
+Write a query to display the current date and time.
+
+Write a query to display the year in which each employee joined.
+
+Write a query to display the month in which each employee joined.
+
+Write a query to display the day on which each employee joined.
+
+Write a query to calculate the number of years each employee has worked.
+
+Write a query to display the date one year after each employee's joining date.
+
+--------------------------------------------------------------------------------
+Vishnu :
+-------
+Write a query to count the total number of employees.
+
+Write a query to calculate the total salary of all employees.
+
+Write a query to calculate the average salary of all employees.
+
+Write a query to find the minimum salary.
+
+Write a query to find the maximum salary.
+
+Write a query to count the number of distinct departments.
+
+Write a query to combine the employee's first name, department, and city using a separator.
+
+Write a query to display each employee's full name in uppercase.
+
+Write a query to replace the email domain gmail.com with company.com and convert it to lowercase.
+
+Write a query to display employee salaries in Indian currency format.
+
+Write a query to display joining dates in DD-MM-YYYY format.
+
+Write a query to find the quarter in which each employee joined.
+
+Write a query to display the name of the month in which each employee joined.
+
+Write a query to find the last day of each employee's joining month.
+
+Write a query to replace NULL salaries with 0.
+
+Write a query to display No Email when an employee's email is NULL.
+
+Write a query to return NULL when an employee's salary is exactly 50,000.
+
+Write a query to convert employee salaries from decimal to integer.
+
+Write a query to convert joining dates into DD/MM/YYYY format.
+
+Write a query to find the average salary for each department.

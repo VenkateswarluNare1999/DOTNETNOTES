@@ -1,0 +1,138 @@
+Joins In SQL Server
+--------------------
+* A Join is a SQL operation used to combine rows from two or more tables based on a related column between them.
+
+* Joins are performed using Primary key and Foreign key Relationships.
+
+* There are 6 Types of Joins
+
+	1. Inner Join
+	2. Left Join
+	3. Right Join
+	4. Full Join
+	5. Cross Join
+	6. Self Join
+
+Example :
+
+* First Create the Tables
+
+1. Department Table
+
+CREATE TABLE Departments
+(
+	DeptId Int PRIMARY KEY,
+	DeptName varchar(50)
+);
+
+INSERT INTO Departments VALUES(1, 'HR'),(2, 'IT'),(3, 'Finance'),(4, 'Admin');
+
+2. Employees Table
+
+CREATE TABLE Employees
+(
+	EmpId Int PRIMARY KEY,
+	Name Varchar(100),
+	DeptId Int
+);
+
+INSERT INTO Employees VALUES(1, 'Ravi', 1),(2, 'Kiran', 2),(3, 'Anil', NULL),(4, 'Suresh', 2),(5, 'Meena', 1);
+
+1. Inner Join
+
+* An INNER JOIN returns only the rows where matching values exist in both tables.
+
+* If a row in one table does not have a matching value in the other table, that row will not appear in the result.
+
+Syntax : SELECT column1, column2, column3 From Table1 INNER JOIN Table2 ON Table1.Matching Column = Table2.Matching Column
+
+Example : SELECT e.Name, d.DeptName FROM Employees e INNER JOIN Departments d ON e.DeptId = d.DeptId;
+
+Inner Join Examples
+-------------------
+CREATE TABLE Customers
+(
+	CustomerId Int Primary Key,
+	CustomerName varchar(50),
+	City varchar(50)
+);
+
+CREATE TABLE Orders
+(
+	OrderId Int Primary key,
+	CustomerId Int,
+	OrderDate Date,
+	Amount decimal(10,2)
+);
+
+CREATE TABLE Products
+(
+	ProductId Int Primary key,
+	ProductName varchar(50),
+	Price decimal(10,2)
+);
+
+CREATE TABLE OrderDetails
+(
+	OrderDetailId Int Primary key,
+	OrderId Int,
+	ProductId Int,
+	Quantity Int
+);
+
+INSERT INTO Customers VALUES(1, 'Rahul', 'Hyderabad'),(2, 'Priya', 'Chennai'),(3, 'Amit', 'Bangalore'),(4, 'Sneha', 'Mumbai'),(5, 'Arjun', 'Delhi');
+
+INSERT INTO Orders VALUES(101, 1, '2026-01-10', 1500),(102, 2, '2026-01-12', 2500),(103, 1, '2026-01-15', 3000),(104, 3, '2026-01-20', 1800),(105, 4, '2026-01-25', 5000);
+
+INSERT INTO Products VALUES(1, 'Laptop', 50000),(2, 'Mouse', 800),(3, 'Keyboard', 1500),(4, 'Monitor', 12000),(5, 'Headphones', 2500);
+
+INSERT INTO OrderDetails VALUES(1, 101, 2, 2),(2, 101, 3, 1),(3, 102, 1, 1),(4, 103, 4, 1),(5, 103, 5, 2),(6, 104, 2, 1),(7, 105, 1, 2);
+
+Question 1 : Display Customers Who have Placed Orders (CustomerName, OrderId, and Amount)
+
+SELECT c.CustomerName, o.OrderId, o.Amount
+FROM Customers c
+INNER JOIN Orders o 
+ON c.CustomerId = o.CustomerId;
+
+Question 2 : Display Customer Name and Order Date (Customer Name, Order Id, Order Date)
+
+SELECT c.CustomerName, o.OrderId, o.OrderDate
+FROM Customers c
+INNER JOIN Orders o 
+ON c.CustomerId = o.CustomerId;
+
+Question 3 : Find Customers From Hyderabad Who Placed Orders
+
+SELECT c.CustomerName, c.City, o.OrderId, o.OrderDate
+FROM Customers c
+INNER JOIN Orders o 
+ON c.CustomerId = o.CustomerId WHERE c.City = 'Hyderabad';
+
+Question 4 : Display Customer Name, Order Id, Product Name, Quantity
+
+SELECT c.CustomerName, o.OrderId, p.ProductName, od.Quantity
+FROM Customers c
+INNER JOIN Orders o 
+ON c.CustomerId = o.CustomerId
+INNER JOIN OrderDetails od ON o.OrderId = od.OrderId
+INNER JOIN Products p
+ON od.ProductId = p.ProductId;
+
+Question 5 : Find All Products Ordered by Rahul
+
+SELECT c.CustomerName, o.OrderId, p.ProductName, od.Quantity
+FROM Customers c
+INNER JOIN Orders o 
+ON c.CustomerId = o.CustomerId
+INNER JOIN OrderDetails od ON o.OrderId = od.OrderId
+INNER JOIN Products p
+ON od.ProductId = p.ProductId WHERE c.CustomerName = 'Rahul';
+
+Assignment Questions
+---------------------
+1. Find Products With Quantity Greater than 1.
+2. Find Customers Whose Order amount is Greater than 2000
+3. Find the total number of Orders for each Customer
+4. Find Total Order amount for each customer
+5. Find Customers Whose Total Order amount is Greater than 3000

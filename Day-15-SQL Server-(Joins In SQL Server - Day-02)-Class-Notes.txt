@@ -1,0 +1,162 @@
+LEFT Join In SQL Server
+-----------------------
+* A LEFT JOIN returns all rows from the left table and matching rows from the right table.
+
+* If no matching row exists in the right table, SQL Server fills those columns with NULL values.
+
+Syntax :
+
+SELECT 
+	columns 
+FROM TableA A 
+LEFT JOIN TableB B
+	ON A.CommonColumn = B.CommonColumn;
+	
+1. Departments Table	
+
+CREATE TABLE Departments
+(
+	DepartmentId Int Primary Key,
+	DepartmentName varchar(50),
+	Location varchar(50)
+);
+
+2. Employees Table
+
+CREATE TABLE Employees
+(
+	EmployeeId Int Primary Key,
+	EmployeeName varchar(100),
+	DepartmentId Int NULL,
+	Salary Decimal(10,2),
+	ManagerId Int NULL,
+	HireDate Date
+);
+
+3. Insert Sample Data
+
+INSERT INTO Departments VALUES
+(10, 'IT', 'Hyderabad'),(20, 'HR', 'Bangalore'),(30, 'Finance', 'Mumbai'),(40, 'Sales', 'Chennai'),(50, 'Marketing', 'Delhi');
+
+INSERT INTO Employees VALUES
+(101, 'Ravi', 10, 75000, NULL, '2020-01-15'),
+(102, 'Priya', 10, 65000, 101, '2021-03-10'),
+(103, 'Amit', 20, 55000, NULL, '2022-06-20'),
+(104, 'Sneha', 20, 60000, 103, '2023-02-15'),
+(105, 'Kiran', 30, 70000, NULL, '2019-08-01'),
+(106, 'Anil', NULL, 50000, NULL, '2024-01-10'),
+(107, 'Neha', 40, 45000, NULL, '2023-07-12'),
+(108, 'Rahul', 10, 80000, 101, '2018-11-25');
+
+Question 1 : Display all employees along their department names.
+
+SELECT 
+	e.EmployeeId, 
+	e.EmployeeName, 
+	e.DepartmentId, 
+	d.DepartmentName
+FROM Employees e
+LEFT JOIN Departments d
+	ON e.DepartmentId = d.DepartmentId;
+	
+Question 2 : Find employees who are not assigned to any department.
+
+SELECT 
+	e.EmployeeId, 
+	e.EmployeeName
+FROM Employees e
+LEFT JOIN Departments d
+	ON e.DepartmentId = d.DepartmentId
+WHERE d.DepartmentId IS NULL;
+
+Question 3 : Find departments that don't have any employees
+
+SELECT 
+	d.DepartmentId, 
+	d.DepartmentName
+FROM Departments d
+LEFT JOIN Employees e
+	ON d.DepartmentId = e.DepartmentId
+WHERE e.EmployeeId IS NULL;
+
+Question 4 : Display every department and the number of employees in each department
+
+SELECT 
+	d.DepartmentId, 
+	d.DepartmentName,
+	COUNT(e.EmployeeId) AS EmployeeCount
+FROM Departments d
+LEFT JOIN Employees e
+	ON d.DepartmentId = e.DepartmentId
+GROUP BY
+d.DepartmentId,
+d.DepartmentName;
+
+Question 5 : Find departments having more than one employee
+
+SELECT 
+	d.DepartmentId, 
+	d.DepartmentName,
+	COUNT(e.EmployeeId) AS EmployeeCount
+FROM Departments d
+LEFT JOIN Employees e
+	ON d.DepartmentId = e.DepartmentId
+GROUP BY
+d.DepartmentId,
+d.DepartmentName
+HAVING COUNT(e.EmployeeId) > 1;
+
+Question 6 : Find employees whose salary is greater than the average salary of their department.
+
+SELECT
+	e.EmployeeId,
+	e.EmployeeName,
+	e.Salary,
+	d.DepartmentName
+FROM Employees e 
+LEFT JOIN Departments d
+	ON e.DepartmentId = d.DepartmentId
+WHERE e.Salary >
+(
+	SELECT AVG(e2.Salary)
+	FROM Employees e2
+	WHERE e2.DepartmentId = e.DepartmentId
+);
+
+Assignment Questions
+--------------------
+1. Write a query to display all departments and the employees working in each department. Include departments even if they have no employees.
+2. Display the following columns using `LEFT JOIN`:
+   - DepartmentId
+   - DepartmentName
+   - EmployeeId
+   - EmployeeName
+3. Display all departments along with their employees' salaries. Departments without employees should still appear.
+4. Find all departments that currently have no employees.
+5. Display all departments and employees, including employees whose `DepartmentId` is `NULL`.
+6. Display each department and the number of employees in that department. Departments with zero employees should also be displayed.
+7. Display each department and the total salary paid to its employees. Show `0` for departments with no employees.
+8. Find departments where the average employee salary is greater than 60,000.
+9. Display the department name, employee name, and salary, sorted by department name and salary descending.
+10. Find the highest-paid employee in each department, while still displaying departments that have no employees.
+11. Display all departments and their employees hired after January 1, 2022. Departments without matching employees should remain in the result.
+12. Find the number of employees in each department who earn more than 60,000.
+13. Using `LEFT JOIN` and a self join on the Employees table, display:
+14. Display all employees along with their manager's name and department name.
+15. Find all employees who do not have a manager, using `LEFT JOIN`.
+16. Display every department, employee, and the employee's manager. Departments without employees should also appear.
+17. Find the department with the highest total salary using `LEFT JOIN`.
+18. Find departments where no employee earns more than 60,000.
+19. Display each department with:
+20. Find the department(s) that have more than one employee using `LEFT JOIN` and `GROUP BY`.
+21. Display all departments and their employees, but show `'No Employee'` when a department has no employee.
+22. Find employees who have a `DepartmentId` that does not match any department.
+23. Find all departments that have employees but none of their employees have a manager.
+24. Display the department name and the number of employees hired in each year, while retaining departments with no employees.
+25. Find the department whose average salary is the highest, considering departments with employees only.
+26. Using `LEFT JOIN`, find the second-highest salary employee in each department.
+27. Using `LEFT JOIN`, find employees whose salary is greater than their department's average salary.
+28. Find departments where the highest salary is greater than 70,000, while still displaying departments with no employees.
+29. Using `LEFT JOIN`, display every department and the employee with the earliest HireDate in that department.
+30. Write a query that produces this report:
+	

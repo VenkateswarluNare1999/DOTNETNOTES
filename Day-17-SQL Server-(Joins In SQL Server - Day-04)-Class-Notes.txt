@@ -1,0 +1,152 @@
+CROSS JOIN In SQL Server
+------------------------
+
+* A CROSS JOIN produces the Cartesian Product of two tables, This means every row of the first table is combined with every row of the second table.
+
+Syntax : SELECT * FROM Table1 CROSS JOIN Table2
+
+Example :
+
+CREATE TABLE Products
+(
+	ProductId Int,
+	ProductName varchar(50),
+	Price decimal(10,2)
+);
+
+INSERT INTO Products VALUES
+(1, 'Laptop', 60000),
+(2, 'Mouse', 1000),
+(3, 'Keyboard', 2000);
+
+CREATE TABLE Colors
+(
+	ColorId Int,
+	ColorName varchar(30)
+);
+
+INSERT INTO Colors VALUES
+(1, 'Black'),
+(2, 'White'),
+(3, 'Blue');
+
+CREATE TABLE SIzes
+(
+	SizeId Int,
+	SizeName varchar(20)
+);
+
+INSERT INTO SIzes VALUES
+(1, 'Small'),
+(2, 'Medium'),
+(3, 'Large');
+
+Question 1 : Display every possible combination of products and colors.
+
+SELECT
+	p.ProductName,
+	c.ColorName
+FROM Products p
+CROSS JOIN Colors c
+
+Question 2 : Display every possible combination of products and sizes
+
+SELECT
+	p.ProductName,
+	s.SizeName
+FROM Products p
+CROSS JOIN SIzes s
+
+Question 3 : Generate every possible combination of product, color, and size
+
+SELECT
+	p.ProductName,
+	c.ColorName,
+	s.SizeName
+FROM Products p
+CROSS JOIN Colors c
+CROSS JOIN SIzes s
+
+Question 4 : Display product name, price, and every available color.
+
+SELECT
+	p.ProductName,
+	p.Price,
+	c.ColorName
+FROM Products p
+CROSS JOIN Colors c;
+
+Question 5 : Display only combinations where the color is Black
+
+SELECT
+	p.ProductName,
+	c.ColorName
+FROM Products p
+CROSS JOIN Colors c
+WHERE c.ColorName = 'Black';
+
+Assignment Questions
+--------------------
+1. Display all products available in Medium size
+2. Generate all possible color and size combinations for the Laptop
+3. Find the total number of possible product-color combinations
+4. Generate combinations of only Laptop and Mouse with all colors
+5. Display Product Name, Color, Size, and Price for every possible combination
+
+SELF JOIN In SQL Server
+------------------------
+* A SELF JOIN occurs when a table is joined with itself, this is commonly used to represent hierarchical relationships such as :
+	
+	1. Employee -> Manager
+	2. Category -> Parent Category
+
+Syntax :
+
+SELECT
+	A.ColumnName,
+	B.ColumnName
+FROM TableName A	
+INNER JOIN TableName B
+	ON A.SomeColumn = B.SomeColumn;
+	
+CREATE TABLE Employees
+(
+	Id Int,
+	Name varchar(50),
+	JobTitle varchar(50),
+	ManagerId Int,
+	Salary decimal(10,2),
+	Department varchar(50)
+);
+
+INSERT INTO Employees VALUES
+(1, 'John', 'CEO', NULL, 100000, 'Management'),
+(2, 'David', 'Manager', 1, 70000, 'IT'),
+(3, 'Priya', 'Manager', 1, 75000, 'HR'),
+(4, 'Ravi', 'Developer', 2, 50000, 'IT'),
+(5, 'Anu', 'Developer', 2, 55000, 'IT'),
+(6, 'Kiran', 'HR Executive', 3, 45000, 'HR'),
+(7, 'Neha', 'HR Executive', 3, 48000, 'HR'),
+(8, 'Arun', 'Developer', 2, 52000, 'IT');
+
+Question 1 : Display each employee's name along with their manager's name.
+
+SELECT
+	E.Name AS Employee,
+	M.Name AS Manager
+FROM Employees E
+INNER JOIN Employees M
+	ON E.ManagerId = M.Id
+
+Question 2 : Display employee name, employee job title, manager name, and manager job title.
+
+SELECT
+	E.Name AS Employee,
+	E.JobTitle AS EmployeeJobTitle,
+	M.Name AS Manager,
+	M.JobTitle AS ManagerJobTitle
+FROM Employees E
+INNER JOIN Employees M
+	ON E.ManagerId = M.Id;
+
+	

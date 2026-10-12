@@ -1,0 +1,78 @@
+3. Optional Parameters
+
+* Optional parameters allow us to define function parameters that are not mandatory, making functions more flexible.
+
+Example 1 : 
+
+function greet(name : string, age? : number){
+  console.log(name, age);
+}
+
+greet("John", 25);
+
+Example 2 :
+
+function introduce(name: string, city?: string) {
+  if (city) {
+    console.log(`My name is ${name} and I live in ${city}.`);
+  } else {
+    console.log(`My name is ${name}.`);
+  }
+}
+
+introduce("Rahul", "Hyderabad");
+introduce("Priya");
+
+Example 3 :
+
+function student(name: string, age?: number, course?: string) {
+  console.log(name, age, course);
+}
+
+student("Rahul", 22, "TypeScript");
+student("Priya", 21);
+student("Arjun");
+
+4. Default Parameters
+
+* Default parameters in Typescript allow us to assign a predefined value to a function parameter in case no value is provided when the function is called, and this feature plays a very important role in writing flexible and reusable functions.
+
+Example : 
+
+function greet(name : string = "Guest") : void {
+	console.log("Hello " + name);
+}
+
+const message = greet("Rahul");
+
+5. Rest Parameters
+
+* Rest parameters in Typescript allow a function to accept a variable number of arguments, which means we are not restricted to a fixed number of parameters, and this is extremly useful i  real-time applications where the number of input is not known in advance.
+
+Example :
+
+function sum(...numbers: number[]): number {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(10, 20));
+console.log(sum(10, 20, 30));
+console.log(sum(5, 10, 15, 20));
+
+6. Return Type
+
+* The Return type in typeScript defines the type of value that a function is expected to return, and this is an important feature for ensuring that functions behave correctly abd consistently.
+
+* By specifying the return type, we create a contract that the function must follow, which helps prevent errors and improves code readability.
+
+Example :
+
+function multiply(a: number, b: number): number {
+  return a * b;
+}
+
+console.log(multiply(5, 4));
+console.log(multiply(10, 3));
+
+
+	

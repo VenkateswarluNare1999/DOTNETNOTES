@@ -1,0 +1,127 @@
+Interface
+---------
+* Interfaces in TypeScript are used to define the structure of an object, acting as a contract that specifies what properties an object must have.
+
+Example :
+
+interface Person{
+	name : string;
+	age : number;
+}
+
+Extending Interface
+--------------------
+* Interfaces can be extended to create new interfaces based on existing ones, allowing for code reuse and better organization.
+
+Example : 
+
+interface Employee extends Person{
+	salary : number;
+}
+
+Classes in TypeScript
+---------------------
+* Classes in TypeScript are used to create objects with properties and methods, and they provide a structured way to implement object-oriented programming concepts.
+
+* The Constructor is a special method used to initialize properties when an object is created.
+
+Example :
+
+class Person{
+	name : string;
+	
+	constructor(name : string){
+		this.name = name
+	}
+}
+
+Access Modifiers (Public, Private, Protected)
+----------------------------------------------
+* Access Modifiers control the visibility of class members, ensuring proper encapsulation and security in applications.
+
+Example :
+
+class User{
+	public name : string;
+	private password : string;
+	
+	constructor(name : string, password : string){
+		this.name = name;
+		this.password = password;
+	}
+
+* Public members are accessible everywhere
+
+* Private members are restricted within the class
+
+* Protected members are accessible in subclasses
+
+Read-only & Static
+-------------------
+* Read-only properties cannot be changed after initialization, and
+
+* Static properties belong to the class rather that instances.
+
+Example :
+
+class Test{
+	readonly id : number = 1;
+	static count : number = 0;
+}
+
+Methods
+-------
+* Methods define the behaviour of a class and allow objects to perform actions.
+
+class Calculator{
+	add(a : number, b : number) : number {
+		return a + b;
+	}
+}
+
+Inheritance
+-----------
+* Inheritance in TypeScript is an object-object-oriented programming concept that allows one class to acquire the properties and methods of another class, which helps in code reusability and better organization of logic.
+
+Example :
+
+class Person{
+	name : string;
+	
+	constructor(name : string){
+		this.name = name;
+	}
+	
+	display(){
+		consoloe.log("Name : ", this.name);
+	}
+}
+
+class Employee extends Person{
+	salary : number;
+	
+	constructor(name : string, salary : number){
+		this.name = name;
+		this.salary = salary;
+	}
+}
+
+Method Overriding
+-----------------
+* Method Overriding occurs when a child class provides its own implementation of a method that is already defined in the parent class, allowing customization of behaviour while still maintaining the same method structure.
+
+Example : 
+
+class Animal{
+	sound(){
+		console.log("Animal makes sound");
+	}
+}
+
+class Dog extends Animal{
+	sound(){
+		console.log("Dog barks");\
+	}
+}
+
+Tomorrow : Abstract Class

@@ -1,0 +1,93 @@
+Abstract Class
+--------------
+* An Abstract class in TypeScript is a class that cannot be instantiated directly and is used as a base class for other classes, providing a bluprint for derived classes.
+
+* It can contain both implemented methods and abstract methods, where abstract methods must be implemented by the child classes.
+
+Example : 
+
+abstract class Shape{
+	abstract area() : number;
+}
+
+class Circle extends Shape{
+	area() : number {
+		return 3.14 * 10 * 10;
+	}
+}
+
+Implementing Interface
+----------------------
+* Implementing an interface in TypeScript means a class agrees to follow the structure defined by the interface, ensuring that all required properties and methods are implemented.
+
+Example :
+
+interface User{
+	name : string;
+	login() : void;
+}
+
+class Admin implements User{
+	name : string = "Admin";
+	
+	login(){
+		console.log("Admin logged in");
+	}
+}
+
+Generics
+--------
+* Generics in TypeScript allow us to create reusable components that can work with different data types while maintaining type safety, making the code more flexible and scalable.
+
+Generic Function :
+
+function identity<T>(value : T) : T{
+	return value;
+}
+
+Generic Class :
+
+class Box<T>{
+	value : T;
+	
+	constructor(value : T) {
+		this.value = value;
+	}
+}	
+
+Generic Interface : 
+
+interface ApiResponse<T>{
+	data : T;
+	status : number;
+
+Modules
+-------
+* Modules in TypeScript help organize code into separate files, making it easier to manage, maintain, and reuse across the application.
+
+Example : Export & Import
+
+--> file1.ts : export const name = "YourName";
+
+--> file2.ts : import {name} from './file1';
+
+Union Types
+------------
+* Union types allow a variable to hold multiple types, increasing flexibility while maintaining type safety.
+
+Example : 
+
+let id : number | string
+
+id = 10;
+
+id = "ABC";
+
+Literal Types
+-------------
+* Literal types allow variables to have fixed values.
+
+Example : 
+
+let status : "success" | "error";
+

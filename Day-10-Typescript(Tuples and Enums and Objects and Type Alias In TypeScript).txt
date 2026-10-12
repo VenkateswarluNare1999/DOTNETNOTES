@@ -1,0 +1,177 @@
+Tuples In TypeScript
+--------------------
+* Tuples in TypeScript are a special type of array that allow us to store multiple values of different data types in a fixed structure.
+
+Tuple Syntax : let variable_name : [dataType1, dataType2] = [value1, value]
+
+Example 1 : 
+
+let person : [string, number] = ["Venkatesh", 25];
+
+console.log(person);
+
+Example 2 : 
+
+let employee: [number, string, string] = [101, "Rahul", "Developer"];
+
+console.log(employee);
+
+console.log(employee[0]); // Employee Id
+console.log(employee[1]); // Name
+console.log(employee[2]); // Role
+
+Enums In TypeScript
+-------------------
+* Enums, short for enumerations, are used in TypeScript to define a set of named constants, and they are very useful when we want to work with a fixed set of related values in a more readable and maintainable way.
+
+1. Numeric Enum
+
+* The Numeric Enums are the default type of enums in TypeScript, where each member is assigned a numeric value starting from zero by default, unless explicitly specified.
+
+Example 1 :
+
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+let move: Direction = Direction.Up;
+
+console.log(move);
+
+console.log(Direction.Down);
+console.log(Direction.Left);
+console.log(Direction.Right);
+
+2. Example 2 :
+
+enum Status {
+  Pending = 1,
+  Approved,
+  Rejected,
+}
+
+console.log(Status.Pending);
+console.log(Status.Approved);
+console.log(Status.Rejected);
+
+2. String Enum
+
+* String Enums assign string values to each member, and they are more readable compared to numeric enums because the values themselves convey meaning.
+
+Example 1 :
+
+enum Status {
+  Success = "SUCCESS",
+  Failure = "FAILURE",
+}
+
+let result: Status = Status.Success;
+
+console.log(result);
+console.log(Status.Failure);
+
+Example 2 :
+
+enum OrderStatus {
+  Pending = "PENDING",
+  Shipped = "SHIPPED",
+  Delivered = "DELIVERED",
+  Cancelled = "CAMCELLED",
+}
+
+let order: OrderStatus = OrderStatus.Shipped;
+
+console.log(`Order Status : ${order}`);
+
+Key Difference Both Numeric Enums and String Enums
+---------------------------------------------------
+* Numeric Enums : Up = 0, Down = 1, etc., (values can be auto-generated).
+
+* String Enums : Success = "SUCCESS", Failure = "FAILURE" (values must be explicitly assigned)
+
+3. Heterogeneous Enum
+
+* Heterogeneous Enums are enums that contain both numeric and string values, and although TypeScript allows them, they are generally not recommended because they reduce consistency and can make the code harder to understand.
+
+Example :
+
+enum Mix {
+  No = 0,
+  Yes = "YES",
+}
+
+console.log(Mix.No);
+console.log(Mix.Yes);
+
+Why is it called Heterogeneous : Because the enum contains different types of values.
+
+* Numeric enum : all values are numbers
+
+* String enum : all values are strings
+
+* Heterogeneous enum : it contains both numbers and strings.
+
+Objects In TypeScript
+---------------------
+1. Object Type
+
+* Objects In TypeScript are used to store collection of related data in key-value pairs, and they are one of the most commonly used structures in real-time application.
+
+Example 1 :
+
+let user: { name: string; age: number } = {
+  name: "Venkatesh",
+  age: 25,
+};
+
+console.log("Name : ", user.name);
+console.log("Age : ", user.age);
+
+Example 2 : 
+
+let employee: {
+  id: number;
+  name: string;
+  age: number;
+  isActive: boolean;
+  department: string;
+} = {
+  id: 101,
+  name: "Venkatesh",
+  age: 25,
+  isActive: true,
+  department: "IT",
+};
+
+console.log(employee);
+console.log(employee.name);
+console.log(employee.department);
+
+Type Alias In TypeScript
+------------------------
+* Type Alias allow us to create a custom type name for complex data structures, making the code more readable and reusable.
+
+Example 1 :
+
+type User = {
+  name: string;
+  age: number;
+};
+
+let u1: User = {
+  name: "A",
+  age: 20,
+};
+
+let u2: User = {
+  name: "B",
+  age: 25,
+};
+
+console.log(u1);
+console.log(u2);
+
+Tomorrow : Interface

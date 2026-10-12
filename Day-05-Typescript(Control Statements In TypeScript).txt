@@ -1,0 +1,151 @@
+Control Statements
+------------------
+* A Control Statements are used to control the flow of execution in a program.
+
+1. If Statement
+
+* The If Statement is used to execute a block of code only when a specified condition is true, and it is the simplest form of decision-making in programming.
+
+Example : 
+
+let age : number = 20;
+
+if(age >= 18){
+	console.log("Eligible to vote");
+}	
+
+2. If-Else Statement
+
+Example : 
+
+let marks: number = 60;
+
+if (marks >= 50) {
+  console.log("Pass");
+} else {
+  console.log("Fail");
+}
+
+3. Switch Statement
+
+Example :
+
+let day: number = 0;
+
+switch (day) {
+  case 1:
+    console.log("Monday");
+    break;
+  case 2:
+    console.log("Tuesday");
+    break;
+  case 3:
+    console.log("Wednesday");
+    break;
+  case 4:
+    console.log("Thursday");
+    break;
+  case 5:
+    console.log("Friday");
+    break;
+  case 6:
+    console.log("Saturday");
+    break;
+  case 7:
+    console.log("Sunday");
+    break;
+  default:
+    console.log("Invalid day");
+}
+
+Using All Conditional Statements
+--------------------------------
+let age: number = 25;
+let marks: number = 85;
+let day: number = 3;
+let gender: string = "Male";
+
+// ------------------------------
+// 1. IF Statement
+// ------------------------------
+
+if (age >= 18) {
+  console.log("You are eligible to vote.");
+}
+
+// ------------------------------
+// 2. IF-ELSE Statement
+// ------------------------------
+
+if (marks >= 50) {
+  console.log("You passed the exam.");
+} else {
+  console.log("You failed the exam.");
+}
+
+// ------------------------------
+// 3. IF-ELSE IF-ELSE Statement
+// ------------------------------
+
+if (marks >= 90) {
+  console.log("Grade : A+");
+} else if (marks >= 80) {
+  console.log("Grade : A");
+} else if (marks >= 70) {
+  console.log("Grade : B");
+} else if (marks >= 60) {
+  console.log("Grade : C");
+} else if (marks >= 50) {
+  console.log("Grade : D");
+} else {
+  console.log("Grade : F");
+}
+
+// ------------------------------
+// 4. SWITCH Statement
+// ------------------------------
+
+switch (day) {
+  case 1:
+    console.log("Monday");
+    break;
+  case 2:
+    console.log("Tuesday");
+    break;
+  case 3:
+    console.log("Wednesday");
+    break;
+  case 4:
+    console.log("Thursday");
+    break;
+  case 5:
+    console.log("Friday");
+    break;
+  case 6:
+    console.log("Saturday");
+    break;
+  case 7:
+    console.log("Sunday");
+    break;
+  default:
+    console.log("Invalid day");
+}
+
+// ------------------------------
+// 5. SWITCH with string
+// ------------------------------
+
+switch (gender) {
+  case "Male":
+    console.log("Gender is Male.");
+    break;
+
+  case "Female":
+    console.log("Gender is Female.");
+    break;
+
+  default:
+    console.log("Other gender.");
+}
+
+Tomorrow : Loops

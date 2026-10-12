@@ -1,0 +1,83 @@
+Typescript
+----------
+* Typescript is an open-source programming language developed by Microsoft that extends JavaScript by adding static typing and other advanced features.
+
+* Typescript is not replacement of JavaScript, Typescript is a superset of JavaScript.
+
+* Anders Hejlsberg, The lead architect behind Typescript and creator of C#.NET
+
+Real-Time Industry Usage
+------------------------
+* Companies using Typescript include : 
+	
+	1. Microsoft
+	2. Google
+	3. Amazon
+	4. Slack
+	5. Adobe
+	6. Airbnb
+	7. Netflix
+	
+* This improves : 
+	
+	1. Code quality
+	2. Team Collaboration
+	3. Maintainability
+	4. Scalability
+	5. Developer productivity
+
+Example : 
+
+Imagine : 
+
+Team A develops the Customer Module	
+Team B develops the Payment Module	
+Team C develops the Reporting Module	
+
+Typescript Installation & Setup
+-------------------------------
+
+Topic 1 : NODE.JS
+
+* Node.js is a runtime environment that allows JavaScript to execute outside the browser.
+
+* Node.js provides an environment where JavaScript can run independently of a browser.
+
+* Typescript is distributed through npm.
+
+* npm comes with Node.js
+
+Without Node.js : 
+	
+	1. npm will not be available
+	2. Typescript cannot be installed easily
+	3. Modern Angular projects cannot be created	
+
+Installation Process : 
+
+1. Visit : https://nodejs.org/en
+
+2. Check Node.js Version : node -v
+
+3. Check npm Version : npm -v
+
+What is npm?
+
+* npm stands for : Node Package Manager
+
+Example : 
+
+1. Install Bootstrap : npm install bootstrap
+2. Install Angular CLI : npm install -g @angular/cli
+3. Install Typescript : npm install -g typscript
+
+What does -g mean?
+
+1. Install Typescript : npm install -g typscript
+
+The -g means : Global Installation.
+
+Tomorrow : Typescript Compiler (tsc)
+
+
+	

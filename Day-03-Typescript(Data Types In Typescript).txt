@@ -1,0 +1,147 @@
+Data Types
+----------
+
+1. Number
+
+* The number data type is used to store numeric values, including integers and floating-point numbers, and it is one of the most commonly used data types in any application.
+
+Syntax : let variable_name : dataType = value;
+
+Example : 
+
+let price : number = 100;
+
+price = 200
+
+console.log(price);
+
+Running Commands 
+----------------
+1. tsc --init
+2. tsc -> here generated Javascript file
+3. node javascriptfile.js
+
+2. String
+
+* The string data Type is used to store textual data, such as names, messages, and descriptions, and it plays a crucial role in almost every application.
+
+* In TypeScript, strings can be defined using single quotes, double quotes, or brackits for template literals, which allow embedding expressions within strings.
+
+Syntax : let variable_name : string = value;
+
+Example : 
+
+let username : string = "Venkatesh";
+
+console.log(username);
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+3. Boolean
+
+* The boolean data Type represents logical values, which can be either true or false, and it is commonly used for conditions and decision-making in applications.
+
+Syntax : let variable_name : boolean = true or false;
+
+Example : 
+
+let isLoggedIn : boolean = true;
+
+console.log(isLoggedIn);
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+4. Any
+
+* The Any data Type is a special type in TypeScript that allows a variable to hold any type of value, effectively disabling type checking for that variable.
+
+Syntax : let variable_name : any = 10;
+
+Example : 
+
+let data : any = 10;
+
+data = "Hello";
+
+data = true;
+
+console.log(data);
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+5. Unknown
+
+* The Unknown data Type is similar to Any data Type, but it is safer, because it requires type checking before performing operations on the variable.
+
+Syntax : let variable_name : unknown = 10;
+
+Example : 
+
+let value : unknown = "Hello";
+
+console.log(value);
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+6. Void
+
+* The Void data Type is used to represent the absence of a value, and it is commonly used as the return type of functions that do not return anything.
+
+Example : 
+
+function loggMessage() : void {
+	console.log("Hello");
+}	
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+7. Type Inference
+
+* Type Inference is a feature in TypeScript where the compiler automatically determines the type of variable based on its assigned value, reducing the need for explicit type annotations.
+
+Syntax : let variable_name = value;
+
+Example : 
+
+let num = 10;
+
+console.log(num);
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+8. Type Annotations
+
+* The Type Annotations are used to explicitly define the type of a variable, providing clarity and ensuring that the variable is used correctly.
+
+Syntax : let variable_name : number = value;
+
+Example : 
+
+let age : number = 25;
+
+console.log(age);
+
+Running Commands
+----------------
+1. tsc -> Update the Javascript file.
+2. node javascriptfile.js
+
+Tomorrow : Operators In TypeScript

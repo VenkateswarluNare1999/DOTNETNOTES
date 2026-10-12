@@ -1,0 +1,127 @@
+Functions In TypeScript
+-----------------------
+
+1. Function Declaration
+
+Example 1 : Addition
+
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+const result = add(10, 50);
+
+console.log("Addition : ", result);
+
+Example 2 : Multiplication
+
+function multiply(a: number, b: number): number {
+  return a * b;
+}
+
+const num1 = 5;
+const num2 = 4;
+
+const result = multiply(num1, num2);
+
+console.log("First Number : ", num1);
+console.log("Second Number : ", num2);
+
+console.log("Multiplication result : ", result);
+
+Example 3 : Print Name
+
+function greet(name : string) : string{
+  return "Hello, " + name;
+}
+
+const message = greet("Divya");
+
+console.log(message);
+
+2. Arrow Function
+
+Syntax :
+
+const functionName = (parameter1 : type, parameter2 : type) : returnType =>{
+	
+	// Code
+	return value;
+}
+
+Example 1 : Addition
+
+const add = (a : number, b : number) : number =>{
+  return a + b;
+}
+
+console.log(add(10,20));
+
+Example 2 : Subtraction 
+
+const add = (a : number, b : number) : number =>{
+  return a - b;
+}
+
+console.log(add(20,2));
+
+Example 3 : Students Marks Calculation
+
+const name1: string = "Vishnu";
+const marks1: number = 85;
+
+const name2: string = "Divya";
+const marks2: number = 92;
+
+const name3: string = "Venkat";
+const marks3: number = 76;
+
+const displayStudent = (name: string, marks: number): void => {
+  console.log("Name : ", name);
+  console.log("Marks : ", marks);
+
+  if (marks >= 90) {
+    console.log("Grade : A+");
+  } else if (marks >= 80) {
+    console.log("Grade : A");
+  } else if (marks >= 70) {
+    console.log("Grade : B");
+  } else {
+    console.log("Grade : C");
+  }
+
+  console.log("--------------------");
+};
+
+const calculateAverage = (m1: number, m2: number, m3: number): number => {
+  return (m1 + m2 + m3) / 3;
+};
+
+const findTopper = (
+  n1: string,
+  m1: number,
+  n2: string,
+  m2: number,
+  n3: string,
+  m3: number,
+): string => {
+  if (m1 >= m2 && m1 >= m3) {
+    return n1;
+  } else if (m2 >= m1 && m2 >= m3) {
+    return n2;
+  } else {
+    return n3;
+  }
+};
+
+displayStudent(name1, marks1);
+displayStudent(name2, marks2);
+displayStudent(name3, marks3);
+
+const avergae = calculateAverage(marks1, marks2, marks3);
+
+console.log("Average Marks : ", avergae);
+
+const topper = findTopper(name1, marks1, name2, marks2, name3, marks3);
+console.log("Topper : ", topper);
+	

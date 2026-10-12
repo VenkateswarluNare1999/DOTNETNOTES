@@ -1,0 +1,127 @@
+Operators In TypeScript
+-----------------------
+* Operators are used to perform operations on variables and values, and they are essential for implementing logic in any program.
+
+* In real-time applications, operators are used for calculations, comaprisons, and decision-making, making them a fundmantal part of programming.
+
+1. Artithmetic Operators
+
+* Artithmetic Operators are used to perform mathematical operations such as addition, subtraction, multiplication, and division.
+
+Example 1 : 
+
+let result = 10 + 5;
+
+console.log(result);
+
+Example 2 : 
+
+let a: number = 10;
+let b: number = 3;
+
+// Addition (+)
+console.log(a + b);
+
+// Subtraction (-)
+console.log(a - b);
+
+// Multiplication (*)
+console.log(a * b);
+
+// Division (/)
+console.log(a / b);
+
+// Modulus (%)
+console.log(a % b);
+
+// Increment (++)
+a++;
+console.log(a);
+
+// Decrement (--)
+b--;
+console.log(b);
+
+Example 3 : 
+
+let marks: number = 80;
+let bonus: number = 10;
+
+let total: number = marks + bonus;
+console.log("Total : ", total); // 90
+
+let difference: number = marks - bonus;
+console.log("Difference : ", difference); // 70
+
+let multiplied: number = marks * 2;
+console.log("Multiplied : ", multiplied); // 160
+
+let divided: number = marks / 2;
+console.log("Divided : ", divided); // 40
+
+2. Comparison Operators
+
+* Comparison Operators are used to compare values and return a boolean result, which is either true or false.
+
+* In real-time applications, comaprisons are used for validations, filtering data, and controlling application flow.
+
+Example 1 : 
+
+let a: number = 10;
+let b: number = 5;
+
+console.log(a == b); // false
+console.log(a != b); // true
+console.log(a > b); // true
+console.log(a < b); // false
+console.log(a >= b); // true
+console.log(a <= b); // false
+
+Example 2 : 
+
+let name1: string = "John";
+let name2: string = "John";
+
+console.log(name1 === name2); // true
+console.log(name1 !== name2); // false
+
+3. Logical Operators
+
+* Logical Operators are used to combine multiple conditions and evaluate them as a single expression.
+
+Example : 
+
+let a: boolean = true;
+let b: boolean = false;
+
+console.log(a && b);
+console.log(a || b);
+console.log(!a);
+console.log(!b);
+
+4. Assignment Operators
+
+* Assignment operators are used to assign values to variables, and they also include shorthand operators for performing and assigning the result.
+
+Example : 
+
+let a: number = 10;
+
+console.log(a); // 10
+
+a += 5;
+console.log(a); // 15
+
+a -= 3;
+console.log(a); // 12
+
+a *= 2;
+console.log(a); // 24
+
+a /= 4;
+console.log(a); // 6
+
+a %= 4;
+console.log(a); // 2
+
+Tomorrow : Control Statements

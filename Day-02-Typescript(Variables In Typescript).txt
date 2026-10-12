@@ -1,0 +1,41 @@
+Typescript Compiler (tsc)
+--------------------------
+* Browsers Understand JavaScript.
+* Browsers do not Understand Typescript.
+
+let salary : number = 5000;
+
+Compilation Workflow : Developer Writes Typescript -> Typescript Compiler (tsc) -> JavaScript Generated -> Browser Executes JavaScript.
+
+Example : 
+
+1. Create employee.ts file
+
+let employeeName: string = "Ravi";
+
+console.log(employeeName);
+
+2. Run In Terminal tsc employee.ts
+
+tsconfig.json
+-------------
+
+* The tsconfig.json file is a configuration file that tells the Typescript compiler how the project should be compiled.
+
+Create tsconfig.json file : tsc --init
+
+Real-Time Project Flow : Node.js Installed -> npm Available -> Angular CLI Installed -> Typescript Installed -> tsconfig.json Created -> Developers Write .ts Files -> tsc Compiles Code -> JavaScript Generated -> Browser Executes Application.
+
+Variables
+---------
+* In Typescript, variables are used to store data, and we mainly use three keywords to declare variables, which are 'var', 'let', and 'const'.
+
+Example : 
+
+var x = 10;
+
+let y = 20;
+
+const z = 30;
+
+Tomorrow : Data Types

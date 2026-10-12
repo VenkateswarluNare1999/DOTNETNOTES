@@ -1,0 +1,204 @@
+Arrays In TypeScript
+--------------------
+* Arrays are used to store multiple values in a single variable, and they are essential for handling collection of data.
+
+* In TypeScript arrays are strongly typed, ensuring that all elements are of the same type, which improves consistency and prevents errors.
+
+* In real-time applications, arrays are used for storing lists such as user data, product lists, and more.
+
+1. Array Declaration
+
+Example 1 : 
+
+let numbers: number[] = [1, 2, 3];
+
+console.log(numbers);
+
+Example 2 :
+
+let numbers: number[] = [1, 2, 3];
+
+console.log(numbers[0]);
+console.log(numbers[1]);
+console.log(numbers[2]);
+
+Example 3 : 
+
+let fruits: string[] = ["Apple", "Banana", "Mango"];
+
+console.log(fruits);
+
+Example 4 : Add an Item and display
+
+let numbers: number[] = [1, 2, 3];
+
+numbers.push(4);
+
+console.log(numbers);
+
+Example 5 : Display with a message
+
+let names: string[] = ["John", "David", "Alex"];
+
+console.log("Names are : ", names);
+
+2. Generic Array
+
+Example 1 :
+
+let names: Array<string> = ["A", "B"];
+
+console.log(names);
+
+Example 2 :
+
+// Array of numbers
+let numbers: Array<number> = [10, 20, 30];
+
+// Array of strings
+let names: Array<string> = ["A", "B", "C"];
+
+// Array of booleans
+let values: Array<boolean> = [true, false, true];
+
+console.log(numbers);
+console.log(names);
+console.log(values);
+
+3. Read-only Arrays
+
+Example 1 :
+
+let arr: readonly number[] = [1, 2, 3];
+
+console.log(arr);
+
+Example 2 :
+
+let arr: readonly number[] = [1, 2, 3];
+
+arr.push(4);
+arr[0] = 10;
+
+* TypeScript will give errors because 'arr' is readonly.
+
+Example 3 :
+
+let marks: number[] = [95, 72, 45, 88, 30, 67, 82];
+
+console.log("All Marks : ", marks);
+console.log("--------------------------");
+
+console.log("Student Results : ");
+
+for (let i = 0; i < marks.length; i++) {
+  const mark = marks[i];
+
+  if (mark !== undefined && mark >= 90) {
+    console.log(mark, "-> Grade A+");
+  } else if (mark !== undefined && mark >= 80) {
+    console.log(mark, "-> Grade A");
+  } else if (mark !== undefined && mark >= 60) {
+    console.log(mark, "-> Grade B");
+  } else if (mark !== undefined && mark >= 40) {
+    console.log(mark, "-> Grade C");
+  } else {
+    console.log(marks[i], " -> Fail");
+  }
+}
+
+console.log("------------------------------------");
+
+console.log("Passing Marks :");
+
+for (let mark of marks) {
+  if (mark < 40) {
+    continue; //Skip failed marks
+  }
+
+  console.log(mark);
+}
+
+console.log("-----------------------------------");
+
+let index: number = 0;
+
+while (index < marks.length) {
+  console.log("Marks : ", marks[index]);
+  index++;
+}
+
+console.log("-------------------------------------");
+
+let total: number = 0;
+
+for (let mark of marks) {
+  total = total + mark;
+}
+
+console.log("Total Markes : ", total);
+
+let average: number = total / marks.length;
+
+console.log("Average : ", average.toFixed(2));
+
+console.log("--------------------------------------");
+
+let highest: number = marks[0]!;
+
+for (let mark of marks) {
+  if (mark > highest) {
+    highest = mark;
+  }
+}
+
+console.log("Highest Mark : ", highest);
+
+console.log("--------------------------------------");
+
+let lowest: number = marks[0]!;
+
+for (let mark of marks) {
+  if (mark < lowest) {
+    lowest = mark;
+  }
+}
+
+console.log("Lowest Mark : ", lowest);
+
+console.log("--------------------------------------");
+
+let passCount: number = 0;
+let failCount: number = 0;
+
+marks.forEach((mark) => {
+  if (mark >= 40) {
+    passCount++;
+  } else {
+    failCount++;
+  }
+});
+
+console.log("Number of Pass : ", passCount);
+console.log("Number of Fail : ", failCount);
+
+console.log("------------------------------------");
+
+let grade: string = "A";
+
+switch (grade) {
+  case "A+":
+    console.log("Excellent!");
+    break;
+  case "A":
+    console.log("Very Good!");
+    break;
+  case "B":
+    console.log("Good!");
+    break;
+  case "C":
+    console.log("Average!");
+    break;
+  default:
+    console.log("Needs Improvement");
+}

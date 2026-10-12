@@ -1,0 +1,465 @@
+Bootstrap Text Colors
+---------------------
+* Colors play a major role in UI design because users understand information visually very quickly.
+
+For Example : 
+	
+	1. green usually represents success
+	2. red represents error or danger
+	3. blue represents primary actions
+	4. yellow represents warning
+
+* So Colors improve User experience, readability, UI communication and professional appearance.
+
+* In enterprise applications, developers heavily use Bootstrap color classes to create : 
+	
+	1. alerts
+	2. notifications
+	3. dashboards
+	4. reports
+	5. status indicators
+	6. messages
+
+What are Text Color Classes?
+
+* Bootstrap provide predefined text color classes.
+
+* Instead of writting custom CSS like : color : red;
+
+* We simply use : class = "text-danger"
+
+Why Bootstrap Colors Important?
+
+* Before Bootstrap, developers manually wrote : hex codes, RGB values, custom CSS classes
+
+Example : color : #ff0000;
+
+This created problems : Inconsistent colors, repeated CSS, difficult maintenance.
+
+Main Bootstrap Text Color Classes
+---------------------------------
+* Bootstrap provides several standard color utilities.
+
+	1. text-primary : Primary Color -> blue
+		
+		Used for : main headings, links, important UI sections
+	
+	2. text-secondary : Secondary gray Color
+		
+		Used for : less important content, descriptions, muted text
+	
+	3. text-success : Green Color 
+		
+		Used for : success messages, completed operations, positive status
+	
+	4. text-danger : Red Color
+		
+		Used for : errors, delete actions, validation failures
+	
+	5. text-warning : Yellow or Orange Color
+		
+		Used for : warning messages, caution alerts
+	
+	6. text-info : Light blue Color
+		
+		Used for : informational messages, help sections
+	
+	7. text-dark : Dark black Color
+		
+		Used for : normal text, readability
+	
+	8. text-light : Light white Color
+		
+		Used for : dark backgrounds
+
+Example 1 : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Text Colors</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <p class="text-primary">Primary Text</p>
+    <p class="text-secondary">Secondary Text</p>
+    <p class="text-success">Success Text</p>
+    <p class="text-danger">Danger Text</p>
+    <p class="text-warning">Warning Text</p>
+    <p class="text-info">Info Text</p>
+    <p class="text-dark">Dark Text</p>
+    <p class="text-light bg-dark">Light Text</p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Example 2 : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Text Colors</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <p class="text-primary">.text-primary</p>
+    <p class="text-primary-emphasis">.text-primary-emphasis</p>
+    <p class="text-secondary">.text-secondary</p>
+    <p class="text-secondary-emphasis">.text-secondary-emphasis</p>
+    <p class="text-success">.text-success</p>
+    <p class="text-success-emphasis">.text-success-emphasis</p>
+    <p class="text-danger">.text-danger</p>
+    <p class="text-danger-emphasis">.text-danger-emphasis</p>
+    <p class="text-warning bg-dark">.text-warning</p>
+    <p class="text-warning-emphasis">.text-warning-emphasis</p>
+    <p class="text-info bg-dark">.text-info</p>
+    <p class="text-info-emphasis">.text-info-emphasis</p>
+    <p class="text-light bg-dark">.text-light</p>
+    <p class="text-light-emphasis">.text-light-emphasis</p>
+    <p class="text-dark bg-white">.text-dark</p>
+    <p class="text-dark-emphasis">.text-dark-emphasis</p>
+
+    <p class="text-body">.text-body</p>
+    <p class="text-body-emphasis">.text-body-emphasis</p>
+    <p class="text-body-secondary">.text-body-secondary</p>
+    <p class="text-body-tertiary">.text-body-tertiary</p>
+
+    <p class="text-black bg-white">.text-black</p>
+    <p class="text-white bg-dark">.text-white</p>
+    <p class="text-black-50 bg-white">.text-black-50</p>
+    <p class="text-white-50 bg-dark">.text-white-50</p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Example 3 : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Text Colors</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <h2 class="text-primary">Banking Dashboard</h2>
+    <p class="text-success">Transaction Completed Successfully</p>
+    <p class="text-danger">Payment Failed</p>
+    <p class="text-warning">Low Account Balance</p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Why Enterprise Applications Use Standard Colors?
+
+* Because standard color systems provide : 
+	
+	1. UI consistency
+	2. professional design
+	3. better readability
+	4. accessibility
+	5. faster development
+
+Additional Color utilities
+--------------------------
+* Bootstrap also provide : background colors, button colors, border colors
+	
+Example : 
+	
+	1. bg-primary
+	2. bg-success
+	3. border-danger
+
+Real-Time Flow : Bootstrap CSS Loaded -> Color Utility Classes Available -> Developer Applies Classes -> Browser Applies Styling Automatically -> Professional UI Generated.
+
+Interview Questions
+--------------------
+1. What is text-primary?
+2. Which class used for error messages?
+3. Which class used for success messages?
+4. Why light text usually used with bg-dark?
+5. What is advantage of Bootstrap color classes?
+6. Which class used for warning messages?
+7. Which class used for informational messages
+
+Bootstrap Background Colors
+---------------------------	
+* In Web applications, colors are not applied only to text.
+
+* We also apply colors to : 
+	
+	1. cards
+	2. buttons
+	3. alerts
+	4. navbar
+	5. dashboards
+	6. sections
+	7. tables
+	8. containers
+
+* These background colors improve : 
+	
+	1. user experience
+	2. UI appearance
+	3. readability
+	4. visual communication
+
+Why Background Colors Important?
+
+* Background Colors help users understand : 
+	
+	1. different sections
+	2. alerts
+	3. status messages
+	4. priorities
+	5. notifications
+
+Example : 
+	
+	1. red background : danger
+	2. green background : success
+	3. yellow background : warning
+
+Main Bootstrap Background Color Classes
+----------------------------------------
+* Bootstrap provides several standard background utilities
+
+	1. bg-primary : Primary background Color : blue
+		
+		Used for : navbar, primary sections, dashboard headers
+	
+	2. bg-secondary : Gray background
+		
+		Used for : secondary sections, less important content
+	
+	3. bg-success : Green background
+		
+		Used for : success alerts, completed actions, confirmation messages
+	
+	4. bg-danger : Red Background
+		
+		Used for : error alerts, delete warnings, failures
+	
+	5. bg-warning : Yellow or Orange background
+		
+		Used for : warnings, pending actions
+		
+	6. bg-info : Light blue background
+		
+		Used for : information sections, updates, announcements
+		
+	7. bg-dark : Dark black background
+		
+		Used for : navbar, footer, dark themes
+		
+	8. bg-light : Light white or gray background
+		
+		Used for : soft UI sections, cards, forms
+
+Example 1 : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Background Colors</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <p class="bg-primary text-white p-3 mb-3">Primary Background</p>
+    <p class="bg-secondary text-white p-3 mb-3">Secondary Background</p>
+    <p class="bg-success text-white p-3 mb-3">Success Background</p>
+    <p class="bg-danger text-white p-3 mb-3">Danger Background</p>
+    <p class="bg-warning p-3 mb-3">Warning Background</p>
+    <p class="bg-info p-3 mb-3">Info Background</p>
+    <p class="bg-dark text-white p-3 mb-3">Dark Background</p>
+    <p class="bg-light border p-3">Light Background</p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Bootstrap Buttons
+-----------------
+
+Basic Button Structure :
+
+* Every Bootstrap button requires : btn class
+
+Example : <button class="btn">Click Me</button>		
+
+Button Modifier Classes
+-----------------------
+* Bootstrap provides multiple button styles.
+
+Example : 
+	
+	1. btn-primary
+	2. btn-secondary
+	3. btn-success
+	4. btn-danger
+	5. btn-warning
+	6. btn-info
+	7. btn-dark
+	8. btn-light
+
+Example 1 : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Buttons</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-danger">Danger</button> <br><br>
+
+    <button class="btn btn-outline-primary">Outline Primary</button>
+    <button class="btn btn-outline-danger">Outline Danger</button> <br><br>
+
+    <button class="btn btn-sm btn-success">Small</button>
+    <button class="btn btn-lg btn-warning">Large</button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+* In real employee management applications :
+	
+	1. blue button : add employee
+	2. green button : save employee
+	3. red button : delete employee
+	4. gray button : cancel operation
+
+Disabled Button
+---------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Buttons</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <button class="btn btn-primary" disabled>Primary</button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Full Width Button
+-----------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Buttons</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <button class="btn btn-primary w-100">Primary</button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Tomorrow : Alerts	

@@ -1,0 +1,393 @@
+Bootstrap Alerts
+----------------
+* Alerts are used to display messages to users.
+
+Example : 
+
+1. Login Successful
+2. Payment Failed
+3. Employee Added
+4. Warning Message
+5. Invalid Password
+6. Server Error
+
+What is an Alert?
+
+* An alert is a Bootstrap component used to show : 
+	
+	1. success messages
+	2. warning messages
+	3. error messages
+	4. informational messages
+
+* Alerts help users understand : 
+	
+	1. what happend
+	2. wheather action succeeded
+	3. wheather something failed
+
+Why Alerts Important?
+
+* Without alerts users won't know : 
+	
+	1. action completed or not
+	2. errors occured or not.
+
+* Alerts improve : 
+	
+	1. communication
+	2. usability
+	3. user experience
+
+Bootstrap Alert Classes
+-----------------------
+* Bootstrap provides several alert types 
+
+	1. alert-primary : Primary informational alert
+	2. alert-success : Success alert, Usually green
+	3. alert-danger : Danger / error alert, Usually red.
+	4. alert-warning : Warning alert, Usually yellow
+	5. alert-info : Information alert, Usually blue / light blue
+	
+Basic Alert Structure
+---------------------
+* Bootstrap alerts require : alert class and modifier class
+
+Example : <div class="alert alert-success">Employee Added Successfully</div>	
+
+Example 1 : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Alerts</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="alert alert-primary">Primary Alert</div>
+    <div class="alert alert-success">Success Alert</div>
+    <div class="alert alert-danger">Danger Alert</div>
+    <div class="alert alert-warning">Warning Alert</div>
+    <div class="alert alert-info">Info Alert</div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Why Enterprise Applications Use Alerts?
+
+* Because alerts provide : 
+	
+	1. instant communication
+	2. better user experience
+	3. proper feedback
+	4. professional UI behaviour
+
+Real-Time Flow : User Performs Action -> Backend Processes Request -> Frontend Receives Response -> Bootstrap Alert Displayed -> User Understands Result	
+
+Bootstrap Cards
+---------------
+* Cards are one of the most commonly used UI components in modern web applications because they help developers organize information in a clean, professional, and structured format.
+
+* In real-time applications, cards are used for displaying : 
+	
+	1. products
+	2. employee profiles
+	3. user details
+	4. dashboard reports
+	5. analytics
+	6. hospital patient information
+	7. banking summaries.
+
+* Cards improve : 
+		
+	1. UI appearance
+	2. readability
+	3. responsive design
+	4. content organization
+
+What is a Card?
+
+* A card is a flexible Bootstrap container used to group related information together.
+
+* A card may contain : 
+	
+	1. heading
+	2. image
+	3. description
+	4. buttons
+	5. footer
+	6. links
+
+* Cards create a professional content box with proper : 
+	
+	1. spacing
+	2. border
+	3. padding
+	4. alignment
+
+Why Cards Important?
+
+* Before Bootstrap cards, developers manually created :
+	
+	1. borders
+	2. shadows
+	3. spacing
+	4. layouts
+
+-> This caused : 
+	
+	1. repeated CSS
+	2. inconsistent design
+	3. maintenance problems
+
+Real-Time Enterprise Usage
+--------------------------
+* Cards are heavily used in : 
+	
+	1. Amazon product pages
+	2. Flipkart product listings
+	3. employee management systems
+	4. admin dashboards
+	5. CRM applications
+	6. hospital systems
+	7. analytics portals
+
+Card Structure
+--------------
+* A Bootstrap card may contain : 
+	
+	1. card : Main container
+	2. card-header : Top section
+	3. card-body : Main content
+	4. card-title : Card heading
+	5. card-text : Description
+	6. card-footer : Bottom section
+	
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Cards</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Header
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Card Title</h5>
+
+        <p class="card-text">This is card content</p>
+        <button class="btn btn-primary">Click</button>
+      </div>
+
+      <div class="card-footer">Footer</div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Cards</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="card" style="width: 18rem;">
+      <img src="Images/I-Phone17 Pro.jpg" class="card-img-top" alt="IPhone-17 Pro">
+
+      <div class="card-body">
+        <h5 class="card-title">iPhone 17 Pro</h5>
+      </div>
+
+      <p class="card-text">Latest Apple Smartphone</p>
+
+      <button class="btn btn-success">Buy Now</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Cards + Grid System
+-------------------
+* This creates :
+	
+	1. product listings pages
+	2. dashboard layouts
+	3. profile sections
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Cards</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            Header
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Card Title</h5>
+
+            <p class="card-text">This is card content</p>
+            <button class="btn btn-primary">Click</button>
+          </div>
+
+          <div class="card-footer">Footer</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="Images/I-Phone17 Pro.jpg" class="card-img-top" alt="IPhone-17 Pro">
+
+          <div class="card-body">
+            <h5 class="card-title">iPhone 17 Pro</h5>
+          </div>
+
+          <p class="card-text">Latest Apple Smartphone</p>
+
+          <button class="btn btn-success">Buy Now</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="Images/AshokItLogo.png" class="card-img-top" alt="Ashok It Logo">
+
+          <div class="card-body">
+            <h5 class="card-title">Ashok It</h5>
+          </div>
+
+          <p class="card-text">Learn here, Lead anywhere</p>
+
+          <button class="btn btn-success">Contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Cards</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            Product 1
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            Product 2
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            Product 3
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Real-Time Flow : Bootstrap CSS Loaded -> Card Classes Available -> Developers Applies Card Structure -> Bootstrap Adds Styling -> Professional Card UI Generated
+
+Tomorrow : Forms	

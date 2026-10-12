@@ -1,0 +1,360 @@
+Grid System In Bootstrap
+------------------------
+* Bootstrap Grid System is a layout system used to arrange web page content into : 1. rows and 2. columns
+
+* Grid System help developers divide web page into sections
+
+Example : 
+	
+	1. Sidebar
+	2. Navbar
+	3. Content Area
+	4. Cards
+	5. Forms
+	6. Tables => All positioned using grid layout.
+
+Why Grid System Important?
+
+* Befor Bootstrap Grid System, Developers Used : 
+		
+	1. float
+	2. manual CSS positioning
+	3. fixed widths
+This created many problems : 
+	
+	1. responsive issues
+	2. alignment problems
+	3. mobile compatibility issues
+	4. complex CSS maintenance
+
+Bootstrap solved these using : Responsive Grid System
+
+What is Responsive Layout?
+
+* Responsive Layout means, UI automatically adjusts based on screen size
+
+Example : 
+	
+	1. mobile : single column
+	2. tablet : two columns
+	3. desktop : four columns
+
+This automatic adjustment is handled using Bootstrap Grid System.
+
+Bootstrap Grid System Based on 12 Columns
+------------------------------------------
+
+* Bootstrap Grid System internally divides screen into : 12 columns
+
+* Entire webpage width is 12 units
+
+Example : 
+		
+	1. col-12 : full width
+	2. col-6  : half width
+	3. col-4  : 3 columns width
+	4. col-3  : quarter width
+	
+12 Slices
+
+6 + 6 = 12
+4 + 4 + 4 = 12
+3 + 3 + 3 + 3 = 12	
+	
+Main Grid Classes
+-----------------
+* Bootstrap grid mainly uses : 
+	
+	1. container
+	2. row
+	3. col
+These are core building blocks
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Setup</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        Column 1
+      </div>
+      <div class="col">
+        Column 2
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Setup</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-4 bg-primary text-white p-3">
+        Employee Profile
+      </div>
+      <div class="col-4 bg-success text-white p-3">
+        Employee Salary
+      </div>
+      <div class="col-4 bg-danger text-white p-3">
+        Employee Department
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+What Happens Internally?
+
+* Bootstrap Internally Calculates : 4 / 12 = 33.33%
+
+* So each column takes  : 33.33% width
+
+* bg-primary : Applies Bootstrap primary backeground color
+
+* text-white : Change text color to white
+
+* p-3 : Adding padding inside column
+
+Responsive Grid Layout
+----------------------
+* Bootstrap Supports different Screen sizes : 
+	
+	1. col-sm : Uses Mobile Device
+	2. col-md : Uses Tablet Device
+	3. col-lg : Uses Laptop Device
+	4. col-xl : Uses Desktop Device
+	5. col-xxl : Uses Large Desktop Device
+	
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Setup</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 bg-primary text-red p-3">
+        Employee Card 1
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 bg-success text-white p-3">
+        Employee Card 2
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 bg-danger text-white p-3">
+        Employee Card 3
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Real-Time Enterprise Usage
+--------------------------
+* Grid system heavily used in : 
+	
+	1. admin dashboards
+	2. analytics panels
+	3. banking applications
+	4. reporting systems
+	5. ERP modules
+	6. CRM portals
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Setup</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3 bg-primary p-3 text-white">
+        Product 1
+      </div>
+      <div class="col-md-3 bg-success p-3 text-white">
+        Product 2
+      </div>
+      <div class="col-md-3 bg-warning p-3 text-white">
+        Product 3
+      </div>
+      <div class="col-md-3 bg-danger p-3 text-white">
+        Product 4
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Why Grid System Important In Enterprise Applications?
+
+* Because enterprise UI contains : 
+	
+	1. multiple sections
+	2. dashboards
+	3. forms
+	4. reports
+	5. analytics widgets
+
+Nested Grid System
+------------------
+
+* Bootstrap also supports : Nested Rows and Columns
+
+* Meaning columns can contain another row
+
+* Used in : 
+	
+	1. complex dashboards
+	2. advanced layouts
+	3. admin panels
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Setup</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-6 bg-primary text-white">
+        Main Column
+
+        <div class="row">
+          <div class="col-6 bg-warning">
+            Nested 1
+          </div>
+          <div class="col-6 bg-success">
+            Nested 2
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Grid System Adavantages
+-----------------------
+1. Faster Layout Development
+2. Responsive Design
+3. Cleaner UI Structure
+4. Mobile Compatibility
+5. Resuable Layouts
+6. Professional Design
+
+Real-Time Industry Flow : Frontend Design -> Bootstrap Grid Layout -> Responsive UI Generated -> Works Across Devices
+
+Interview Questions
+-------------------
+1. What is Bootstrap Grid System?
+A. Bootstrap Layout system based on rows and columns
+
+2. How many columns Bootstrap grid contains?
+A. 12 columns
+
+3. What is row class used for?
+A. Creates horizontal layout section.
+
+4. What is col-6?
+A. Column occupying 6 out of 12 width.
+
+5. What is responsive design?
+A. UI automatically adjusts based on screen size.
+
+6. What are Bootstrap breakpoints?
+A. sm, md, lg, xl, xxl
+
+7. What is nested grid?
+A. Grid System inside another column.	
+	

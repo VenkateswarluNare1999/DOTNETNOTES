@@ -1,0 +1,340 @@
+Bootstrap Offcanvas
+-------------------
+* Offcanvas is used to create sidebars and sliding menus
+
+* that appear from : 
+	
+	1. left
+	2. right
+	3. top
+	4. bottom
+
+* Offcanvas is a hidden side panel, it appears only when user clicks a button.
+
+Why Offcanvas Important?
+
+* Without Offcanvas : 
+	
+	1. mobile navigation becomes difficult
+	2. screen space wasted
+	3. menus occupy permanent area
+
+* Offcanvas helps : 
+	
+	1. responsive navigation
+	2. cleaner UI
+	3. better mobile experience
+
+Real-Time Enterprise Usage
+--------------------------
+* Bootstrap Offcanvas is heavily used in : 
+	
+	1. admin dashboards
+	2. mobile navigation
+	3. e-commerce filters
+	4. setting panels
+	5. CRM applications
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Offcanvas</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas">Open
+      Menu</button>
+  </div>
+
+  <div class="offcanvas offcanvas-start" id="myOffcanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li class="list-group-item">Home</li>
+        <li class="list-group-item">About</li>
+        <li class="list-group-item">Contact</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
+
+Other Positions
+---------------
+1. offcanvas-start : Left
+2. offcanvas-end : Right
+3. offcanvas-top : Top
+4. offcanvas-Bottom : Bottom
+
+Why Enterprise Applications Use Offcanvas?
+
+* Because Offcanvas provides : 
+	
+	1. responsive sidebar
+	2. space saving
+	3. modern UI
+	4. mobile compatibility
+
+Bootstrap Pagination	
+---------------------
+* Pagination is used to divide large data into multiple pages.
+
+* Pagination means dividing content into pages
+
+Example : 
+	
+	1. Page 1
+	2. Page 2
+	3. Page 3
+
+This improves : 
+	
+	1. performance
+	2. readability
+	3. user experience
+
+Why Pagination Important?
+
+* Without pagination : 
+	
+	1. pages become very slow
+	2. browser performance decreases
+	3. users struggle to navigate data
+
+* Pagination helps : 
+	
+	1. organize records
+	2. improve speed
+	3. reduce loading time
+
+Real-Time Enterprise Usage
+--------------------------
+* Bootstrap pagination is heavily used in : 
+	
+	1. employee management systems
+	2. banking reports
+	3. e-commerce products
+	4. student management systems
+	5. admin dashboards
+	
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Pagination</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <nav>
+      <ul class="pagination">
+        <li class="page-item">
+          <a href="#" class="page-link">Previous</a>
+        </li>
+        <li class="page-item active">
+          <a href="#" class="page-link">1</a>
+        </li>
+        <li class="page-item">
+          <a href="#" class="page-link">2</a>
+        </li>
+        <li class="page-item">
+          <a href="#" class="page-link">3</a>
+        </li>
+        <li class="page-item">
+          <a href="#" class="page-link">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
+
+Bootstrap Progress Bars
+------------------------
+* Progress bars are used to show completion percentage visually.
+
+* Progress bar represents : 
+	
+	1. loading status
+	2. completion percentage
+	3. task progress
+	
+Why Progress Bars Important?
+
+* Without progress bars : 
+	
+	1. users don't know process status
+	2. applications feel unresponsive
+
+* Progress bars help : 
+	
+	1. improve UX
+	2. show task progress
+	3. reduce confusion
+
+Real-Time Enterprise Usage
+--------------------------
+* Bootstrap progress bars are heavily used in : 
+	
+	1. file upload systems
+	2. installation progress
+	3. exam portals
+	4. project tracking systems
+	5. dashboards
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Progress Bars</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="progress">
+      <div class="progress-bar" style="width: 70%;">
+        70%
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>	
+
+Bootstrap Badges
+-----------------
+* Badges are small count or label indicators.
+
+* They are used to : 
+	
+	1. show notifications
+	2. counts
+	3. status labels
+
+* Badges is a small highlighted element.
+
+* Usaually attached to : 
+	
+	1. buttons
+	2. headings
+	3. menu items
+
+Why Badges Important?
+
+* Badges help users quickly identify : 
+	
+	1. unread messages
+	2. notifications
+	3. pending tasks
+	4. statuses
+	
+Real-Time Enterprise Usage
+--------------------------
+* Bootstrap Badges are heavily used in : 
+	
+	1. notifications systems
+	2. dashboards
+	3. e-commerce carts
+	4. banking alerts
+	5. admin panels
+	
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Badges</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <h1>
+      Notifications
+      <span class="badge bg-danger">5</span>
+    </h1>
+
+    <button class="btn">Messages
+      <span class="badge bg-warning text-dark">10</span>
+    </button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
+
+Why Enterprise Applications Use Badges?
+
+Because badges provide : 
+	
+	1. quick visual indicators
+	2. notifications counts
+	3. status representation
+	4. compact information display
+	
+	

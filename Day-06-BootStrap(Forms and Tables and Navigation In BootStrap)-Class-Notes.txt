@@ -1,0 +1,421 @@
+Bootstrap Forms
+---------------
+* Forms are used to collect data from users.
+
+Examples : 
+	
+	1. Login Form
+	2. Registration Form
+	3. Employee Form
+	4. Payment Form
+	5. Contact Form
+	6. Search Form
+	7. Feedback Form
+
+* All these are created using Forms.
+
+What is a Form?
+
+* A Form is a UI structure used to collect input data from users.
+
+* Users provide information using : 
+	
+	1. textboxes
+	2. checkboxes
+	3. radio buttons
+	4. dropdowns
+	5. password fields
+	6. buttons
+
+Why Bootstrap Forms Important?
+
+* Before Bootstrap, developers manually styled : 
+	
+	1. inputs
+	2. labels
+	3. dropdowns
+	4. checkboxes
+
+* This caused : 
+	
+	1. inconsistent UI
+	2. extra CSS
+	3. poor responsiveness
+
+Real-Time Enterprise Usage
+--------------------------
+* Forms are heavily used in :
+	
+	1. banking applications
+	2. employee portals
+	3. hospital management
+	4. CRM applications
+	5. e-commerce websites
+	6. admin dashboards
+	
+Main Form Classes
+-----------------
+* Bootstrap provides several important form classes.
+
+	1. form-control : Textbox styling
+	2. form-check   : Checkbox / radio container
+	3. form-check-input : Checkbox input
+	4. form-select : Dropdown styling
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Forms</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <input type="text" placeholder="Enter Name" class="form-control">
+
+    <div class="form-check mt-2">
+      <input type="checkbox" class="form-check-input">
+      <label for="">Accept Terms</label>
+    </div>
+
+    <select name="" id="" class="form-select mt-2">
+      <option value="">Select Course</option>
+      <option value="">HTML</option>
+      <option value="">CSS</option>
+      <option value="">BOOTSTRAP</option>
+      <option value="">TYPESCRIPT</option>
+      <option value="">ANGULAR</option>
+    </select>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Why Enterprise Applications Use Bootstrap Forms
+-----------------------------------------------
+* Because Bootstrap Forms provide : 
+	
+	1. responsive design
+	2. professional UI
+	3. consistent styling
+	4. faster development
+	5. mobile-friendly layout
+
+Additional Form Utilities
+--------------------------
+* Bootstrap also supports : 
+	
+	1. disabled inputs
+	2. readonly inputs
+	3. validation styling
+	4. floating lables
+	5. input groups
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Forms</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <input type="text" class="form-control" disabled>
+
+    <input type="text" class="form-control" readonly>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Bootstrap Tables
+----------------
+* Tables are used to display structured data in rows and columns.
+
+* A table is a structure used in organize data into : rows and columns
+
+* Tables make large amounts of data : readable, aligned, manageable
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Tables</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Course</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Rahul</td>
+          <td>HTML</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Vishnu</td>
+          <td>CSS</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Divya</td>
+          <td>BOOTSTRAP</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Venkat</td>
+          <td>TYPESCRIPT</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Ashok</td>
+          <td>ANGULAR</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Why Enterprise Applications Use Bootstrap Tables
+-------------------------------------------------
+* Because Bootstrap tables provide : 
+	
+	1. responsive UI
+	2. better readability
+	3. professional appearance
+	4. intractive behavior
+	5. faster development
+	
+Additional Table Classes
+------------------------
+1. table-primary : Blue table
+2. table-success : Green Table
+3. table-danger : Red Table
+4. table-warning : Yellow table
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Tables</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container mt-4">
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Course</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-primary">
+          <td>1</td>
+          <td>Rahul</td>
+          <td>HTML</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Vishnu</td>
+          <td>CSS</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Divya</td>
+          <td>BOOTSTRAP</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Venkat</td>
+          <td>TYPESCRIPT</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Ashok</td>
+          <td>ANGULAR</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>	
+
+Bootstrap Navbar
+-----------------
+Navbar means : Navigation Bar
+
+* A navbar is used to provide navigation links in a website or web applications
+
+* It helps users navigate between : 
+	
+	1. pages
+	2. modules
+	3. dashboards
+	4. menus
+
+Why Navbar Important?
+
+* Without navbar : 
+	
+	1. users cannot navigate properly
+	2. website becomes confusing
+	3. user experience becomes poor
+
+* Navbar improves : 
+	
+	1. navigation
+	2. accessibility
+	3. usability
+	4. responsive design
+
+Basic Navbar Structure
+----------------------
+* Bootstrap navbar mainly uses : 
+	
+	1. navbar : Main navbar container
+	2. navbar-brand : Website logo / title
+	3. navbar-nav : Navigation items container
+	4. nav-item : Individual menu item
+	5. nav-link : Navigation link
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Navbar</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">My Website</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+Why Enterprise Applications Use Bootstrap Navbar?
+
+* Because Bootstrap navbar provides : 
+	
+	1. responsive navigation
+	2. professional design
+	3. mobile-friendly UI
+	4. reusable structure
+	5. faster development
+
+Navbar Colors
+-------------
+* Bootstrap supports multiple navbar colors : 
+	
+	1. bg-primary : Blue navbar
+	2. bg-dark : Dark navbar
+	3. bg-success : Green navbar
+	4. bg-danger : Red navbar
+	
+Fixed Navbar
+------------
+* Bootstrap provides and supports : fixed-top navbar
+
+Example : <nav class="navbar fixed-top bg-dark">	

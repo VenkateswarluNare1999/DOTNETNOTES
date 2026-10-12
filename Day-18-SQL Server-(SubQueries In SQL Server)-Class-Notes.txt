@@ -1,0 +1,82 @@
+SubQueries In SQL Server
+-------------------------
+* Joins combine data from multiple tables, subqueries allow us to use the result of one query inside another query.
+
+* SubQueries are extremely useful when we need dynamic filtering, calculations, or comparisons based on other query results.
+
+* SubQueries can be used in :
+	
+	1. SELECT clause
+	2. WHERE clause
+	3. FROM clause
+	4. HAVING clause
+	
+Syntax :
+
+SELECT column_name 
+FROM table_name 
+WHERE column_name OPERATOR
+(
+	SELECT column_name 
+	FROM table_name 
+	WHERE condition
+);	
+	
+Example :
+
+CREATE TABLE Employees
+(
+	Id Int Primary key,
+	Name varchar(50),
+	deptId Int,
+	Salary Int
+);
+
+INSERT INTO Employees VALUES
+(1, 'Ravi', 1, 50000),
+(2, 'Kiran', 2, 60000),
+(3, 'Anil', 1, 45000),
+(4, 'Suresh', 1, 70000),
+(5, 'Meena', 3, 55000);
+
+Question 1 : Find employees earning more than the average salary?
+
+SELECT * 
+FROM Employees
+WHERE Salary > (SELECT AVG(Salary) FROM Employees);
+
+Question 2 : Find employees earning less than the average salary?	
+
+SELECT * 
+FROM Employees
+WHERE Salary < (SELECT AVG(Salary) FROM Employees);
+
+Question 3 : Find the employees with the highest salary?
+
+SELECT * 
+FROM Employees
+WHERE Salary = (SELECT MAX(Salary) FROM Employees);
+
+Question 4 : Find the employees with the Lowest salary?
+
+SELECT * 
+FROM Employees
+WHERE Salary = (SELECT MIN(Salary) FROM Employees);
+
+Question 5 : Find employees working in the same department as Ravi?
+
+SELECT * 
+FROM Employees
+WHERE deptId = (SELECT deptId FROM Employees WHERE Name = 'Ravi');
+
+Question 5 : Find employees earning more than Ravi?
+
+SELECT * 
+FROM Employees
+WHERE Salary > (SELECT Salary FROM Employees WHERE Name = 'Ravi');
+
+Question 6 : Find the second highest salary?
+
+SELECT MAX(Salary) AS SecondHighestSalary 
+FROM Employees
+WHERE Salary < (SELECT MAX(Salary) FROM Employees);

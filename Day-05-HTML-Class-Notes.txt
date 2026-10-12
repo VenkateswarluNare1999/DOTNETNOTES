@@ -1,0 +1,350 @@
+List Elements In HTML
+---------------------
+* HTML provides 3 main types of list elements
+	1. Ordered List '<ol>'
+		1. '<li>' - List Items
+	2. Unordered List '<ul>'
+		1. '<li>' - List Items
+	3. Description List '<dl>'
+		1. '<dt>' - Definition term
+		2. '<dd>' - Definition description
+		
+1. Ordered List '<ol>'
+---------------------
+* An ordered list in HTML is used to display a set of items in a specific sequence, where the order of items is important.
+
+* It is defined using the '<ol>' tag, and each item inside the list is represented by the '<li>' (List Item) tag.
+
+* Using Attributes like 'type'
+
+Markers : 
+
+1 -> numbers (default)
+A -> uppercase letters
+a -> lowercase letters
+I -> uppercase Roman numerals
+i -> lowercase Roman numerals
+
+Example : 1. Basic Ordered List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol>
+    <li>Tempalte-Driven Forms</li>
+    <li>Reactive Forms</li>
+  </ol>
+</body>
+
+</html>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol type="A">
+    <li>Tempalte-Driven Forms</li>
+    <li>Reactive Forms</li>
+  </ol>
+
+  <ol type="i">
+    <li>Implicit Model</li>
+    <li>Explicit Model</li>
+  </ol>
+</body>
+
+</html>
+
+Example : Nested Ordered List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol>
+    <li>Template-Driven Forms
+      <ol>
+        <li>Uses ngModel</li>
+        <li>Two-way binding</li>
+        <li>Implicit form model</li>
+      </ol>
+    </li>
+    <li>Reactive Forms
+      <ol>
+        <li>Uses FormGroup</li>
+        <li>One-way data flow</li>
+        <li>Explicit form model</li>
+      </ol>
+    </li>
+  </ol>
+</body>
+
+</html>
+
+Example : Ordered List with Start Attribute
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol start="5">
+    <li>Validation</li>
+    <li>Submission</li>
+  </ol>
+</body>
+
+</html>
+
+Example : Ordered List with Reversed Order
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol reversed>
+    <li>Submit Form</li>
+    <li>Validate Inputs</li>
+    <li>Create Form</li>
+  </ol>
+</body>
+
+</html>
+
+2. Unordered List In HTML
+-------------------------
+* An Unordered List In HTML is used to present of related items where the order does not matter.
+
+* It is defined using the '<ul>' tag, and each item within the list is represented by the '<li>' (list item) tag, browser display unordered lists with bullet points.
+
+Attributes / Markers : 
+
+1. disc -> default bullet
+2. circle -> hollow circle
+3. square -> solid square
+
+Example : 1. Basic Unordered List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+</body>
+
+</html>
+
+Example : 2. Unordered List with Different Bullet Styles
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul style="list-style-type: square;">
+    <li>Template Forms</li>
+    <li>Reactive Forms</li>
+  </ul>
+
+  <ul style="list-style-type: circle;">
+    <li>Validation</li>
+    <li>Submission</li>
+  </ul>
+</body>
+
+</html>
+
+Example : Nested Unordered List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>Angular
+      <ul>
+        <li>Components</li>
+        <li>Services</li>
+        <li>Forms</li>
+      </ul>
+    </li>
+    <li>React
+      <ul>
+        <li>Hooks</li>
+        <li>Components</li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+</html>
+
+3. Description List In HTML
+---------------------------
+* A description list in HTML is used to represent pairs of related information, typically in the form of a term and its description.
+
+* It is defined using the '<dl>' tag
+
+* Each term is written inside a '<dt>' (definition term) element and its corresponding explanation is palced inside a '<dd>' (definition description) element.
+
+It uses three tags : 
+	
+	1. <dl> -> description list
+	2. <dt> -> description term
+	3. <dd> -> description definition
+	
+Example : 1. Basic Description List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <dl>
+    <dt>HTML</dt>
+    <dd>Used to structure web content</dd>
+
+    <dt>CSS</dt>
+    <dd>Used for styling web pages</dd>
+
+    <dt>JavaScript</dt>
+    <dd>Used for interactivity</dd>
+  </dl>
+</body>
+
+</html>
+
+Example : Description List for Form Validation
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <dl>
+    <dt>Required</dt>
+    <dd>Ensures the field is not empty.</dd>
+
+    <dt>MinLength</dt>
+    <dd>Specifies the minimum number of characters</dd>
+
+    <dt>Email</dt>
+    <dd>Validated email format</dd>
+  </dl>
+</body>
+
+</html>
+
+Image Element In HTML
+---------------------
+* Images are added using the <img> tag.
+
+* This is a self-closing tag.
+
+Attributes / Markers of Image Element : 
+
+	1. src -> Source of Image path
+	2. alt -> alternative text if image cannot load
+	3. width -> Image width
+	4. height -> Image height
+	5. title -> tooltip text
+
+Syntax : <img src="" />	
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="Images/AshokItLogo.png" alt="Ashok It Logo Presentation">
+</body>
+
+</html>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="Images/Nature.png" alt="A Beautiful Nature Not Loaded" width="200" height="150" title="A Beautiful Nature">
+</body>
+
+</html>
+

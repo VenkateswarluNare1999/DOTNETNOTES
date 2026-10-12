@@ -1,0 +1,75 @@
+Installing Visual Studio Code (VS Code)
+---------------------------------------
+* It supports many programming languages and provides features such as :
+
+1. Syntax highlighting
+2. debugging tools
+3. extensions
+4. integrated terminal support
+
+Step 1 : Open Browser and Search for : https://code.visualstudio.com/
+
+Step 2 : Installing extensions
+
+Click Extension icon : 1. Live Server, 2. Prettier
+
+Introduction to HTML
+--------------------
+* HTML Stands for -> HyperText Markup Language
+
+* HTML is responsible for the structure of a web page
+
+1. HyperTextx
+2. Markup Language
+
+History of HTML
+---------------
+* HTML was created by Tim Berners-Lee in the year 1991.
+
+World Wide Web (WWW)
+
+* HTML 2.0 in 1995
+* HTML 3.2 and HTML 4.01
+* HTML5
+
+Purpose of HTML
+---------------
+1. To Create the structure and content of web pages
+2. Enables Navigation Between Web Pages using hyperlinks
+
+Elements In HTML
+----------------
+* An HTML Elements is a basic building block of a web page.
+* AN HTML Elements consists of a start tag, content, an end tag.
+
+For Example : <p>This is a paragraph</p> 
+
+Tags In HTML
+------------
+Examples : <h1>, <p>, <a>, <img>, <button>
+
+Types of Tags In HTML
+---------------------
+
+1. Paired Tags (Container Tags)
+
+* These tags have both an opening tag and closing tag.
+
+Example : <p>This is a paragraph</p> 
+
+* The closing tag always contains a forward slash.
+
+2. Self-Closing Tags (Empty Tags)
+
+* Some tags do not require a closing tag. These are called self-closing tags.
+
+Example : <br/>, <img>, <hr>
+
+Structure or Representation of an HTML Tags
+-------------------------------------------
+
+* <starttag>Content</endtag>
+
+Example : <h1>Welcome to HTML</h1>
+
+Example : <a href="https://example.com">Visit Website</a>

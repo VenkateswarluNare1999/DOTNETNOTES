@@ -1,0 +1,193 @@
+
+Q: What is the purpose of HTML?
+-------------------------------
+A: HTML (HyperText Markup Language) is used to structure content on the web. It defines the structure of web pages by using markup to describe elements like headings, paragraphs, links, images, etc.
+
+Q: What are elements in HTML?
+------------------------------
+A: An HTML element is a component of an HTML document, made up of a start tag, content, and an end tag (optional in some cases). Examples include <p>, <div>, and <h1>.
+
+Q: What are HTML tags?
+---------------------
+A: HTML tags are the fundamental building blocks of HTML elements. They consist of an opening tag (e.g., <p>) and a closing tag (e.g., </p>). Some tags do not need a closing tag (e.g., <img>).
+
+Q: What are paired and self-closing tags?
+-----------------------------------------
+A:
+* Paired Tags: These tags come in pairs, consisting of an opening and closing tag. For example, <p>...</p>.
+* Self-Closing Tags: These tags don’t have a closing tag. They are used to insert elements that don't have content, like <img /> or <br />.
+
+Q: What is the structure of an HTML tag?
+---------------------------------------
+A: The basic structure of an HTML tag is:
+
+<tagname>content</tagname>
+
+Example:
+<p>This is a paragraph.</p>
+
+Q: What is the <button> element in HTML?
+------------------------------------------
+A: The <button> element is used to create clickable buttons on a web page.
+
+Syntax:
+<button type="button">Click Me</button>
+
+* Tag Name: button
+* Type of Tag: Paired tag
+* Purpose: Used for form submissions, interactive actions, or JavaScript events.
+
+Q: What is the purpose of the <h1> to <h6> tags?
+--------------------------------------------------
+A: These tags represent headings, with <h1> being the highest (most important) and <h6> being the lowest.
+
+Syntax:
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+...
+<h6>Heading 6</h6>
+
+* Tag Name: h1, h2, ..., h6
+* Type of Tag: Paired tag
+* Purpose: To define headings on a page.
+
+Q: What is the <p> element in HTML?
+-----------------------------------
+A: The <p> element is used to define a paragraph of text.
+
+Syntax:
+<p>This is a paragraph.</p>
+
+* Tag Name: p
+* Type of Tag: Paired tag
+* Purpose: To structure text into paragraphs.
+
+Q: What is the basic structure of an HTML document?
+----------------------------------------------------
+A: A basic HTML document includes:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+</body>
+</html>
+
+* Document Declaration: <!DOCTYPE html>
+* Document Scope: Everything between <html> and </html>.
+
+Q: How do you create an ordered list in HTML?
+---------------------------------------------
+A: Use the <ol> tag for an ordered list, and <li> for list items.
+
+<ol>
+  <li>First item</li>
+  <li>Second item</li>
+</ol>
+
+* List Item (li): Defines each list element.
+* Type of Tag: Paired tag
+* Purpose: To define an ordered list.
+
+Q: How is an unordered list different from an ordered list?
+------------------------------------------------------------
+A: An unordered list uses the <ul> tag, and list items are represented by <li>. Unlike ordered lists, the items in an unordered list are not numbered.
+
+<ul>
+  <li>Apple</li>
+  <li>Banana</li>
+</ul>
+
+Q: What are attributes in HTML?
+--------------------------------
+A: Attributes provide additional information about HTML elements. They are written inside the opening tag and usually come in name-value pairs.
+
+Syntax Example:
+<a href="https://www.example.com">Click here</a>
+
+* Purpose: To define specific behaviors, like linking (href), styling (class), etc.
+* Rules: Attributes are case-insensitive but generally written in lowercase.
+
+Q: How do you add an image in HTML?
+------------------------------------
+A: Use the <img> tag to display images.
+
+Syntax:
+<img src="image.jpg" alt="An example image">
+
+* Purpose: To embed an image in the web page.
+* Attributes:
+  * src: Path to the image.
+  * alt: Alternative text if the image doesn’t load.
+
+Q: How do you create a table in HTML?
+--------------------------------------
+A: A table is created using the <table> element. Inside, you can define rows (<tr>), headers (<th>), and cells (<td>).
+
+Example:
+<table>
+  <thead>
+    <tr>
+      <th>Header 1</th>
+      <th>Header 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Row 1, Cell 1</td>
+      <td>Row 1, Cell 2</td>
+    </tr>
+  </tbody>
+</table>
+
+* Table Header: <thead>
+* Table Body: <tbody>
+* Table Row: <tr>
+* Table Cell: <td>
+
+Q: What is the purpose of the <a> (anchor) element in HTML?
+------------------------------------------------------------
+A: The <a> tag is used to create hyperlinks to other web pages or resources.
+
+Syntax:
+<a href="https://www.example.com">Visit Example</a>
+
+* Purpose: Allows navigation to another page or location.
+
+Q: What are the main elements used to create a form in HTML?
+------------------------------------------------------------
+A: Forms are created using the <form> tag, and the elements inside include <input>, <select>, <textarea>, and <button>.
+
+Example:
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name">
+  <input type="submit" value="Submit">
+</form>
+
+### 16. Attributes of Input Element
+-------------------------------------
+Q: What are some important attributes of the <input> element?
+
+A:
+* type: Defines the type of input (text, password, submit, etc.).
+* placeholder: Displays placeholder text inside the input box.
+* required: Makes the field mandatory.
+* name: The name of the input field.
+* value: The initial value of the input.
+
+Example:
+<input type="text" name="username" placeholder="Enter Username" required>
+
+Q: What is the <div> element used for in HTML?
+--------------------------------------------------
+A: The <div> element is a block-level container used to group content together. It has no inherent style or behavior and is often used for layout and structure.
+
+Example:
+<div class="container">
+  <p>This is a paragraph inside a div.</p>
+</div>

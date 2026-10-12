@@ -1,0 +1,501 @@
+Three Important Concepts In HTML
+---------------------------------
+1. HTMl Tables
+2. Anchor Elements
+3. HTML Forms
+
+For Example : 
+
+1. Online shopping websites
+2. Websites
+3. Login and Registration Pages
+
+1. HTMl Tables
+---------------
+* In HTML, a table is used to present structured data.
+
+* structured data means information arranged in rows and columns, similar to how data is displayed in Excel sheets.
+
+* In HTML, a table is created using the <table> element.
+
+* Inside the table element, we define different components such as : 
+	
+	1. Table header
+	2. Table body
+	3. Table footer
+	4. Table rows
+	5. Table cells
+	
+Syntax of Table :
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+
+</html>
+
+4. Table Head
+
+* The table head cell is created using the 'th' element.
+* It represents column headings
+* Text inside the 'th' element is displayed bold and centered by default
+
+syntax :
+
+<tr>
+	<th></th>
+</tr>
+
+5. Table Row
+
+* The table row represents a horizontal row in the table
+* It is defined using the 'tr' element
+* Each row can contain multiple cells
+
+Syntax : 
+
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>	
+
+6. Table Cell
+
+* A table cell is the smallest unit in a table
+* It is defined using the 'td' element
+* Each cell stores one place of data
+
+Syntax : 
+
+<td></td>
+<td></td>
+<td></td>
+
+7. Caption
+
+* The caption element provides a title for the table
+* It helps users understand the purpose of the table
+* the caption appears at the top of the table
+
+Syntax : 
+<table>
+	<caption>Title</caption>
+</table>
+
+* Captions are useful when tables represent reports or structured datasets.
+
+Attributes of Table Element
+---------------------------
+* HTML tables supports several attributes that control layout and appearance.
+
+* Important attributes include : 
+		
+	1. Frame
+	2. Rules
+	3. Width
+	4. Height
+	5. Align
+	6. Valign
+
+1. Frame Attribute
+
+* The frame attribute controls the outer border of the table.
+* It determines which sides of the table border should be visible
+
+* Common values include : 
+
+	1. void
+	2. above
+	3. below
+	4. hsides
+	5. vsides
+	6. box
+
+Syntax : <table frame="box"></table>	
+
+2. Rules Attribute
+
+* The rules attribute controls the internal borders of the table
+* It specifies how lines appear between rows and columns
+
+* Common values include : 
+	
+	1. none
+	2. rows
+	3. cols
+	4. all
+	
+Syntax : <table rules="all"></table>
+
+3 and 4. Width and Height
+
+* The width attribute defines the width of the table
+* The height attribute defines the height of the table
+
+Syntax : <table width="600" height="300"></table>
+
+5. 	Align Attribute
+
+* The align attribute controls the horizontal alignment of the table
+
+* Possible values include : 
+	
+	1. left
+	2. center
+	3. right
+
+Syntax : <table align="center"></table>
+
+6. Valign Attribute
+
+* The valign attribute controls the vertical alignment of content inside cells.
+
+* Possible values include : 
+
+	1. top
+	2. middle
+	3. bottom
+	
+Syntax : <td valign="top"></td>
+
+1. Basic HTML Table
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vishnu</td>
+        <td>25</td>
+        <td>Sr. Nagar</td>
+      </tr>
+      <tr>
+        <td>Divya</td>
+        <td>27</td>
+        <td>MGBS</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+2. Students Marks Table
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Maths</th>
+        <th>Science</th>
+        <th>English</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vishnu</td>
+        <td>85</td>
+        <td>90</td>
+        <td>88</td>
+      </tr>
+      <tr>
+        <td>Divya</td>
+        <td>92</td>
+        <td>89</td>
+        <td>95</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+3. Table with Caption
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table border="1">
+    <caption>Employee Details</caption>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>Vishnu</td>
+        <td>IT</td>
+        <td>vishnu@gmail.com</td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td>Divya</td>
+        <td>Development</td>
+        <td>divya@gmail.com</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+4. Nested Table : Student Report Card
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table border="1" cellpadding="10">
+    <caption>Employee Details</caption>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Marks Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vishnu</td>
+        <td>
+          <table border="1" cellpadding="5">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Maths</td>
+                <td>90</td>
+              </tr>
+              <tr>
+                <td>Science</td>
+                <td>85</td>
+              </tr>
+              <tr>
+                <td>English</td>
+                <td>88</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>Divya</td>
+        <td>
+          <table border="1" cellpadding="5">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Maths</td>
+                <td>95</td>
+              </tr>
+              <tr>
+                <td>Science</td>
+                <td>82</td>
+              </tr>
+              <tr>
+                <td>English</td>
+                <td>85</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+2. Anchor Elements In HTML
+--------------------------
+* The anchor element is used to create hyperlinks.
+* It allows users to move from one webpage to another
+* The anchor element is represented using the '<a>' tag
+
+1. Create Link
+
+* To create a link, we use the 'href' attribute.
+
+Syntax : <a href="url">Content</a>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="https://www.google.com">Visit Google</a>
+</body>
+
+</html>
+
+2. Inter Navigation
+
+* Inter navigation refers to navigation between different web pages
+
+Syntax : <a href="about.html>About Page</a>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="about.html">About Page</a>
+</body>
+
+</html>
+
+3. Intra Navigation
+
+* Intra navigation refers to navigation within the same webpage
+
+* It allows users to jump to specific section of the page	
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="#section1">Go to Section 1</a>
+
+  <h2 id="section1">Section 1</h2>
+</body>
+
+</html>
+
+Example : Opening Link in New Tab
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="https://www.youtube.com" target="_blank">Open YouTube</a>
+</body>
+
+</html>
+
+Example : Phone Number Link
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="tel:+916301771326">Call Us</a>
+</body>
+
+</html>
+

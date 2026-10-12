@@ -1,0 +1,206 @@
+Structure of an HTML Document
+-----------------------------
+<!-- <!DOCTYPE html> : This declaration tells the browser that the documnet is written in HTML5 -->
+<!doctype html>
+<!-- <html lang="en"> : This is the root element of the HTML document. All HTML code must be placed inside this tag -->
+<html lang="en">
+  <!-- <head> : The head section contains metadata about the webpage such as the title, character ebcoding, styles, and scripts -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <title> : The title tag defines the title of the webpage that appears on the browser tab -->
+    <title>Document</title>
+  </head>
+  <!-- <body> : Th body section contains all the visible content of the webpage such as headings, paragraphs, images, buttons, and links -->
+  <body></body>
+</html>
+
+Elements In HTML
+-----------------
+1. Button Element In HTML
+
+* <button> tag
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>Click Me</button>
+  </body>
+</html>
+
+Types of Button Element In HTML
+-------------------------------
+* HTML Buttons can have 3 different types
+
+1. submit -> sends form data to the server
+2. reset -> clears all form fields
+3. button -> used for custom actions with javascript
+
+Example : submit
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button type="submit">Click Me</button>
+  </body>
+</html>
+
+Example : reset
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button type="reset">Click Me</button>
+  </body>
+</html>
+
+Example : button
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button type="button">Click Me</button>
+  </body>
+</html>
+
+2. Heading Element In HTML
+
+* HTML provides 6 levels of headings, starting from <h1> to <h6>
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Main Heading</h1>
+    <h2>Sub Heading</h2>
+    <h3>Section Heading</h3>
+    <h4>Sub Section</h4>
+    <h5>Minor Heading</h5>
+    <h6>Small Heading</h6>
+  </body>
+</html>
+
+* Headings are very important for : 
+
+1. Structuring web content
+2. Improve readability
+3. Helping search engines understand the page content
+4. Improving accessibility for screen readers
+
+3. Paragraph Element In HTML
+
+* In HTML, a paragraph is created using the <p> tag.
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>This is a paragraph in HTML.</p>
+  </body>
+</html>
+
+JavaScript
+-----------
+* JavaScript is one of the most important programming languages in modern software development, especially in web applications
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="demo">Hello</h1>
+
+    <script>
+      document.getElementById("demo").innerText = "Welcome to JavaScript";
+    </script>
+  </body>
+</html>
+
+Purpose of JavaScript
+---------------------
+1. To make web applications interactive and dynamic.
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="showMessage()">Click Me</button>
+
+    <script>
+      function showMessage() {
+        alert("Button Clicked!");
+      }
+    </script>
+  </body>
+</html>
+
+2. DOM Manipulation
+
+* DOM Stands for : Document Object Model
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="text">Old Text</p>
+    <button onclick="changeText()">Change</button>
+
+    <script>
+      function changeText() {
+        document.getElementById("text").innerText = "New Text";
+      }
+    </script>
+  </body>
+</html>
+

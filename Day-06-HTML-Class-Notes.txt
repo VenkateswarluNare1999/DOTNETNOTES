@@ -1,0 +1,448 @@
+Image Elements Examples
+-----------------------
+
+Example 1 : Image With CSS
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="Images/Butterfly.png" alt="Butterfly" style="border: 2px solid yellow; border-radius: 10px;" height="200" width="250">
+</body>
+
+</html>
+
+Example 2 : Clickable Image
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="https://www.amazon.com/"><img src="Images/button.png" alt="Button Image"></a>
+</body>
+
+</html>
+
+Example 3 : Image with Tooltip
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="https://www.amazon.com/"><img src="Images/button.png" alt="Button Image" title="Amazon Button"></a>
+</body>
+
+</html>
+
+Example 4 : Circular Image
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="Images/Hand-Bag.jpg" alt="Hand-Bag" style="width: 150px; height: 150px; border-radius: 50%;">
+</body>
+
+</html>
+
+Example 5 : Image with Align
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<img src="Images/Tiger.jpg" alt="Tiger" align="right">
+</body>
+
+</html>
+
+Example 6 : Image with Align CSS
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<img src="Images/Tiger.jpg" alt="Tiger" style="float: left;">
+</body>
+
+</html>
+
+Important '<img>' Tag Attributes
+--------------------------------
+
+1. src -> Specifies image path or URL
+2. alt -> Alternative text for accessibility
+3. width -> Sets image width
+4. height -> Sets image height
+5. title -> Tooltip text
+6. loading -> Controls image loading behavior
+7. class -> Applies CSS class styling
+
+Division Element (<div>)
+------------------------
+Definition : 
+
+* The <div> tag element is used to group content into sections, it is a block-level container
+* The <div> tag element is a Paired tag
+
+Why use <div> : 
+
+1. Organize content for CSS styling
+2. Create layouts (header, Sidebar, Footer, Main Content)
+3. Group elements for JavaScript manipulation
+
+Example 1 : Basic Div
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    This is a basic div element
+  </div>
+</body>
+
+</html>
+
+Example 2 : Div with Background Color
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="background-color: lightblue;">
+    This is a basic div element
+  </div>
+</body>
+
+</html>
+
+Example 3 : Div with Width and Height
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="width: 300px; height: 150px; background-color: gray;">
+    This is a basic div element
+  </div>
+</body>
+
+</html>
+
+Example 4 : Div with Border
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="border: 2px solid black;">
+    This is a basic div element
+  </div>
+</body>
+
+</html>
+
+Example 5 : Centered Div
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="width: 200px; margin: auto; background-color: lightgreen;">
+    This is a basic div element
+  </div>
+</body>
+
+</html>
+
+Example 6 : Rounded Corner Div
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="border-radius: 15px; background-color: lightgray; padding: 20px;">
+    This is a basic div element
+  </div>
+</body>
+
+</html>
+
+Important CSS Properties Used with '<div>'
+------------------------------------------
+1. background-color -> Sets background-color
+2. width -> Sets width
+3. height -> Sets height
+4. padding -> Inner spacing
+5. margin -> Outer spacing
+6. border -> Adds border
+7. border-radius -> Rounded Corners
+8. box-shadow -> Shadow effect
+9. display-flex -> Flexible layouts
+10. overflow -> Controls Scrolling
+11. text-align -> Align text
+
+Three Important Concepts In HTML
+---------------------------------
+1. HTMl Tables
+2. Anchor Elements
+3. HTML Forms
+
+For Example : 
+
+1. Online shopping websites
+2. Websites
+3. Login and Registration Pages
+
+1. HTMl Tables
+--------------
+* In HTML, a table is used to present structured data.
+
+* structured data means information arranged in rows and columns, similar to how data is displayed in Excel sheets.
+
+* In HTML, a table is created using the <table> element.
+
+* Inside the table element, we define different components such as : 
+	
+	1. Table header
+	2. Table body
+	3. Table footer
+	4. Table rows
+	5. Table cells
+	
+Syntax of Table :
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+
+</html>
+
+1. Table header
+
+* The table header represents the top section of a table
+
+* It usually contains column titles that describe the data inside each column.
+
+* The table header is defined using the 'thead' element
+
+* The purpose of the header is to clearly describe the type of data stored in each column.
+
+Example Structure : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+  </table>
+</body>
+
+</html>
+
+2. Table body
+
+* The table body represents the main content of the table
+
+* It contains the actual data records
+
+* The table body is defined using the 'tbody' element
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vishnu</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>Divya</td>
+        <td>27</td>
+      </tr>
+      <tr>
+        <td>Shiva Teja</td>
+        <td>28</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+3. Table footer
+
+* The table footer represents the bottom section of a table.
+
+* It is defined using the 'tfoot' element
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vishnu</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>Divya</td>
+        <td>27</td>
+      </tr>
+      <tr>
+        <td>Shiva Teja</td>
+        <td>28</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total Students</td>
+        <td>3</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+
+</html>
+

@@ -1,0 +1,328 @@
+Three Important Concepts In HTML
+---------------------------------
+1. HTMl Tables
+2. Anchor Elements
+3. HTML Forms
+
+For Example : 
+
+1. Online shopping websites
+2. Websites
+3. Login and Registration Pages
+
+3. Forms Elements In HTML
+
+* Forms are used to collect input from users.
+
+* Forms are very common in web applications.
+
+Example : 
+
+	* Login Forms
+	* Registration Forms
+	* Contact Forms
+	* Serach Forms
+	
+* Forms are created using the 'form' element.
+
+* Inside the form we place different form controls.
+
+Syntax : <form></form>
+
+Form Controls
+-------------
+
+1. Input Element
+
+* The input element is the most commonly used form element.
+
+* It allows users to enter data in different formats
+
+Syntax : <input type="text" />
+
+2. Select Element
+
+* The Select element creates a dropdown list.
+
+Syntax : 
+
+<select>
+	<option>Value</option>
+</select>
+
+3. Textarea Element
+
+* The textarea element allows users to enter large text content.
+
+Syntax : <textarea rows="" cols=""></textarea>
+
+4. Radio Button Element
+
+* Radio Button allow users to select one option from multiple choices.
+
+Syntax : <input type="radio" />	
+
+5. Label Element 
+
+* The label element provides a description for form inputs.
+
+Syntax : 
+
+<label></label>
+<input type="text" />
+
+6. Option Element
+
+* The option element defines items inside a dropdown list.
+
+Syntax : <option>Content</option>
+
+7. Data List Element
+
+* The datalist element provides autocompleted suggestions.
+
+Syntax : 
+
+<input list="value" />
+
+<datalist id="value">
+	<option value="value">
+</datalist>	
+
+Attributes of Input Element
+---------------------------
+
+Important attrivutes include : 
+
+	1. Type
+		
+		* It defines the input field type.
+		
+		Example : <input type = "email" />	
+	
+	2. Placeholder
+	
+		* It Displays hint text inside the input field.
+		
+		Example : <input type = "text" placeholder="Enter your name" />	
+		
+	3. Required
+	
+		* It Ensures the field must be filled before submission
+		
+		Example : <input type = "text" required />
+	
+	4. Name
+	
+		* It Identifies the form field when submitting data.
+		
+		Example : <input type = "text" name="value" />
+	
+	5. Value
+		
+		* It defines the default value.
+		
+		Example : <input type = "text" Value="Ashok" />
+	
+	6. minLength and 7. maxLength
+	
+		* It defines minimum and maximum characters allowed
+		
+		Example : 
+					1. <input type = "text" minLength="10" />
+					2. <input type = "text" maxLength="3" />
+	
+	8. Multiple
+		
+		* It allows selecting multiple values
+		
+		Example : <input type = "text" multiple />
+	
+	9. Checked
+	
+		* It Preselects radio buttons or checkboxes
+		
+		Example : 					
+					1. <input type = "radio" checked />
+					2. <input type = "checkbox" checked />
+	
+	10. Disabled
+	
+		* It Prevents editing of the field.
+		
+		Example : <input type = "text" disabled />
+	
+	11. Size
+	
+		* It defines the width of the input field.
+		
+		Example : <input type = "text" size="5" />
+
+Example 1 : Login Form
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <label>Username : </label>
+    <input type="text" id="username"> <br><br>
+
+    <label>Password : </label>
+    <input type="password" id="password"> <br><br>
+
+    <button type="button" onclick="loginMessage()">Login</button>
+  </form>
+
+  <script>
+    function loginMessage() {
+      alert("Login Successful");
+    }
+  </script>
+</body>
+
+</html>
+
+Example 2 : Feedback Form
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <label>Your Feedback : </label>
+
+    <textarea name="" id="feedback" rows="5" cols="30"></textarea>
+
+    <button type="button" onclick="sendFeedback()">Submit Feedback</button>
+  </form>
+
+  <script>
+    function sendFeedback() {
+      alert("Thank you for your feedback");
+    }
+  </script>
+</body>
+
+</html>
+
+Example 3 : Radio Button Form
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <label>Select Gender : </label> <br>
+
+    <input type="radio" name="gender" value="Male"> Male <br>
+    <input type="radio" name="gender" value="Female"> Female <br>
+
+
+    <button type="button" onclick="showGender()">Submit</button>
+  </form>
+
+  <script>
+    function showGender() {
+      let genders = document.getElementsByName("gender");
+
+      for (let i = 0; i < genders.length; i++) {
+        if (genders[i].checked) {
+          alert("Selected Gender : " + genders[i].value)
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
+
+Example 4 : Dropdown Form
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <label>Select Country : </label> <br>
+
+    <select name="" id="country">
+      <option value="India">India</option>
+      <option value="USA">USA</option>
+      <option value="Canada">Canada</option>
+    </select>
+
+    <br><br>
+
+
+    <button type="button" onclick="showCountry()">Submit</button>
+  </form>
+
+  <script>
+    function showCountry() {
+      let country = document.getElementById("country").value;
+
+      alert("Selected Country : " + country);
+    }
+  </script>
+</body>
+
+</html>
+
+Example 5 : File Upload Form
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <label>Upload File : </label>
+
+    <input type="file" id="fileUpload">
+
+    <br><br>
+
+
+    <button type="button" onclick="uploadFile()">Upload</button>
+  </form>
+
+  <script>
+    function uploadFile() {
+      let file = document.getElementById("fileUpload").files[0].name;
+
+      alert("Uploaded File : " + file);
+    }
+  </script>
+</body>
+
+</html>	

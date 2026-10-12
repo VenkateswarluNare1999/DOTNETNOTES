@@ -1,0 +1,230 @@
+Javascript Validation
+----------------------
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="username">
+  <button onclick="validate()">Submit</button>
+
+  <script>
+    function validate() {
+      let value = document.getElementById("username").value;
+
+      if (value === "") {
+        alert("Username cannot be empty");
+      }
+    }
+  </script>
+</body>
+
+</html>
+
+Javascript Animations
+---------------------
+Index.html
+----------
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box" style="width: 200px; height: 200px; background-color: lightgray;">Box</div>
+
+  <button onclick="changeColor()">Change Color</button>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+script.js
+---------
+function changeColor() {
+  document.getElementById("box").style.backgroundColor = "red";
+}
+
+Attributes In HTML
+-----------------
+
+Syntax : <tagname attribute="value">Content</tagname>
+
+Example : 
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="https://www.google.com">Visit Google</a>
+</body>
+
+</html>
+
+Common Attributes
+-----------------
+* id -> unique identifier for an element
+* class -> group of elements for styling
+* src -> path for images or scripts
+* alt -> alternative text for images
+
+List Elements In HTML
+---------------------
+* HTML provides 3 main types of list elements
+	1. Ordered List '<ol>'
+		1. '<li>' - List Items
+	2. Unordered List '<ul>'
+		1. '<li>' - List Items
+	3. Description List '<dl>'
+		1. '<dt>' - Definition term
+		2. '<dd>' - Definition description
+		
+1. Ordered List '<ol>'
+---------------------
+* An ordered list in HTML is used to display a set of items in a specific sequence, where the order of items is important.
+
+* It is defined using the '<ol>' tag, and each item inside the list is represented by the '<li>' (List Item) tag.
+
+* Using Attributes like 'type'
+
+Markers : 
+
+1 -> numbers (default)
+A -> uppercase letters
+a -> lowercase letters
+I -> uppercase Roman numerals
+i -> lowercase Roman numerals
+
+Example : 1. Basic Ordered List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol>
+    <li>Tempalte-Driven Forms</li>
+    <li>Reactive Forms</li>
+  </ol>
+</body>
+
+</html>
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol type="A">
+    <li>Tempalte-Driven Forms</li>
+    <li>Reactive Forms</li>
+  </ol>
+
+  <ol type="i">
+    <li>Implicit Model</li>
+    <li>Explicit Model</li>
+  </ol>
+</body>
+
+</html>
+
+Example : Nested Ordered List
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol>
+    <li>Template-Driven Forms
+      <ol>
+        <li>Uses ngModel</li>
+        <li>Two-way binding</li>
+        <li>Implicit form model</li>
+      </ol>
+    </li>
+    <li>Reactive Forms
+      <ol>
+        <li>Uses FormGroup</li>
+        <li>One-way data flow</li>
+        <li>Explicit form model</li>
+      </ol>
+    </li>
+  </ol>
+</body>
+
+</html>
+
+Example : Ordered List with Start Attribute
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol start="5">
+    <li>Validation</li>
+    <li>Submission</li>
+  </ol>
+</body>
+
+</html>
+
+Example : Ordered List with Reversed Order
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol reversed>
+    <li>Submit Form</li>
+    <li>Validate Inputs</li>
+    <li>Create Form</li>
+  </ol>
+</body>
+
+</html>
+

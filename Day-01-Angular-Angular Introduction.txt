@@ -1,0 +1,95 @@
+Angular
+-------
+* Angular is a structured, scalable, and powerful framework used to build modern web applications.
+
+Features of Angular
+-------------------
+1. Component-based architecture  : Angular applications are built using components. Each component contains HTML, CSS, and TypeScript.
+
+2. Two-way data binding : This means data flows from UI to component and component to UI automatically.
+
+3. Dependency Injection : Angular automatically provides required services to components.
+
+4. Routing : Angular allows navigation between different views without reloading the page.
+
+5. Directives : Directives are used to manipulate DOM elements
+
+For Example : 
+	
+	1. *ngIf -> Conditionally display elements
+	2. *ngFor -> loop through data
+
+6. Forms Handling : It supports both template-driven forms and rective forms.
+
+7. HTTP Client
+
+8. Modular architecture
+
+9. CLI (Command Line Interface)
+
+10. Lazy Loading
+
+11. Testing Support
+
+12. Cross-Browser Compatibility
+
+13. Security
+
+14. Animations
+
+SPA : Single Page Application
+-----------------------------
+* Single Page Application means the application loads only once, and after that, content updates dynamically.
+
+Angular + Single Page Application = Powerful modern application development.
+
+Angular vs Other Frameworks
+---------------------------
+1. Angular vs React
+
+* Angular is a complete framework, whereas React is a library. That means Angular provides everything out of the box, but React requires additional libraries.
+
+* Angular uses TypeScript by default, while React uses JavaScript
+
+* Angular has a strict structure , which is useful for large projects.
+
+* React is more flexible but can become complex in large applications.
+
+2. Angular vs Vue
+
+* Vue is simpler and easier to learn compared to Angular.
+
+* Angular has better support form large-scale projects
+
+* Vue is more suitable for small to medium projects
+
+Environment Setup - Installation
+---------------------------------
+Step 1 : Install Node.js
+
+Step 2 : Install Angular CLI : CLI means Command Line Interface. It is a tool thathelp us create and manage Angular projects using commands instead of manual setup.
+
+* Command : npm install -g @angular/cli
+	
+	1. npm -> Package Manager
+	2. install -> install Package
+	3. -g -> global installation
+	4. @angular/cli -> Angular CLI Package
+
+* Verify Angular CLI Installation 
+	
+	Command : ng version
+
+Step 3 : Create New Angular Project
+
+* Command : ng new my-first-app	
+	
+	1. ng -> Angular command
+	2. new -> Create new project
+	3. my-first-app -> project name
+
+Step 4: Run Angular Application
+
+* Command : ng serve
+
+Tomorrow : Angular Project Structure	

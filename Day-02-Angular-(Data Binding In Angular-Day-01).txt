@@ -1,0 +1,72 @@
+Data Binding In Angular
+-----------------------
+* Data binding in Angular is a mechanism that connects the component (TypeScript Logic) with the template (HTML UI).
+
+Types of Data Binding
+---------------------
+* Angular provides 4 types of data binding
+	
+	1. Interpolation
+	2. Property Binding
+	3. Event Binding
+	4. Two-Way Data Binding
+
+1. Interpolation
+
+* Interpolation is the simplest form fo data binding in Angular. It is used to display data from the component directly into the HTML template.
+
+* It uses double curly braces '{{}}' syntax.
+
+For Example :
+
+1. header.ts :
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  title = 'Dashboard';
+}
+
+2. header.html :
+
+<h1>{{title}} My E-Commerce App</h1>
+
+2. Property Binding
+
+* Property Binding is used when we want to bind a value from the component to a property of an HTML element.
+
+* It uses square bracket syntax : [property] = "Value";	
+
+For Example :
+
+1. header.ts :
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  title = 'Dashboard';
+
+  isDisabled = true;
+}
+
+2. header.html :
+
+<h1>{{title}} My E-Commerce App</h1>
+
+<button [disabled]="isDisabled">Loging</button>
+
+Tomorrow : 3. Event Binding

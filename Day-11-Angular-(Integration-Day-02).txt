@@ -1,0 +1,188 @@
+Step 1 : Create Angular Project
+
+Command : ng new employee-ui
+
+Step 2 : Generate Component & Service
+
+Command : ng g c employee
+
+Command : ng g s employee
+
+Step 3 : 
+
+1. EmployeeService.ts : 
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Employee {
+  apiBaseUrl = 'https://localhost:7199/api/Employees';
+
+  constructor(private http: HttpClient) {}
+
+  getEmployees() {
+    return this.http.get(this.apiBaseUrl);
+  }
+}
+
+2. app.config.ts :
+
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import { provideRouter } from '@angular/router';
+
+import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    provideZonelessChangeDetection(),
+    provideHttpClient(),
+  ],
+};
+
+3. app.route.ts :
+
+import { Routes } from '@angular/router';
+import { Employee } from '../employee';
+
+export const routes: Routes = [{ path: '', component: Employee }];
+
+What is Origin?
+
+* An Origin is made up of three parts : 
+	
+	1. Protocol (http / https)
+	2. Domain (example.com)
+	3. Port (like 4200, 7119)
+
+Example :
+
+   1. http://localhost:4200
+   2. https://localhost:7119
+  
+What is CORS?
+
+* CORS stands for 'Cross-Origin Resource Sharing'
+
+* It is a security mechanism implemented by browsers.
+
+* CORS controls how a frontend application (like Angular or React) can request resources from a backend server that belongs to a different origin.
+
+Why do we need CORS?
+
+Front End : 1. http://localhost:4200 (Angular)
+Back End  : 2. https://localhost:7119 (.NET API)
+
+What is Same-Origin Policy?
+
+* The Same-Origin Policy is a security rule in browser.
+
+Types of CORS Requests
+----------------------
+* There are 2 main types
+
+1. Simple Requests
+2. Preflight Requests
+
+In Program.cs In ASP.NET Core Web API : 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy => policy
+        .WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
+
+// IMPORTANT: CORS must be enabled here
+app.UseCors("AllowAngular");
+
+Employee.ts :
+
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../employee';
+import { Router } from '@angular/router';
+
+@Component({
+  standalone: true,
+  selector: 'app-employee',
+  imports: [CommonModule],
+  templateUrl: './employee.html',
+  styleUrl: './employee.css',
+})
+export class Employee implements OnInit {
+  employees: any[] = [];
+
+  constructor(
+    private service: EmployeeService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+  ) {}
+
+  ngOnInit(): void {
+    this.getEmployees();
+  }
+
+  getEmployees() {
+    this.service.getEmployees().subscribe((result: any) => {
+      this.employees = result;
+      this.cdr.detectChanges();
+
+      console.log(result);
+
+      alert("Hii");
+    });
+  }
+}
+
+Employee.html :
+
+<h1>Employee List</h1>
+
+<div class="d-flex justify-content-end mb-3"><button class="btn btn-primary">+ Add Employee</button></div>
+
+@if (employees.length > 0) {
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Created Date</th>
+            <th>Updated Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (emp of employees; track emp.id) {
+        <tr>
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.department}}</td>
+            <td>{{emp.salary}}</td>
+            <td>{{emp.createdDate}}</td>
+            <td>{{emp.updatedDate}}</td>
+            <td>
+                <button class="btn btn-primary btn-sm">View</button>
+                <button class="btn btn-warning btn-sm mx-1">Edit</button>
+                <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}

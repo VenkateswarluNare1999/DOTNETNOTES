@@ -1,0 +1,243 @@
+3. Event Binding
+
+* Event Binding is used to capture user actions from the UI and send them to the component.
+
+* It uses parantheses syntax : (event) = 'method()'.
+
+Example :
+
+1. header.ts :
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  title = 'Dashboard';
+
+  isDisabled = true;
+
+  login() {
+    alert('Login Successfully Completed');
+  }
+}
+
+2. header.html :
+
+<h1>{{title}} My E-Commerce App</h1>
+
+<button [disabled]="isDisabled">Loging</button>
+
+<button (click)="login()">Login</button>
+
+4. Two-Way Data Binding
+
+* Two-Way Data Binding is the most powerful feature of Angular, It allows data to flow in both directions, meaning changes in the UI update the component, and changes in the component update the UI.
+
+* It uses the syntax : [(ngModel)] = "variable".
+
+Example :
+
+1. header.html :
+
+<h1>{{title}} My E-Commerce App</h1>
+
+<button [disabled]="isDisabled">Loging</button>
+
+<button (click)="login()">Login</button> <br>
+
+<input type="text" [(ngModel)]="username">
+
+<p>{{username}}</p>
+
+2. header.ts :
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  title = 'Dashboard';
+
+  isDisabled = true;
+
+  login() {
+    alert('Login Successfully Completed');
+  }
+
+  username = "";
+}
+
+Example : Employee Registration
+
+1. header.ts :
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  name: string = '';
+  salary: number = 0;
+  isActive: boolean = false;
+  isSubmitted: boolean = false;
+  isButtonDisabled: boolean = true;
+
+  onInputChange() {
+    // Enabled button only if name is entered.
+
+    this.isButtonDisabled = this.name.length === 0;
+  }
+
+  registerEmployee() {
+    this.isSubmitted = true;
+    alert("Employee Registered Successfully");
+  }
+}
+
+2. header.html :
+
+<h2>Employee Registration</h2>
+
+<!-- Two-Way Data Binding -->
+<label>Name : </label>
+<input type="text" [(ngModel)]="name" (keyup)="onInputChange()">
+
+<br><br>
+
+<label for="">Salary : </label>
+<input type="number" [(ngModel)]="salary">
+
+<br><br>
+
+<label>Status : </label>
+<input type="checkbox" [(ngModel)]="isActive">Active
+
+<br><br>
+
+<!-- Property Data Binding -->
+<button [disabled]="isButtonDisabled" (click)="registerEmployee()">Register</button>
+
+<br><br>
+
+<!-- Interpolation Data Binding -->
+<h3>Live Preview</h3>
+<p>Name : {{name}}</p>
+<p>Salary : {{salary}}</p>
+<p>Status : {{isActive ? 'Active' : 'Inactive'}}</p>
+
+Directives In Angular
+---------------------
+
+* Directives are special instructions in Angular that allow us to manipulate the DOM dynamically.
+
+* In simple terms : Directives control how HTML elements behave.
+
+Types of Directives
+--------------------
+* In Angular, we mainly have three types of Directives :
+
+	1. Structural Directives
+	2. Attribute Directives
+	3. Component Directives
+	
+1. Structural Directives
+
+* Structural Directives are used to add or remove elements from the DOM.
+
+* Important Point : These Directives change the structure of the HTML.
+
+* Earlier Angular versions used :
+	
+	1. *ngIf
+	2. *ngFor
+
+* But in Angular 21, we now used modern syntax :
+	
+	1. @if
+	2. @for
+
+1. @if Directive (Modern Conditional Rendering)
+
+Syntax :
+
+1. Syntax for Template File (HTML File)
+
+@if(condition){
+	<p>Content</p>
+}	
+
+Example : 
+
+1. header.ts :
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  isLoggedIn = false;
+}
+
+2. header.html :
+
+@if(isLoggedIn){
+<h2>Welcome User</h2>
+}@else {
+<h2>Please Login</h2>
+}
+
+2. @for Directive (Looping)
+
+Syntax :
+
+@for(item of items; track item){
+	<p>{{item}}
+}
+
+Example :
+
+1. header.ts :
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  products = ['Laptop', 'Mobile', 'Tablet']
+}
+
+2. header.html :
+
+@for(product of products; track product){
+<h3>{{product}}</h3>
+}@empty {
+    <p>No Data Found</p>
+}
+
+Tomorrow : Combining @if and @for	

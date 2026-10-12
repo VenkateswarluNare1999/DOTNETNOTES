@@ -1,0 +1,149 @@
+Routing In Angular
+------------------
+* Routing is responsible for navigating between different components without refreshing the page, which is why Angular applications are called single page applications(SPA).
+
+Step 1 : Create Angular Project
+
+Command : ng new routing-app
+
+Step 2 : Clean Default Code
+
+app.html : <h1>My Angular Routing App</h1>
+
+Step 3 : Create Components
+
+1. Create Home Component : ng g c home --standalone
+
+2. Create Products Component : ng g c products --standalone
+
+3. Create Product Details Component : ng g c product-details --standalone
+
+Step 4 : Update Component Templates
+
+1. home.html : <h2>Home Page</h2>
+
+2. products.html : 
+
+<h2>Products Page</h2>
+
+<a [routerLink]= "['/product', 101]">View Product 101</a>
+
+3. product-details.html :
+
+<h2>Product Details</h2>
+
+<p>Product Id : {{productId}}</p>
+
+Step 5 : Configure Routing
+
+1. app.route.ts
+
+import { Routes } from '@angular/router';
+import { Home } from '../home/home';
+import { Products } from '../products/products';
+import { ProductDetails } from '../product-details/product-details';
+
+export const routes: Routes = [
+  { path: '', component: Home },
+  { path: 'products', component: Products },
+  { path: 'product/:id', component: ProductDetails },
+];
+
+2. app.config.ts
+
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+
+import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    provideHttpClient(),
+    provideZonelessChangeDetection()
+  ]
+};
+
+3. main.ts :
+
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
+
+// bootstrapApplication(App, appConfig)
+//   .catch((err) => console.error(err));
+
+ bootstrapApplication(App, {
+  providers: [provideRouter(routes)]
+ });
+
+Step 7: Add Router Outlet
+
+<h1>My Angular Routing App</h1>
+
+<nav>
+    <a [routerLink]="['/']">Home</a> | <a [routerLink]="['/products']">Products</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+Step 8 : Handle Route Parameters
+
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-product-details',
+  imports: [],
+  templateUrl: './product-details.html',
+  styleUrl: './product-details.css',
+})
+export class ProductDetails {
+  productId = 0;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe((params) => {
+      this.productId = params['id'];
+    });
+  }
+}
+
+1. HttpClient Module In Angular : Angular Component -> Service -> HttpClient -> API -> Database -> Observable -> Subscribe -> UI update
+
+2. ChangeDetectorRef : 1. detectChanges() and 2. markForCheck()
+
+* ChangeDetectorRef is not for regular usage. It is used only when Angular fails to detect changes or when we need fine control over performance.
+
+3. Observables : * An Observable represents a stream of data that can emit multiple values over time. 
+
+1. next : it is used to emit and 
+
+2. error : is used to when something goes wrong and 
+
+3. complete : it indicates that the stream has finished.
+
+* Observables are used to handling events and API Calls and Form changes and Updates
+
+Observable : produces data
+Subscriber : consume data
+Without Subscribe : NO execution
+
+4. RXJS : Reactive Extensions For JavaScript, It is a library that provides powerful tools to work asynchronous data streams
+
+5. RXJS Operators
+
+1. Map Operator : It is used to transform data.
+
+2. Filter Operator : It is used to remove unwanted data.
+
+3. Tap Operator : It is used for debugging and side effects
+
+4. SwitchMap : It is used when dealing with multiple API calls.
+
+Flow Of Operators is : API Response -> Pipe -> Operators -> Processed data -> Subscribe -> UI.
+
+Tomorrow : Example

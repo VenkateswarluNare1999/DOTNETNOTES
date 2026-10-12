@@ -1,0 +1,244 @@
+Component LifeCycle Hooks In Angular
+-------------------------------------
+* Angular gives us lifecycle hooks to control these stages.
+
+1. ngOnInit (Initialization Phase)
+
+* ngOnInit is mainly used for data loading and initialization logic.
+
+Example :
+
+import { Component, inject, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+// import { Product } from '../services/product';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  products: any[] = [];
+
+  // productService = inject(Product);
+
+  ngOnInit() {
+    console.log('Component Initialized');
+
+    // Simulating API call
+    this.products = ['Laptop', 'Mobile', 'Tablet'];
+  }
+}
+
+<h2>Product List</h2>
+
+<ul>
+    @for (product of products; track product) {
+    <li>{{product}}</li>
+    }
+</ul>
+
+2. ngOnChanges (Data Change Detection)
+
+Child Class :
+
+import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header implements OnChanges{
+  
+  price = input<number>(0);
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("Price Changed : ", changes['price'].currentValue);
+  }
+}
+
+<h2>{{price()}}</h2>
+
+2. Parent Class
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from '../header/header';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [Header],
+})
+export class App{
+  protected readonly title = signal('ecommerce-app');
+
+  productPrice = 100;
+}
+
+<app-header [price]="productPrice"></app-header>
+
+3. ngOnDestroy (Cleanup Phase)
+
+import { Component, OnDestroy } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header implements OnDestroy{
+  intervalId : any;
+
+  constructor(){
+    this.intervalId = setInterval(() =>{
+      console.log("Running....");
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
+
+    console.log("Component Destroyed");
+  }
+}
+
+2. PIPES
+
+1. Built-in PIPES
+
+1. Date Pipe
+
+import { DatePipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [DatePipe],
+})
+export class App{
+  protected readonly title = signal('ecommerce-app');
+
+  today = new Date();
+}
+
+<p>{{ today | date:'dd-MM-yyyy'}}</p>
+
+2. UpperCase OR LowerCase
+
+import { DatePipe, LowerCasePipe, UpperCasePipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [LowerCasePipe, UpperCasePipe],
+})
+export class App{
+  protected readonly title = signal('ecommerce-app');
+
+  name='venkatesh';
+}
+
+<p>{{name | uppercase }}</p>
+<p>{{name | lowercase }}</p>
+
+3. Currency Pipe
+
+import { CurrencyPipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [CurrencyPipe],
+})
+export class App{
+  protected readonly title = signal('ecommerce-app');
+
+  price=10000;
+}
+
+<p>{{price | currency : 'INR'}}</p>
+
+4. Json Pipe
+
+import { JsonPipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [JsonPipe],
+})
+export class App{
+  protected readonly title = signal('ecommerce-app');
+
+  user = "Venkatesh";
+}
+
+<p>{{user | json}}</p>
+
+5. Custom Pipes
+
+Discount.ts
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'discount',
+  standalone: true,
+})
+export class DiscountPipe implements PipeTransform {
+
+  transform(price: number): number {
+    return price - price * 0.1;
+  }
+
+}
+
+app.ts
+
+import { Component, signal } from '@angular/core';
+import { DiscountPipe } from '../services/discount.pipe';
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports:[DiscountPipe]
+})
+
+
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+}
+
+app.html
+
+<p>Original : {{1000}}</p>
+
+<p>After Discount : {{1000 | discount}}</p>
+
+Tomorrow : Routing

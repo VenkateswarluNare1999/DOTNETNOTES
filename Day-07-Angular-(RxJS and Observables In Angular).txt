@@ -1,0 +1,144 @@
+app.ts :
+
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { filter, from, interval, map, Observable, Subscription, tap } from 'rxjs';
+// import { RouterLink, RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [CommonModule],
+  // imports: [RouterLink, RouterOutlet]
+})
+export class App implements OnInit, OnDestroy {
+  // protected readonly title = signal('ecommerce-app');
+
+  subscription1!: Subscription;
+  subscription2!: Subscription;
+  subscription3!: Subscription;
+
+  // UI Binding Variables
+  basicData: string[] = [];
+  asyncData: string = '';
+  intervalData: number[] = [];
+  mapData: number[] = [];
+  filterData: number[] = [];
+  tapData: number[] = [];
+
+  ngOnInit(): void {
+    // ==== EXAMPLE 1 : BASIC OBSERVABLE ====
+    const obs1 = new Observable((observer) => {
+      observer.next('First Value');
+      observer.next('Second Value');
+      observer.next('Third Value');
+      observer.complete();
+    });
+
+    this.subscription1 = obs1.subscribe((data) => {
+      this.basicData.push(data as string);
+    });
+
+    // ==== EXAMPLE 2 : ASYNC OBSERVABLE ====
+    const obs2 = new Observable((observer) => {
+      setTimeout(() => {
+        observer.next('Data received after 2 seconds');
+      }, 2000);
+    });
+
+    this.subscription2 = obs2.subscribe((data) => {
+      this.asyncData = data as string;
+    });
+
+    // === EXAMPLE 3 : INTERVAL ===
+    const obs3 = interval(1000);
+
+    this.subscription3 = obs3.subscribe((data) => {
+      this.intervalData.push(data);
+
+      if (data === 5) {
+        this.subscription3.unsubscribe();
+      }
+    });
+
+    // === EXAMPLE 4 : MAP ===
+    from([1, 2, 3, 4])
+      .pipe(map((x) => x * 10))
+      .subscribe((data) => this.mapData.push(data));
+
+    // === EXAMPLE 5 : FILTER ===
+    from([1, 2, 3, 4, 5])
+      .pipe(filter((x) => x > 2))
+      .subscribe((data) => this.filterData.push(data));
+
+    // === EXAMPLE 6 : TAP ===
+    from([10, 20, 30])
+      .pipe(
+        tap((x) => console.log('Before : ', x)),
+        map((x) => x + 5),
+      )
+      .subscribe((data) => this.tapData.push(data));
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription1) this.subscription1.unsubscribe();
+    if (this.subscription2) this.subscription2.unsubscribe();
+    if (this.subscription3) this.subscription3.unsubscribe();
+  }
+}
+
+app.html :
+
+<h1>Angular Observables & RxJS</h1>
+
+<hr>
+
+<h2>1. Basic Observable</h2>
+<ul>
+    @for(item of basicData; track $index){
+    <li>{{item}}</li>
+    }
+</ul>
+
+<hr>
+
+<h2>2. Async Observable (API Simulation)</h2>
+<p>{{asyncData}}</p>
+
+<hr>
+
+<h2>3. Interval (Live Stream)</h2>
+<ul>
+    @for (item of intervalData; track $index) {
+    <li>{{item}}</li>
+    }
+</ul>
+
+<hr>
+
+<h2>4. Map Operator</h2>
+<ul>
+    @for (item of mapData; track $index) {
+    <li>{{item}}</li>
+    }
+</ul>
+
+<hr>
+
+<h2>5. Filter Operator</h2>
+<ul>
+    @for (item of filterData; track $index) {
+    <li>{{item}}</li>
+    }
+</ul>
+
+<hr>
+
+<h2>6. Tap + Map Operator/h2>
+    <ul>
+        @for (item of tapData; track $index) {
+        {{item}}
+        }
+    </ul>

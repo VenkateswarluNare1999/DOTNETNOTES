@@ -1,0 +1,296 @@
+Comibine Directives @if and @for
+--------------------------------
+1. App.ts
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  isLoggedIn = true;
+  users = ['John', 'David', 'Sara'];
+}
+
+2. App.html :
+
+@if (isLoggedIn) {
+<h2>User List</h2>
+
+@for (user of users; track user) {
+<p>{{user}}</p>
+}@empty {
+<p>No Users Available</p>
+}
+}@else {
+<h2>Please Login</h2>
+}
+
+<router-outlet />
+
+2. Attribute Directives
+
+* Attribute directives change appearance or behaviour, not structure.
+
+Example :
+
+1. Change color
+2. Add styles
+3. Disable buttons
+
+Example :
+
+1. App.ts :
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  isLoggedIn = true;
+  users = ['John', 'David', 'Sara'];
+
+  isError = false
+}
+
+2. App.html :
+
+<p [style.color]="isError ? 'red' : 'green'">Status Message</p>
+
+3. Component Directive
+
+* Every Angular component itself is a directive
+
+Example :
+
+1. App.ts :
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from '../header/header';
+import { Footer } from '../footer/footer';
+
+@Component({
+  selector: 'app-root',
+  standalone:true,
+  imports: [RouterOutlet, Header, Footer],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+}
+
+2. App.html :
+
+<app-header></app-header>
+<app-footer></app-footer>
+
+<router-outlet />
+
+Services
+--------
+
+* Separation of Concerns
+
+	1. Components -> Handle UI (View)
+	2. Services -> Handle Business Logic + Data
+
+Example :
+
+Step 1 : Create a Service
+
+* Command : ng g s services/product	
+
+Step 2 : Service Code
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Product {
+  constructor() {}
+
+  getProducts() {
+    return [
+      { id: 1, name: 'Laptop', price: 50000 },
+      { id: 2, name: 'Mobile', price: 20000 },
+      { id: 3, name: 'Tablet', price: 15000 },
+    ];
+  }
+}
+
+Constructor and Inject
+----------------------
+
+1. Constructor :
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from '../header/header';
+import { Footer } from '../footer/footer';
+import { Product } from '../services/product';
+
+@Component({
+  selector: 'app-root',
+  standalone:true,
+  imports: [RouterOutlet, Header, Footer],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  constructor(private productService : Product){}
+}
+
+2. Inject :
+
+import { Component, inject, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from '../header/header';
+import { Footer } from '../footer/footer';
+import { Product } from '../services/product';
+
+@Component({
+  selector: 'app-root',
+  standalone:true,
+  imports: [RouterOutlet, Header, Footer],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  productService = inject(Product);
+}
+
+Difference Between Constructor Injection and inject() Function
+---------------------------------------------------------------
+1. Constructor Injection :
+
+	* Used inside constructor
+	* Traditional approach
+	* Mandatory earlier
+	* Less flexible
+
+2. inject() Function :
+
+	* Used in anywhere in class
+	* Modern Angular approach
+	* Optional now
+	* More flexible
+
+When To Use Constructor Now?
+
+* Use constructor when :
+	
+	1. You need initialization logic
+	2. You want lifecycle-based setup
+	3. You follow traditional structure
+
+When To Use inject() Function Now?
+
+* Use inject() when :
+	
+	1. You want cleaner code
+	2. You are using standalone components
+	3. You don't want boilerplate constructor
+
+Example :
+
+1. Constructor :
+
+1. App.ts :
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Product } from '../services/product';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  products: any[] = [];
+
+  constructor(private productService: Product) {}
+
+  ngOnInit() {
+    this.products = this.productService.getProducts();
+  }
+}
+
+2. App.html :
+
+<h2>Product List</h2>
+
+@for(product of products; track product.id){
+<div>
+    <p>{{product.name}} - ${{product.price}}</p>
+</div>
+}@empty {
+<p>No Products Available</p>
+}
+
+2. inject() Function
+
+1. App.ts :
+
+import { Component, inject, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Product } from '../services/product';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  protected readonly title = signal('ecommerce-app');
+
+  products: any[] = [];
+
+  productService = inject(Product);
+
+  ngOnInit() {
+    this.products = this.productService.getProducts();
+  }
+}
+
+2. App.html :
+
+<h2>Product List</h2>
+
+@for(product of products; track product.id){
+<div>
+    <p>{{product.name}} - ${{product.price}}</p>
+</div>
+}@empty {
+<p>No Products Available</p>
+}
+
+Tomorrow : Dummy API Call	

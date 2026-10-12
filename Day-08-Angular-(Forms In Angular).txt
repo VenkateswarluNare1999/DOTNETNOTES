@@ -1,0 +1,177 @@
+Angular Forms
+-------------
+* There are 2 primary approaches to building forms in Angular : 
+	
+	1. Template-Driven Forms
+	2. Reactive Forms
+
+1. Template-Driven Forms (TDF)
+
+* Template-Driven forms are declarative and DOM-centric
+
+* The form model is created implicitly by Angular based on directives in the HTML like :
+	
+	* ngModel
+	* required
+	* minLength etc.,
+	
+Example :
+
+1. app.ts :
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [FormsModule],
+})
+export class App {
+  user = {
+    username: '',
+    email: '',
+    password: '',
+  };
+
+  onSubmit(form: any) {
+    if (form.valid) {
+      console.log('Form Data : ', this.user);
+    } else {
+      form.control.markAllAsTouched();
+    }
+  }
+}
+
+2. app.html :
+
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <!-- UserName -->
+    <div>
+        <input type="text" name="username" [(ngModel)]="user.username" required minlength="3" #username="ngModel"
+            placeholder="UserName">
+
+        @if (username.touched && username.invalid) {
+        <div>
+            @if (username.errors?.['required']) {
+            <small>Username is required.</small>
+            }
+            @if (username.errors?.['minlength']) {
+            <small>Minimum 3 characters required.</small>
+            }
+        </div>
+        }
+    </div>
+
+    <!-- Email -->
+    <div>
+        <input type="email" name="email" [(ngModel)]="user.email" required email #email="ngModel" placeholder="Email">
+
+        @if (email.touched && email.invalid) {
+        <small>Enter a valid email</small>
+        }
+    </div>
+
+    <!-- Password -->
+    <div>
+        <input type="password" name="password" [(ngModel)]="user.password" required #password="ngModel"
+            placeholder="Password" minlength="6">
+
+        @if (password.touched && password.invalid) {
+        <small>Password must be at least 6 characters.</small>
+        }
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
+
+2. Reactive Forms (Model-Driven Forms)
+
+* Reactive forms are programmatic and model-centric. Here, the entire form structure is explicitly defined in TypeScript using : 
+	
+	1. FormControl
+	2. FormGroup
+	3. FromArray
+	
+Example :
+
+1. App.ts :
+
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  imports: [CommonModule, ReactiveFormsModule],
+})
+export class App {
+  private fb = inject(FormBuilder);
+
+  form = this.fb.nonNullable.group({
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  get f() {
+    return this.form.controls;
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Form Data : ', this.form.value);
+
+      this.form.reset();
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+}
+
+2. App.html :
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!-- UserName -->
+    <div>
+        <input type="text" formControlName="username" placeholder="UserName">
+
+        @if (form.controls.username.touched && form.controls.username.invalid) {
+        <div>
+            @if (form.controls.username.errors?.['required']) {
+            <small>Username is required.</small>
+            }
+            @if (form.controls.username.errors?.['minlength']) {
+            <small>Minimum 3 characters required.</small>
+            }
+        </div>
+        }
+    </div>
+
+    <!-- Email -->
+    <div>
+        <input type="email" formControlName="email" placeholder="Email">
+
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+        <small>Enter a valid email</small>
+        }
+    </div>
+
+    <!-- Password -->
+    <div>
+        <input type="password" formControlName="password" placeholder="Password">
+
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+        <small>Password must be at least 6 characters.</small>
+        }
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
+
+Tomorrow : Bootstrap In Angular	

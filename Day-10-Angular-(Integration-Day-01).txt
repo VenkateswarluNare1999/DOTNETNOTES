@@ -1,0 +1,226 @@
+Integration
+-----------
+Step 1 : Create Database
+
+* CREATE Database Database_Name
+
+Step 2 : Create Table
+
+CREATE TABLE Employees_Data
+(
+	Id Int Identity(1,1) PRIMARY KEY,
+	Name Varchar(100) NOT NULL,
+	Email Varchar(100) NOT NULL UNIQUE,
+	Department Varchar(100) NULL,
+	Salary Decimal(10,2) NOT NULL,
+	CreatedDate DateTime DEFAULT GETDATE(),
+	UpdatedDate DateTime NULL
+);
+
+Step 3 : Insert Sample Data
+
+INSERT INTO Employees_Data(Name, Email, Department, Salary) VALUES
+('John Doe', 'john@gmail.com', 'IT', 50000),
+('Alice Smith', 'alice@gmail.com', 'HR', 45000),
+('Robert Brown', 'robert@gmail.com', 'Finance', 50000);
+
+Step 4 : Create Web API Project and Install NuGet Packages
+
+1. Microsoft.EntityFrameworkCore.SqlServer
+2. Microsoft.EntityFrameworkCore
+3. Microsoft.EntityFrameworkCore.Tools
+
+Step 5 : Connection String
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Trusted_Connection=True;TrustServerCertificate=True;"
+  },
+  "AllowedHosts": "*"
+}
+
+Step 6 : Create Model Class
+
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeAPI.Models
+{
+    public class Employee
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
+        public string Department { get; set; }
+
+        public decimal Salary { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime UpdatedDate { get; set; }
+    }
+}
+
+Step 7 : Create DbContext Class
+
+using EmployeeAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace EmployeeAPI.Data
+{
+    public class AppDbContext : DbContext
+    {
+        protected AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        public DbSet<Employee> Employees_Data { get; set; }
+    }
+}
+
+Step 8 : Configure In Program.cs
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+Step 9 : Create Repository Pattern Design
+
+1. IEmployeeService.cs :
+
+using EmployeeAPI.Models;
+
+namespace EmployeeAPI.Service
+{
+    public interface IEmployeeService
+    {
+        Task<List<Employee>> GetAllAsync();
+
+        Task<Employee> GetByIdAsync(int id);
+
+        Task<Employee> CreateAsync(Employee employee);
+
+        Task<Employee> UpdateAsync(int id, Employee employee);
+
+        Task<bool> DeleteAsync(int id);
+    }
+}
+
+2. EmployeeService.cs
+
+using EmployeeAPI.Data;
+using EmployeeAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace EmployeeAPI.Service
+{
+    public class EmployeeService : IEmployeeService
+    {
+        private readonly AppDbContext context;
+
+        public EmployeeService(AppDbContext context)
+        {
+            this.context = context;
+        }
+
+        public async Task<Employee> CreateAsync(Employee employee)
+        {
+            context.Employees_Data.Add(employee);
+            await context.SaveChangesAsync();
+            return employee;
+        }
+
+        public async Task<Employee> DeleteAsync(int id)
+        {
+            var employee = await context.Employees_Data.FindAsync(id);
+
+            if (employee == null)
+            {
+                return null;
+            }
+            context.Employees_Data.Remove(employee);
+            await context.SaveChangesAsync();
+
+            return employee;
+        }
+
+        public async Task<List<Employee>> GetAllAsync()
+        {
+            return await context.Employees_Data.ToListAsync();
+        }
+
+        public async Task<Employee> GetByIdAsync(int id)
+        {
+            return await context.Employees_Data.FindAsync(id);
+        }
+
+        public Task<Employee> UpdateAsync(int id, Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
+
+Step 10 : Configure Service in Program.cs
+
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+Step 11 : Create Controllers and Action Methods
+
+using EmployeeAPI.Models;
+using EmployeeAPI.Service;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeesController : ControllerBase
+    {
+        private readonly IEmployeeService service;
+
+        public EmployeesController(IEmployeeService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>
+        /// Get All Employees
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetAllEmployees()
+        {
+            var employees = await service.GetAllAsync();
+
+            var response = new List<Employee>();
+
+            foreach (var employee in employees)
+            {
+                response.Add(new Employee
+                {
+                    Id = employee.Id,
+                    Name = employee.Name,
+                    Email = employee.Email,
+                    Department = employee.Department,
+                    Salary = employee.Salary,
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now,
+                });
+            }
+
+            return Ok(response);
+        }
+    }
+}
+
+

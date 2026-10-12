@@ -1,0 +1,282 @@
+Selectors and Box Model in CSS
+------------------------------
+
+1. Overview of CSS Selectors
+
+* Selectors are patterns used to select HTML elements and apply CSS styles to them.
+
+* Selectors are extremely important because they allow us to : 
+	
+	1. Target single or multiple elements
+	2. Style nested or complex structures
+	3. Control the appearance of a page efficiently.
+	
+1. Universal Selector
+---------------------
+
+* The Universal Selector is represented by an asterisk '*', It selects all elements on a page.
+
+Syntax : 
+
+* {
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+2. Group Selector
+-----------------
+* The Group Selector allows us to apply the same style to multiple elements using a comma-separated list.
+
+Syntax : 
+
+h1, h2, h3{
+	font-family: Arial, sans-serif;
+	color: darkblue;
+}
+
+3. ID Selector
+--------------
+* The ID Selector targets a unique element on the page.
+
+* It uses a hash(#) followed by the ID name, Remember, an ID should only be used once per page.
+
+Syntax : 
+
+#main-header{
+	color : red;
+	font-size : 30px;
+	text-align: center;
+}
+
+4. Class Selector
+-----------------
+* The Class Selector is used to syle multiple elements with the same class. 
+
+* It used a dot(.) followed by the class name.
+
+Syntax : 
+
+.highlight{
+	background-color : yellow;
+	font-weight : bold;
+}
+
+HTML Usage : 
+
+<p class="highlight">This paragraph is highlighted.</p>	
+<p class="highlight">This paragraph is also highlighted.</p>	
+
+5. Tag / Element Selector
+-------------------------
+* The Tag Selector targets all elements of a specific HTML tag.
+
+Syntax : 
+
+p{
+	color : green;
+	font-size: 18px;
+}
+
+6. Descendant Selector
+----------------------
+* The Descendant Selector targets elements that are nested inside their element
+
+Syntax : 
+
+div p{
+	color : blue;
+}
+
+7. Child Selector
+-----------------
+* The Child Selector targets direct children only using the > symbol.
+
+Syntax : 
+
+div > p{
+	color : purple;
+	font-weight: bold;
+}
+
+Example : 
+
+1. Index.html : 	
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1 id="title">CSS Selectors</h1>
+
+  <p class="text">Paragraph 1</p>
+  <p class="text active">Paragraph 2</p>
+
+  <div class="container">
+    <p>Direct Child Paragraph</p>
+
+    <section>
+      <p>Nested Paragraph</p>
+    </section>
+
+    <ul>
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Orange</li>
+      <li>Mango</li>
+    </ul>
+
+    <input type="text" placeholder="Enter Name">
+
+    <input type="password" placeholder="Password">
+
+    <input type="checkbox" checked>
+
+    <input type="text" disabled value="Disabled">
+
+    <a href="https://google.com">Google</a>
+
+    <img src="Images/AshokItLogo.png" alt="Ashok It Logo">
+
+    <button>Click Me</button>
+
+    <div></div>
+
+  </div>
+
+  <h2>Heading</h2>
+  <p>Adjacent Paragraph</p>
+  <p>General Sibling Paragraph</p>
+</body>
+
+</html>
+
+2. style.css : 
+
+/* 1. Universal Selector */
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 2. Element Selector */
+p {
+    color: blue;
+}
+
+/* 3. ID Selector */
+#title {
+    color: red;
+}
+
+/* 4. Class Selector */
+.text {
+    font-size: 20px;
+}
+
+/* 5. Group Selector */
+h1, h2{
+    text-transform: uppercase;
+}
+
+/* 6. Descendant Selector */
+.container p{
+    background-color: yellow;
+}
+
+/* 7. Child Selector */
+.container > p{
+    border: 2px solid red;
+}
+
+2. Box Model in CSS
+--------------------
+* The Box Model Consists of Four Layers : 
+	
+	1. Content
+	2. Padding
+	3. Border
+	4. Margin
+	
+* By default, CSS uses the : 'content-box' model and 
+
+* box-sizing : border-box
+
+Example 1 : Basic Box Model
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Model</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="box">
+    Welcome to CSS Box Model
+  </div>
+</body>
+</html>
+
+2. style.css : 
+
+.box{
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 30px;
+    background-color: lightblue;
+}
+
+* The browser calculates total width as : 300 + 20 + 20 + 5 + 5 = 350px
+
+Example 2 : box-sizing Property
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Model</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    CSS Layout
+  </div>
+</body>
+</html>
+
+2. style.css : 
+
+.container{
+    width: 300px;
+    padding: 20px;
+    border: 10px solid red;
+    box-sizing: border-box;
+    background-color: lightgreen;
+}
+
+Real-Time Usage Cases 
+---------------------
+* The CSS Box Model is used in : 
+
+	1. E-Commerce product cards
+	2. Login forms
+	3. Dashboard widgets
+	4. Navigation bars
+	5. Responsive layouts
+	6. Mobile applications interfaces
+	7. Bootstrap component applications

@@ -1,0 +1,262 @@
+1. What is CSS?
+
+Answer:
+CSS (Cascading Style Sheets) is used to style HTML elements. It controls layout, colors, fonts, spacing, and overall design of a webpage.
+
+2. Why do we use CSS?
+
+Answer:
+
+* Improves UI/UX
+* Separates design from content
+* Makes code reusable
+* Helps build responsive websites
+
+3. What are CSS properties?
+
+Answer:
+Properties define how elements should look.
+
+Example:
+color: red;
+font-size: 16px;
+
+4. What is CSS syntax?
+
+Answer:
+CSS consists of:
+
+* Selector
+* Property
+* Value
+
+Example:
+
+p {
+  color: blue;
+}
+
+5. What are the three types of CSS?
+
+Answer:
+
+1. Inline CSS
+2. Internal CSS
+3. External CSS (recommended)
+
+6. Which CSS type is best and why?
+
+Answer:
+External CSS because:
+
+* Reusable
+* Cleaner code
+* Easy maintenance
+
+7. What are selectors?
+
+Answer:
+Selectors target HTML elements to apply styles.
+
+8. Difference between class and id?
+
+Answer:
+
+| Class           | ID              |
+| --------------- | --------------- |
+| Reusable        | Unique          |
+| Starts with `.` | Starts with `#` |
+
+9. What is a universal selector?
+
+Answer:
+
+* {
+  margin: 0;
+}
+
+10. Difference between descendant and child selector?
+
+Answer:
+
+* Descendant (`div p`) â†’ all nested `<p>`
+* Child (`div > p`) â†’ only direct `<p>`
+
+11. What is the CSS Box Model?
+
+Answer:
+Every element consists of:
+
+* Content
+* Padding
+* Border
+* Margin
+
+12. Difference between margin and padding?
+
+Answer:
+
+* Margin â†’ outside space
+* Padding â†’ inside space
+
+13. What is box-shadow?
+
+Answer:
+Adds shadow around elements.
+
+box-shadow: 5px 5px 10px gray;
+
+14. What is Flexbox?
+
+Answer:
+A 1D layout system used to arrange items in row or column.
+
+15. What is flex container and flex items?
+
+Answer:
+
+* Container â†’ parent with `display: flex`
+* Items â†’ child elements
+
+16. What is justify-content?
+
+Answer:
+Controls horizontal alignment.
+
+17. What is align-items?
+
+Answer:
+Controls vertical alignment.
+
+18. What is flex-wrap?
+
+Answer:
+Allows items to move to next line.
+
+19. What is CSS Grid?
+
+Answer:
+A 2D layout system (rows + columns).
+
+20. Difference between Flexbox and Grid?
+
+Answer:
+
+| Flexbox       | Grid           |
+| ------------- | -------------- |
+| 1D            | 2D             |
+| Row OR Column | Row AND Column |
+
+21. What is grid-template-columns?
+
+Answer:
+Defines number and size of columns.
+
+22. What are different position values?
+
+Answer:
+
+* static
+* relative
+* absolute
+* fixed
+* sticky
+
+23. Difference between relative and absolute?
+
+Answer:
+
+* Relative â†’ moves from original position
+* Absolute â†’ moves relative to parent
+
+24. What is fixed position?
+
+Answer:
+Element stays fixed on screen while scrolling.
+
+25. What is sticky position?
+
+Answer:
+Acts like relative, then fixed on scroll.
+
+26. What are media queries?
+
+Answer:
+Used to create responsive designs for different devices.
+
+Example of media query?
+
+@media (max-width: 768px) {
+  body {
+    background: lightblue;
+  }
+}
+
+27. What is responsive design?
+
+Answer:
+Design that adapts to different screen sizes.
+
+28. What are background properties?
+
+Answer:
+
+* background-color
+* background-image
+* background-repeat
+* background-position
+
+29. Different ways to define colors?
+
+Answer:
+
+* Name (red)
+* RGB
+* RGBA
+* HEX
+
+30. What is transform?
+
+Answer:
+Used to move, rotate, or scale elements.
+
+Examples of transform?
+
+transform: translate(50px, 20px);
+transform: rotate(45deg);
+transform: scale(1.5);
+
+31. What is transition?
+
+Answer:
+Creates smooth animation between changes.
+
+Example of transition?
+
+transition: background-color 1s;
+
+32. How to center a div using Flexbox?
+
+Answer:
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+33. How to make a website responsive?
+
+Answer:
+
+* Use media queries
+* Use flexible layouts (Flexbox/Grid)
+* Use relative units
+
+34. How to fix a button at bottom-right?
+
+Answer:
+
+position: fixed;
+bottom: 20px;
+right: 20px;

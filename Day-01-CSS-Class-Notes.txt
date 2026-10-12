@@ -1,0 +1,175 @@
+CSS - Cascading Style Sheets
+----------------------------
+* While HTML gives us the structure of a webpage
+
+* CSS is What makes the webpage look visually appealing, attractive, and professional.
+
+Definition : 
+
+* CSS is a style sheet language used for describe the presentation of a document written in HTML or XML. It allows us to control the layout, colors, fonts, spacing, borders, and many visual aspects of webpage.
+
+Purpose : 
+
+* The Separate content from design.
+
+Why Learn CSS : 
+
+* CSS is crucial in web development because it allows us to : 
+
+	1. Enhance User Experience : A well-styled website attracts users and keeps them engaged.
+	2. Control Layout and Design : CSS helps us position elements exactly where we want them.
+	3. Improve Accessibility : CSS can help make websites readable and usable for everyone.
+	4. Professional Development Skills : Most fron-end jobs require a strong understanding of CSS.
+	
+Properties : 
+
+* In CSS, everything we style is controlled by properties.
+
+	Example : color, background-color, font-size, margin, padding, border, width, height, and many more.
+	
+Syntax : 
+
+	* A CSS property has the format : property : value;
+	
+	Example : color : red; and font-size : 16px and background-color : yellow;
+	
+Structure if a CSS Declaration :
+
+* A CSS declaration has three main parts : 
+
+	1. Selector : This specifies which HTML elements you want to style.
+	2. Property : This is what aspect of the element you want to change, such as color or font-size.
+	3. Value : This defines the specific style for the property.
+	
+Syntax : 
+
+element(p) {
+	property (color) : value (blue);
+	property (font-size) : value (18px);
+}	
+
+CSS Syntax Rules : 
+
+1. Always open and close curly braces {} after the selector.
+2. Each property-value pair ends with a semicolon(;).
+3. CSS is case-insensitive, but it's good practice to write property names in lowercase.
+
+Example : 
+
+h1 {
+	color : green;
+	font-weight : bold;
+}
+
+Best Practices : 
+
+1. Indentation : Helps to read code easily
+2. Comments : Use comments to explain sections of CSS
+
+h1 {
+	color : green;
+	font-weight : bold;
+}
+
+3. Consistent Naming : Use meaningful names for classes and Ids
+4. Organize CSS by sections : For Example : group header styles, navigation styles, and footer styles separately.
+
+Approaches In CSS : 
+
+* There are three main ways to add CSS to HTML
+	
+	1. Inline
+	2. Internal
+	3. External
+
+1. Inline CSS : * Inline CSS is applied directly inside the HTML element using the 'style' attribute.	
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline CSS Example</title>
+</head>
+
+<body>
+  <p style="color: red; font-size: 18px; background-color: yellow;">This is a paragrapgh with inline CSS.</p>
+</body>
+
+</html>
+
+2. Internal CSS : * Internal CSS is written inside a '<style>' tag in the HTML '<head>', It affects only that page.
+
+Example : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal CSS Example</title>
+
+  <style>
+    p {
+      color: blue;
+      font-size: 20px;
+      background-color: lightgray;
+    }
+
+    h1 {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to CSS Class</h1>
+  <p>This is a paragraph with internal CSS.</p>
+</body>
+
+</html>
+
+3. External CSS : * External CSS is the most recommended way, CSS rules are written in a separate '.css' file, and we link it to HTML using '<link>' tag
+
+Example : 
+
+1. Style.css : 
+
+p {
+    color: purple;
+    font-size: 22px;
+    background-color: pink;
+}
+
+h1 {
+    color: orange;
+}
+
+2. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>External CSS Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>External CSS Example</h1>
+  <p>This paragraph is styled using external CSS.</p>
+</body>
+
+</html>
+
+Benefits : 
+
+	1. Clean and organized code.
+	2. CSS can be reused across multiple pages.
+	3. Easy to maintain large websites.

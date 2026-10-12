@@ -1,0 +1,365 @@
+Border Properties In CSS
+------------------------
+* A Border properties are used to define the visible boundary around an HTML element.
+
+* A border consists of three main components : 
+	
+	1. border-width
+	2. border-style
+	3. border-color
+
+* CSS provides multiple border styles such as : 
+	
+	1. solid
+	2. dashed
+	3. dotted
+	4. groove
+	5. ridge
+
+Example 1 : Different Border Styles
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borders Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="solid">Solid Border</div>
+  <div class="dashed">Dashed Border</div>
+  <div class="dotted">Dotted Border</div>
+</body>
+</html>
+
+2. style.css : 
+
+div{
+    width: 250px;
+    padding: 20px;
+    margin: 15px;
+}
+
+.solid{
+    border: 4px solid red;
+}
+
+.dashed{
+    border: 4px dashed blue;
+}
+
+.dotted{
+    border: 4px dotted green;
+}
+
+Example 2 : Individual Border Sides
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borders Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="multi-border">Different Border Sides</div>
+</body>
+
+</html>
+
+2. style.css
+
+.multi-border{
+    width: 300px;
+    padding: 20px;
+
+    border-top: 5px solid red;
+
+    border-right: 5px solid blue;
+
+    border-bottom: 5px solid green;
+
+    border-left: 5px solid orange;
+}
+
+Real-Time Usage Cases
+---------------------
+* Borders are heavily used in : 
+
+	1. Form input fields
+	2. Buttons
+	3. Product cards
+	4. Tables
+	5. Dashboard sections
+	6. Notification boxes
+	7. Profile Image
+	8. Modal windows
+	
+Margin Properties In CSS
+------------------------	
+
+* Margin is the outer spacing around an HTML element.
+
+* Margins are widely used in component-based UI architecture.
+
+* Cards, Sections, navigation items, and form groups all rely on margins to maintain spacing consistency across the interface.
+
+Example 1 : External Spacing
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Margin Properties Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+</body>
+</html>
+
+2. style.css
+
+.card{
+    width: 250px;
+    height: 100px;
+    background-color: orange;
+    margin-bottom: 20px;
+}
+
+Example 2 : Auto Margin Centering
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Margin Properties Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="center-box">Centered Box</div>
+</body>
+</html>
+
+2. style.css : 
+
+.center-box{
+    width: 300px;
+    background-color: lightblue;
+    padding: 20px;
+    margin: auto;
+}
+
+Real-Time Usage Cases
+----------------------
+* Margins are used in : 
+
+	1. Card spacing
+	2. Navigation menus
+	3. Dashboard layouts
+	4. Form groups
+	5. Blog article sections
+	6. Responsive grid systems
+
+Padding Properties In CSS
+-------------------------	
+* Padding is the internal spacing between content and border.
+
+Example 1 : Button Padding
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padding Properties Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="btn">Submit</button>
+</body>
+</html>
+
+2. style.css : 
+
+.btn{
+    padding: 12px 24px;
+
+    background-color: royalblue;
+
+    color: white;
+
+    border: none;
+}
+
+Example 2 : Card Padding
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padding Properties Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="profile-card">
+    <h2>Venkatesh</h2>
+    <p>Front-end Developer</p>
+  </div>
+</body>
+</html>
+
+2. style.css : 
+
+.profile-card{
+    width: 300px;
+    padding: 30px;
+    background-color: lightgray;
+}
+
+Real-Time Usage Cases 
+---------------------
+* Padding is used in : 
+	
+	1. Buttons
+	2. Cards
+	3. Form inputs
+	4. Navigation menus
+	5. Modals
+	6. Dashboard widgets
+	7. Mobile interfaces
+
+Box Shadow In CSS
+-----------------	
+* The 'box-shadow' property is used to create shadow effects around HTML elements.
+
+* A box shadow consists of : 
+	
+	1. horizontal offset
+	2. vertical offset
+	3. blur radius
+	4. spread radius
+	5. color
+
+Example 1 : Simple Card Shadow
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Properties Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card-shadow">
+    Shadow Card
+  </div>
+</body>
+</html>
+
+2. style.css : 
+
+.card-shadow{
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+Example 2 : Multiple Layered Shadows
+
+1. Index.html : 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Properties Example</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <style>
+    .modern-card {
+      width: 300px;
+      padding: 30px;
+      background-color: white;
+
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="modern-card">
+    Modern UI Card
+  </div>
+</body>
+
+</html>
+
+Example 3 : 
+
+1. Index.html :
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Properties Example</title>
+</head>
+
+<style>
+  .box{
+    width: 200px;
+    height: 100px;
+    background: white;
+    border: 1px solid green;
+    box-shadow: 5px 5px 10px yellow;
+  }
+</style>
+<body>
+  <div class="box">Hello</div>
+</body>
+
+</html>
+
+Real-Time Usage Cases
+----------------------
+* Box Shadows are used in : 
+
+	1. Product Cards
+	2. Modals
+	3. Floating action buttons
+	4. Navigation bars
+	5. Login Forms
+	6. Dashboard panels
+	7. Mobile application interfaces
+	
+	

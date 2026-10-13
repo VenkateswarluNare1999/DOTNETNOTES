@@ -1,0 +1,90 @@
+Views In SQL Server
+-------------------
+* A View is a virtual table based on a SQL Query. A standard view generally does not store a separate copy of the result data. Instead, SQL Server stores the view definition and uses it when the view is queried.
+
+* In simple words, a view is a saved 'SELECT' statement that we can query like a table.
+
+Why Do We Use Views?
+
+* There are 3 important reasons to use views.
+
+	1. Security, We can expose only the columns users need to access.
+	
+	2. Simplicity, We can save complex queries inside views so users do not need to repeatedly write the same query.
+	
+	3. Data abstraction, Users can work with a simplified representation of data without needing to understand the underlying tables and relationships.
+
+Syntax :
+
+CREATE VIEW view_name
+AS
+SELECT column1, column2
+FROM table_name;
+
+Createing View :
+
+CREATE VIEW EmployeeView
+AS
+SELECT Name, deptId
+FROM Employees;
+
+SELECT * FROM EmployeeView;
+
+Can We Use WHERE with a View?
+
+SELECT * FROM EmployeeView WHERE deptId = 1;
+	
+Alter View :
+
+ALTER VIEW EmployeeView
+AS
+SELECT Name, deptId, Salary
+FROM Employees;
+
+DROP View : DROP VIEW EmployeeView;
+
+Types of Views In SQL Server
+----------------------------
+* SQL Server views are classified into 2 types
+	
+	1. Simple View : A View is created using a single table without aggregate functions or grouping.
+	
+	Example : 
+		CREATE VIEW EmployeeView
+		AS
+		SELECT Name, deptId
+		FROM Employees;
+		
+	2. Complex View : A View that uses multiple tables, joins, aggregate functions, or grouping.
+	
+	Example :
+		CREATE VIEW DepartmentSalaryView
+		AS
+		SELECT deptId, AVG(Salary) AS AverageSalary
+		FROM Employees
+		GROUP BY deptId;
+
+		select * from DepartmentSalaryView;	
+
+Assignment :
+------------
+Create an Employees tables containing :
+	
+	* EmpId
+	* Name
+	* Department
+	* Salary
+Insert at aleast five employee records.
+
+Then complete the below following tasks :
+		
+	1. Create a view containing only employee names and departments
+	2. Display all records from that view.
+	3. Create a view containing only IT employees
+	4. Alter the first view to include salary
+	5. Update an employee's departments through a simple view
+	6. Create a grouped view showing employee counts by department
+	7. Drop one of the views
+	8. Verify that dropping the views does not delete the records in the Employees records
+
+Tomorrow : Indexes In SQL Server	

@@ -1,0 +1,105 @@
+Indexes In SQL Server
+--------------------
+
+* Indexes play a major role in improving database query performance.
+
+Example :
+
+CREATE TABLE Employees
+(
+	EmpId Int NOT NULL,
+	Name varchar(50) NOT NULL,
+	Department Varchar(50),
+	Salary Int
+);
+
+INSERT INTO Employees(EmpId, Name, Department, Salary)
+VALUES
+(101, 'Rahul', 'IT', 50000),
+(102, 'Ravi', 'HR', 40000),
+(103, 'Priya', 'Finance', 60000),
+(104, 'Suresh', 'IT', 55000),
+(105, 'Anita', 'HR', 45000),
+(106, 'Kiran', 'IT', 52000),
+(107, 'Meena', 'Finance', 65000),
+(108, 'Arjun', 'IT', 48000),
+(109, 'Divya', 'HR', 47000),
+(110, 'Naveen', 'Finance', 58000);
+
+Select * from Employees
+
+Types of Indexes
+----------------
+1. Clustered Index
+
+* A Clustered Index determines how the tables data rows are organized in its index structure, according to the Clustered index key.
+
+* A table can have only one Clustered index because it can have only one clustered organization of its data rows.
+
+Syntax :
+
+CREATE CLUSTERED INDEX index_name
+ON
+table_name(column_name);
+
+Example :
+
+CREATE CLUSTERED INDEX IX_Employees_EmpId
+ON
+Employees(EmpId);
+
+2. Non-Clustered Index
+
+* A Non-Clustered index maintains a separate index structure containing indexed key values and row locators that help SQL Server find the corresponding table rows.
+
+Syntax :
+
+CREATE NONCLUSTERED INDEX index_name
+ON
+table_name(column_name);
+
+Example :
+
+CREATE NONCLUSTERED INDEX IX_Employees_Name
+ON
+Employees(Name);
+
+How to Insert 100000 Records
+----------------------------
+CREATE TABLE EmployeeIndexDemo
+(
+ EmpId Int NOT NULL,
+ EmployeeName varchar(100) NOT NULL,
+ Department varchar(50),
+ Salary Int
+ );
+
+ select * from EmployeeIndexDemo;
+
+;WITH EmployeeNumbers AS
+(
+	SELECT 1 AS n
+
+	UNION ALL
+
+	SELECT n + 1
+	FROM EmployeeNumbers
+	WHERE n < 100000
+)
+INSERT INTO EmployeeIndexDemo
+	(EmpId, EmployeeName, Department, Salary)
+SELECT
+	n,
+	CONCAT('Employee', n),
+	CASE
+		WHEN n % 3 = 0 THEN 'IT'
+		WHEN n % 3 = 1 THEN 'HR'
+		ELSE 'Finance'
+	END,
+	30000 + (n % 50000)
+FROM EmployeeNumbers
+OPTION (MAXRECURSION 0);
+
+Select * from EmployeeIndexDemo;
+
+

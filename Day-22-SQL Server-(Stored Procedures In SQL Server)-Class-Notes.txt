@@ -1,0 +1,186 @@
+Stored Procedures In SQL Server
+------------------------------
+* A Stored Procedures is a named collection of SQL statements stored in a database, it can accept input parameters, execute database operations and return result sets, output parameters, or a status code.
+
+Benefits of Stored Procedures
+-------------------------------
+1. Code reusability
+2. Security
+3. Maintainability
+4. Performance
+5. Centrailized database logic
+
+Syntax :
+
+CREATE PROCEDURE procedure_name
+AS
+BEGIN
+	// Statements
+END;
+
+Example :
+
+	CREATE PROCEDURE sp_GetEmployees
+	AS
+	BEGIN
+		SELECT * FROM Employees
+	END;
+
+Execute Procedure :
+
+	1. EXEC Procedure_name
+	2. EXECUTE Procedure_name
+
+Modifying an Existing Procedure
+-------------------------------
+
+* Using : ALTER PROCEDURE	
+
+Example :
+
+EXECUTE sp_GetEmployees
+
+ALTER PROCEDURE sp_GetEmployees
+AS
+BEGIN
+	SELECT * FROM Employees ORDER By EmpId;
+END;
+
+Remove the Stored Procedure
+---------------------------
+* Using : DROP PROCEDURE
+
+Example : DROP PROCEDURE sp_GetEmployees;
+
+Stored Procedure with an Input Parameters
+-----------------------------------------
+Syntax :
+
+CREATE PROCEDURE procedure_name
+@Parameter1 dataType
+AS
+BEGIN
+	SELECT column1, column2, column3
+	FROM table_name
+	WHERE Id = @Parameter1;
+END;
+
+Example 1 :
+
+ALTER PROCEDURE sp_GetEmployeeById
+@EmpId Int
+AS
+BEGIN
+SELECT EmpId, Name, Department, Salary
+FROM Employees
+WHERE EmpId = @EmpId;
+END;
+
+Execute : EXECUTE sp_GetEmployeeById @EmpId = 3;
+
+Example 2 : 
+
+CREATE PROCEDURE sp_GetEmployeesByDepartment
+@Department varchar(50)
+AS
+BEGIN
+	SELECT EmpId, Name, Department, Salary
+	FROM Employees
+	WHERE Department = @Department;
+END;
+
+Execute : EXECUTE sp_GetEmployeesByDepartment @Department = 'IT';
+
+Example 3 :
+
+CREATE PROCEDURE sp_GetEmployeeDepartmentAndSalary
+@Department varchar(50),
+@MinimumSalary decimal(10,2)
+AS
+BEGIN
+	SELECT EmpId, Name, Department, Salary
+	FROM Employees
+	WHERE Department = @Department AND
+	Salary >= @MinimumSalary;
+END;
+
+Execute : EXECUTE sp_GetEmployeeDepartmentAndSalary @Department = 'IT', @MinimumSalary = 50000;
+
+Stored Procedure with an Output Parameters
+-------------------------------------------
+Syntax :
+
+CREATE PROCEDURE procedure_name
+@Parameter1 dataType OUTPUT
+AS
+BEGIN
+	// statement
+END;
+
+Example 1 :
+
+CREATE PROCEDURE sp_GetEmployeesCount
+@TotalEmployees Int OUTPUT
+AS
+BEGIN
+	SELECT @TotalEmployees = COUNT(*)
+	FROM Employees;
+END;
+
+Execute : 
+
+DECLARE @Count Int;
+
+EXECUTE sp_GetEmployeesCount @TotalEmployees = @Count OUTPUT;
+
+SELECT @Count AS TotalEmployees;
+
+Stored Procedure with INSERT
+-----------------------------
+Example 1 :
+
+CREATE PROCEDURE sp_InsertEmployee
+@EmpId Int,
+@Name varchar(50),
+@Department varchar(50),
+@Salary decimal(10,2)
+AS
+BEGIN
+	INSERT INTO Employees
+		(EmpId, Name, Department, Salary)
+	VALUES
+		(@EmpId, @Name, @Department, @Salary);
+END;
+
+Execute : EXECUTE sp_InsertEmployee @EmpId = 6, @Name = 'Meena', @Department = 'Finance', @Salary = 52000;
+
+Stored Procedure with UPDATE
+----------------------------
+CREATE PROCEDURE sp_UpdateEmployeeSalary
+@EmpId Int,
+@NewSalary decimal(10,2)
+AS
+BEGIN
+	UPDATE Employees
+	SET Salary = @NewSalary
+	WHERE EmpId = @EmpId;
+END;
+
+Execute : EXECUTE sp_UpdateEmployeeSalary @EmpId = 1, @NewSalary = 60000;
+
+Stored Procedure with DELETE
+----------------------------
+Example 1 :
+
+CREATE PROCEDURE sp_DeleteEmployee
+@EmpId Int
+AS
+BEGIN
+	DELETE FROM Employees
+	WHERE EmpId = @EmpId;
+END;
+
+Execute : EXECUTE sp_DeleteEmployee @EmpId = 6;
+
+Tomorrow : Stored Procedure with Conditional Logic
+	

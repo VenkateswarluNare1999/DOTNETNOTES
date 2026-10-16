@@ -1,0 +1,23 @@
+Stored Procedures In SQL Server
+------------------------------
+* A Stored Procedures is a named collection of SQL statements stored in a database, it can accept input parameters, execute database operations and return result sets, output parameters, or a status code.
+
+Benefits of Stored Procedures
+-------------------------------
+1. Code reusability
+2. Security
+3. Maintainability
+4. Performance
+5. Centrailized database logic
+
+Syntax :
+
+CREATE PROCEDURE procedure_name
+AS
+BEGIN
+	// Statements
+END;
+
+Example :
+
+	

@@ -1,0 +1,67 @@
+Stored Procedure with Conditional Logic
+---------------------------------------
+* Stored Procedures can contain control-of-flow statements such as IF...ELSE.
+
+Query : To Check whether an employee exists before returning the employee details.
+
+CREATE PROCEDURE sp_CheckEmployee
+@EmpId Int
+AS
+BEGIN
+	IF EXISTS
+	(
+		SELECT 1
+		FROM Employees
+		WHERE EmpId = @EmpId
+	)
+	BEGIN
+		SELECT 'Emplopyee Found' AS Message;
+
+		SELECT EmpId, Name, Department, Salary
+		FROM Employees
+		WHERE EmpId = @EmpId;
+	END
+	ELSE
+	BEGIN
+		SELECT 'Employee Not Found' AS Message;
+	END;
+END;
+
+Execute : EXECUTE sp_CheckEmployee @EmpId = 1;
+
+Stored Procedure with Error Handling
+-------------------------------------
+CREATE PROCEDURE sp_InsertEmployeeSafe
+@EmpId Int,
+@Name varchar(50),
+@Department varchar(50),
+@Salary decimal(10,2)
+AS
+BEGIN
+	BEGIN TRY
+		INSERT INTO Employees(EmpId, Name, Department, Salary)
+		VALUES
+		(@EmpId, @Name,@Department,@Salary);
+
+		SELECT 'Employee Inserted Successfully' AS Message;
+	END TRY
+	BEGIN CATCH
+		SELECT
+			ERROR_NUMBER() AS ErrorNumber,
+			ERROR_MESSAGE() AS ErrorMessage;
+	END CATCH;
+END;
+
+Execute : EXECUTE sp_InsertEmployeeSafe @EmpId = 6, @Name = 'Venkatesh', @Department = 'Development', @Salary = 75000;
+
+Assignment Questions
+---------------------
+1. What is a Stored Procedure, and Why do we use it?
+2. What is the difference between 'CREATE PROCEDURE' and 'ALTER PROCEDURE'?
+3. How do we pass an input parameter?
+4. What is an output parameter?
+5. How can a stored procedure perform INSERT, UPDATE, and DELETE operation?
+6. What is the difference between a stored procedure and a function?
+7. What is the purpose of 'TRY...CATCH'?
+
+Tomorrow : Normalization

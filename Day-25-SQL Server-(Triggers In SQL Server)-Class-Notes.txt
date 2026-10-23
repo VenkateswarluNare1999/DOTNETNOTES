@@ -1,0 +1,163 @@
+Triggers In SQL Server
+---------------------
+* A trigger is a special type of stored database object that executes automatically when a specified event occurs.
+
+* For example, a trigger can execute when an INSERT, UPDATE, or DELETE statement affects a table.
+
+Example : Employee Table
+
+EmployeeId : 101, 102, 103
+
+EmployeeName : Rahul, Priya, Amit
+
+Slary : 50000, 60000, 45000
+
+Types of Triggers In SQL Server
+-------------------------------
+* There are 3 important categories :
+	
+	1.Trigger Type :  DML Trigger
+		When it executes : In response to INSERT, UPDATE or DELETE
+		Common Use : Audit records, validation, business rules
+	
+	2.Trigger Type : DDL Trigger
+		When it executes : In response to database-definition events such as CREATE, ALTER, or DROP
+		Common Use : Track schema changes
+		
+	3.Trigger Type : Logon Trigger
+		When it executes : When a SQL Server session is established
+		Common Use : Control or audit log activity
+
+* Create a database and Employee table
+
+CREATE TABLE Employees
+(
+	EmployeeId Int PRIMARY KEY,
+	EmployeeName varchar(50),
+	Salary decimal(10,2)
+);
+
+INSERT INTO Employees(EmployeeId, EmployeeName, Salary) VALUES
+(101, 'Rahul', 50000),
+(102, 'Priya', 60000),
+(103, 'Amit', 45000);
+
+SELECT * FROM Employees
+
+1. AFTER INSERT trigger
+
+CREATE TABLE EmployeeInsertAudit
+(
+	AuditId Int Identity(1,1) PRIMARY KEY,
+	EmployeeId Int,
+	EmployeeName varchar(50),
+	Salary decimal(10,2),
+	InsertedAt DATETIME2 Default SYSDATETIME()
+);
+
+CREATE TRIGGER TR_Employees_AfterInsert
+ON Employees
+AFTER INSERT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	INSERT INTO EmployeeInsertAudit(EmployeeId, EmployeeName, Salary)
+	SELECT EmployeeId, EmployeeName, Salary FROM inserted;
+END;
+
+INSERT INTO Employees(EmployeeId, EmployeeName, Salary) VALUES(104, 'Sneha', 55000);
+
+SELECT * FROM Employees;
+
+SELECT * FROM EmployeeInsertAudit;
+
+2. AFTER UPDATE trigger
+
+CREATE TABLE EmployeeSalaryAudit
+(
+	AuditId Int Identity(1,1) PRIMARY KEY,
+	EmployeeId int,
+	OldSalary decimal(10,2),
+	NewSalary decimal(10,2),
+	ChagedAt DATETIME2 Default SYSDATETIME()
+);
+
+CREATE TRIGGER TR_Employee_AfterUpdate
+ON Employees
+AFTER UPDATE
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	INSERT INTO EmployeeSalaryAudit(EmployeeId, OldSalary, NewSalary)
+	SELECT i.EmployeeId, d.Salary, i.Salary FROM inserted AS i
+	INNER JOIN deleted AS d
+		ON i.EmployeeId = d.EmployeeId
+WHERE i.Salary <> d.Salary
+	OR(i.Salary IS NULL AND d.Salary IS NOT NULL)
+	OR(i.Salary IS NOT NULL AND d.Salary IS NULL);
+END;
+
+UPDATE Employees SET Salary = 65000 WHERE EmployeeId = 101;
+
+SELECT * FROM Employees;
+
+SELECT * FROM EmployeeSalaryAudit;
+
+Assignment : 3. AFTER DELETE trigger
+
+4. INSTEAD OF trigger
+
+CREATE TABLE EmployeeRequests
+(
+	RequestId Int PRIMARY KEY,
+	EmployeeName varchar(50)
+);
+
+CREATE TRIGGER TR_EmployeeRequests_InsteadOfInsert
+ON EmployeeRequests
+INSTEAD OF INSERT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	PRINT 'Custom insert logic executed';
+
+	INSERT INTO EmployeeRequests(RequestId, EmployeeName) 
+	SELECT RequestId, EmployeeName FROM inserted;
+END;
+
+INSERT INTO EmployeeRequests(RequestId, EmployeeName) VALUES(1, 'Kiran');
+
+SELECT * FROM EmployeeRequests;
+
+Advantages and disadvantages of triggers
+----------------------------------------
+
+1. Advantages : 
+	
+	* Automatically execute database logic in response to defined events
+	* Can record audit history of inserts, updates, and deletes
+	* Can enforce complex rules that cannot easily be expressed through ordinary constraints.
+	* Help centralized database-level behaviour so it is no dependent only on application code.
+
+2. Disadvantages :
+	
+	* Hidden execution can make debugging difficult
+	* Complex triggers can slow down insert, update, and delete operations
+	
+Assignment : Difference Between Trigger vs Stored Procedure
+
+Assignment : Difference Between Stored Procedure vs Functions
+
+Interview Questions
+-------------------
+1. What is a trigger in SQL Server?
+2. What are the difference types of triggers?
+3. What is the difference between AFTER and INSTEAD OF triggers?
+4. What are the inserted and deleted logical tables?
+5. When should you avoid using a trigger?
+
+Tomorrow : Transaction In SQL Server	
+		

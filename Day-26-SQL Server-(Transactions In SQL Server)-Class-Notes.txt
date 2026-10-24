@@ -1,0 +1,176 @@
+Transactions In SQL Server
+--------------------------
+* A transaction groups related database operations into one logical unit of work.
+
+* If all the operations succed, we commit the transaction
+
+* If operations fails, we roll back the transaction so that the changes mad by that transaction are undone.
+
+What is a transaction?
+
+* A transaction is a sequence of one or more database operations treated as a single logical unit of work.
+
+* SQL Server provides transaction commands that allow us to control when changes become committed and how to undo uncommitted changes.
+
+* We have Three Important commands :
+	
+	1. BEGIN TRANSACTION : Starts an explicit transaction
+	2. COMMIT TRANSACTION : Commits the transaction's changes
+	3. ROLLBACK TRANSACTION : Rolls back uncommitted changes
+	
+Example :
+
+CREATE TABLE Employees
+(
+	EmployeeId Int PRIMARY KEY,
+	EmployeeName varchar(50),
+	Salary decimal(10,2)
+);
+
+INSERT INTO Employees VALUES(101, 'Rahul', 50000),(102, 'Priya', 60000);
+
+SELECT * FROM Employees;
+
+BEGIN TRANSACTION;
+
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmployeeId = 101;
+
+UPDATE Employees SET Salary = Salary + 3000 WHERE EmployeeId = 102;
+
+COMMIT TRANSACTION;
+
+SELECT * FROM Employees;
+
+Difference Between COMMIT vs ROLLBACK
+-------------------------------------
+
+* The COMMIT means we accept the changes made by the transaction. After a successful commit, the changes become permanent database changes, subject to normal database recovery and durability behavior.
+
+* The ROLLBACK means we undo the uncommitted changes made within the transaction. It is useful when an operation fails or when a business rule tells us not to continue.
+
+Example : ROLLBACK transaction
+
+BEGIN TRANSACTION;
+
+UPDATE Employees SET Salary = Salary + 10000 WHERE EmployeeId = 101;
+
+SELECT * FROM Employees WHERE EmployeeId = 101;
+
+ROLLBACK TRANSACTION;
+
+SELECT * FROM Employees WHERE EmployeeId = 101;
+
+ACID Properties of transactions :
+
+A : Atomicity
+
+C : Consistency
+
+I : Isolation
+
+D : Durability
+
+Example : Banking application
+
+Step 1 : Create the bank account table
+
+CREATE TABLE BankAccounts
+(
+	AccountNo Int PRIMARY KEY,
+	CustomerName varchar(50) NOT NULL,
+	Balance decimal(12,2) NOT NULL CHECK (Balance >= 0)
+);
+
+INSERT INTO BankAccounts(AccountNo, CustomerName, Balance) VALUES(1001, 'Rahul', 20000), (1002, 'Priya', 10000);
+
+SELECT * FROM BankAccounts;
+
+Step 2 : Write the transfer transaction
+
+CREATE TABLE BankAccounts
+(
+	AccountNo Int PRIMARY KEY,
+	CustomerName varchar(50) NOT NULL,
+	Balance decimal(12,2) NOT NULL CHECK (Balance >= 0)
+);
+
+INSERT INTO BankAccounts(AccountNo, CustomerName, Balance) VALUES(1001, 'Rahul', 20000), (1002, 'Priya', 10000);
+
+SELECT * FROM BankAccounts;
+
+DECLARE @FromAccount Int = 1001;
+DECLARE @ToAccount Int = 1002;
+DECLARE @Amount decimal(12,2) = 5000;
+
+SET XACT_ABORT ON;
+
+BEGIN TRY
+	BEGIN TRANSACTION;
+
+	IF @Amount <= 0 
+		THROW 50001, 'Transfer amount must be positive.', 1;
+
+	IF @FromAccount = @ToAccount
+		THROW 50002, 'Source and destination accounts must differ.', 1;
+
+	--Debit the source account only if sufficient funds exist.
+
+	UPDATE BankAccounts SET Balance = Balance - @Amount WHERE AccountNo = @FromAccount AND Balance >= @Amount;
+
+	IF @@ROWCOUNT <> 1
+		THROW 50003, 'Source account not found or insufficient funds.', 1;
+
+	--Credit the destination account
+
+	UPDATE BankAccounts SET Balance = Balance + @Amount WHERE AccountNo = @ToAccount;
+
+	IF @@ROWCOUNT <> 1
+		THROW 50004, 'Desination account not found.', 1;
+
+	COMMIT TRANSACTION;
+
+	PRINT 'Transfer completed successfully.';
+END TRY
+BEGIN CATCH
+	IF XACT_STATE() <> 0
+		ROLLBACK TRANSACTION;
+
+	PRINT 'Transfer failed.';
+
+	PRINT ERROR_MESSAGE();
+END CATCH;
+
+SELECT * FROM BankAccounts;
+
+TRY...CATCH with transactions :
+
+BEGIN TRY
+	BEGIN TRANSACTION;
+	
+	-- Database operations here.
+	
+	COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+	IF XACT_STATE() <> 0
+		ROLLBACK TRANSACTION;
+		
+	SELECT 
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_MESSAGE() AS ErrorMessage,
+		ERROR_LINE() AS ErrorLine;
+END CATCH;
+
+Three useful functions are : 
+	
+	1. ERROR_NUMBER() : returns the error number.
+	2. ERROR_MESSAGE() : returns the error message.
+	3. ERROR_LINE() : returns the line number where the error occurred.
+	
+- XACT_STATE() tells us the current transaction state : 
+	
+	value : 1 => An active transaction exists and can be committed, subject to normal rules.
+	value : 0 => No active user transaction exists.
+	value : -1 => An active transaction is uncommitted; it cannot be committed and must be rolled back
+
+- XACT_ABORT() tells SQL Server to terminate and rollback the current transaction for many run-time errors.	

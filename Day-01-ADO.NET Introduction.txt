@@ -1,0 +1,68 @@
+ADO.NET Introduction
+--------------------
+* ADO.NET acts like a bridge between application and database, Without ADO.NET, .NET applications cannot properly communicate with databases.
+
+1. Meaning of ADO.NET
+
+* ADO stands for : Active X Data Objects, It is data access technology developed by Microsoft and it is an important part of the .NET Framework.
+
+* The main purpose of ADO.NET is to establish communication between a .NET application and a database.
+
+* ADO.NEt is mainly used to perdorm CRUD operations, CRUD stands for :
+	
+	1. Create
+	2. Read
+	3. Update
+	4. Delete
+
+* ADO.NET supports communication with multiple databases such as :
+		
+	1. SQL Server
+	2. Oracle
+	3. MySQL
+	4. MS Access
+	
+* ADO.NET also provide several adavantages such as :
+		
+	1. High Performance
+	2. Better Security
+	3. Scalability
+	4. XML supports
+	5. Connected and Disconnected architectures
+	
+2. Why Applications Need Databases
+
+1. Security
+
+2. Mulri-user access
+
+* ADO.NET helps applications :
+		
+	1. Connect to databases
+	2. Send SQL queries
+	3. Retrieve information
+	4. Insert records
+	5. Update records
+	6. Delete records
+
+3. CRUD operations
+
+* CRUD stands for :
+	
+	1. Create
+	2. Read
+	3. Update
+	4. Delete
+
+4. Purpose of ADO.NET
+
+* The Main purpose of ADO.NET is reliable, scalable, and efficient way for .NET applications to communicate with databases in modern computing environments.
+
+5. Advantages of ADO.NET
+
+1. Better Performance
+2. Scalability
+3. Security
+4. XML Support
+
+Tomorrow : Databases Supported by ADO.NET	

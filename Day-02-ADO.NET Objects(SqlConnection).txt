@@ -1,0 +1,65 @@
+ADO.NET Objects
+---------------
+
+1. SqlConnection
+
+* Complete Flow : Suppose a user clicks Login
+
+Step 1 : Application creates SqlConnection
+
+Step 2 : Application opens the connection
+
+Step 3 : Application sends SQL query
+
+Step 4 : SQL Server verifies credentials
+
+Step 5 : Result is returned
+
+Step 6 : Connection is closed.
+
+Example :
+
+using System.Data.SqlClient;
+
+namespace Ado.NET_Objects
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = "server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true;";
+
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+
+                Console.WriteLine("Connection Established Successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Connection Failed");
+
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            finally
+            {
+                if(conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+
+                    Console.WriteLine("Connection Closed");
+                }
+            }
+        }
+    }
+}
+
+Complete Flow : Application Starts -> Create SqlConnection Object -> Open Connection -> Communicate with SQL Server -> Perform Work -> Close Connection -> Application Continues
+
+Interview Question
+------------------
+Q. What is the responsibility of SqlConnection?
+
+Tomorrow : SqlCommand

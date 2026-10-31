@@ -1,0 +1,88 @@
+2. SQLCommand In ADO.NET
+
+* SQLCommand is used to to hold SQL statements and send them to SQL Server for execution.
+
+* SqlConnection establishes communication and SQLCommand carries instructions.
+
+* SQL Query : SELECT * FROM Employees
+
+* SQLCommand Object : SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", conn);
+
+Example : Select Query
+
+using System.Data.SqlClient;
+
+namespace Ado.NET_Objects
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = "server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true;";
+
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", conn);
+
+                Console.WriteLine("Command Created Successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Connection Failed");
+
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            finally
+            {
+                if(conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+
+                    Console.WriteLine("Connection Closed");
+                }
+            }
+        }
+    }
+}
+
+* SQLCommand is used not only for SELECT statements but also for INSERT, UPDATE, and DELETE statements.
+
+Example 1 : SELECT * FROM Employees -> Retrieves records
+
+Example 2 : INSERT INTO Employees Values(101, 'John', 50000) -> Adds records
+
+Example 3 : UPDATE Employees SET Salary = 60000 WHERE EmployeeId = 101 -> Updates records
+
+Example 4 : DELETE FROM Employees WHERE EmployeeId = 101 -> Deletes records
+
+Interview Questions
+--------------------
+1. What is SQLCommand?
+A. SqlCommand is an ADO.NET object used to store and execute SQL statements or stored procedures against SQL Server.
+
+2. Can SqlCommand work without SqlConnection?
+A. No, SqlCommand requires a valid SqlConnection object to communicate with SQL Server
+
+3. What types of SQL statements can SQLCommands execute?
+A. SELECT, INSERT, UPDATE, DELETE and Stored Procedures.
+
+Execution Commands In ADO.NET
+------------------------------
+
+* SQLCommand Object : SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", conn);
+
+SELECT * FROM Employees
+
+SELECT COUNT(*) FROM Employees
+
+DELETE FROM Employees WHERE EmployeeId = 101
+
+* ADO.NET provides three execution methods.
+
+1. ExecuteReader()
+2. ExecuteScalar()
+3. ExecuteNonQuery()

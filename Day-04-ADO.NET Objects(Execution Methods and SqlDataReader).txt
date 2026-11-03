@@ -1,0 +1,119 @@
+Execution Methods
+-----------------
+* ADO.NET provides three execution methods : 
+	
+	1. ExecuteReader() : In this method is used when a query returns multiple rows.
+	
+	Example : SELECT * FROM Employees;
+	
+	Code : 
+	
+	SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", conn);
+	
+	SqlDataReader reader = cmd.ExecuteReader();
+	
+	while(reader.Read())
+	{
+		Console.WriteLine(reader["Name"]);
+	}
+		
+	2. ExecuteScalar()
+	
+	Example : SELECT COUNT(*) FROM Employees
+	
+	Code :
+	
+	SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Employees", conn);
+	
+	int count = Convert.ToInt32(cmd.ExecuteScalar());
+	
+	Console.WriteLine(count);
+		
+	3. ExecuteNonQuery()
+	
+	Example : Add Employee
+	
+	INSERT INTO Employees Values(103, 'John', 50000);
+	
+	UPDATE Employees SET Salary = 70000 WHERE EmployeeId = 101
+	
+	DELETE FROM Employees WHERE EmployeeId = 103;
+	
+	Code :
+	
+	SqlCommand cmd = new SqlCommand("DELETE FROM Employees WHERE EmployeeId = 103",conn);
+	
+	int rows = cmd.ExecuteNonQuery();
+	
+	Console.WriteLine(rows);
+	
+3. SqlDataReader
+
+* SqlDataReader is used to read data returned by SQL Server.
+
+Example : Reading Employee Records
+
+Example : 
+
+using System.Data.SqlClient;
+
+namespace Ado.NET_Objects
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = "server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true;";
+
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+
+                Console.WriteLine("Connection Opened Successfully");
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Employees", conn);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader["EmployeeId"] + " " + reader["EmployeeName"] + " " + reader["Salary"]);
+                }
+
+                reader.Close();
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("Database Error : ");
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected Error : ");
+
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            finally
+            {
+                if(conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+
+                    Console.WriteLine("Connection Closed");
+                }
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+Interview Questions
+-------------------
+1. What is SqlDataReader
+2. Why is SqlDataReader fast?
+3. Can SqlDataReader move backward
+
+Tomorrow : SqlDataAdapter	

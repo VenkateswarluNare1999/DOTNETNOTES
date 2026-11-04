@@ -1,0 +1,168 @@
+4. SqlDataAdapter In ADO.NET
+
+* SqlDataAdapter is used to transfer data between SQL Server and memory.
+
+	- SqlDataReader reads data directly from SQL Server
+	- SqlDataAdapter brings data into memory and allows us to work with it after the connection is closed.
+	
+How SqlDataAdapter works internally?
+
+Step 1 : Open Connection
+
+Step 2 : Retrieve Data
+
+Step 3 : Store Data inside DataSet or DataTable
+
+Step 4 : Close Connection
+
+Step 5 : Work with data from memory
+
+Example :
+
+101	Rahul	70000.00
+102	Priya	63000.00
+103	John	50000.00
+
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Ado.NET_Objects
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = "server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true;";
+
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                //conn.Open();
+
+                Console.WriteLine("Connection Opened Successfully");
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Employees", conn);
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                foreach(DataRow dr in dt.Rows) 
+                {
+                    Console.WriteLine(dr["EmployeeId"] + " " + dr["EmployeeName"] + " " + dr["Salary"]);
+                }
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("Database Error : ");
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected Error : ");
+
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            finally
+            {
+                if(conn.State == System.Data.ConnectionState.Open)
+                {
+                    //conn.Close();
+
+                    Console.WriteLine("Connection Closed");
+                }
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+* SqlConnection establishes communication
+* SqlCommand contains SQL statements
+* SqlDataReader reads records directly from SQL Server
+* SqlDataAdapter transfers data from SQL Server into DataTable or DataSet.
+
+5. DataSet In ADO.NET
+
+* A DataSet is an in-memory database.
+
+How DataSet Works : SQL Server -> SqlDataAdapter -> DataSet -> Application
+
+Example :
+
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Ado.NET_Objects
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = "server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true;";
+
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                //conn.Open();
+
+                Console.WriteLine("Connection Opened Successfully");
+
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Employees", conn);
+
+                DataSet ds = new DataSet();
+
+                da.Fill(ds);
+
+                foreach(DataRow dr in ds.Tables[0].Rows) 
+                {
+                    Console.WriteLine(dr["EmployeeId"] + " " + dr["EmployeeName"] + " " + dr["Salary"]);
+                }
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("Database Error : ");
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected Error : ");
+
+                Console.WriteLine("Reason : " + ex.Message);
+            }
+            finally
+            {
+                if(conn.State == System.Data.ConnectionState.Open)
+                {
+                    //conn.Close();
+
+                    Console.WriteLine("Connection Closed");
+                }
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+Where is DataSet used?
+
+* Report Generation
+* Employee Dashboards
+* Student Management Systems
+* Invoice Generation
+* Excel Export
+* Data Analysis
+* Multi-Table Reporting
+
+Interview Questions?
+--------------------
+1. What is DataSet?
+2. Why is DataSet called an in-memory database?
+3. Can DataSet contain multiple tables?
+4. Which object fills a DataSet?
+
+Tomorrow : 6. DataTable	

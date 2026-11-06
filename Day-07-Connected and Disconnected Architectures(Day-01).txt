@@ -1,0 +1,224 @@
+Connected and Disconnected Architectures
+-----------------------------------------
+
+1. Connected Architecture
+
+* In Connected Architecture, the application maintain a continuous connection with the database throught the entire operation.
+
+* In Connected Architecture is mainly used in real-time applications where live data interaction is required.
+
+Example : 
+
+	1. Banking Applications
+	2. Rail way Reservation systems
+
+Example :
+
+Step 1 : Create Table
+
+CREATE TABLE BankAccount
+(
+	AccountNo Int PRIMARY KEY,
+	CustomerName varchar(100),
+	AccountType varchar(20),
+	Balance decimal(18,2),
+	BranchName varchar(100),
+	ATMCard bit default 0,
+	PassBook bit default 0
+);
+
+Step 2 : Create Stored Procedure
+
+CREATE PROCEDURE [dbo].[Usp_BankOperations]
+(
+	@Action varchar(30),
+	@AccountNo int = NULL,
+	@CustomerName varchar(100) = NULL,
+	@AccountType varchar(20) = NULL,
+	@Balance decimal(18,2) = NULL,
+	@BranchName varchar(100) = NULL
+)
+AS
+BEGIN
+	
+	IF @Action = 'OPENACCOUNT'
+	BEGIN
+	INSERT INTO BankAccount(AccountNo, CustomerName, AccountType, Balance, BranchName)
+	VALUES
+	(@AccountNo, @CustomerName, @AccountType, @Balance, @BranchName);
+	END
+
+	ELSE IF @Action = 'DEPOSIT'
+	BEGIN
+	UPDATE BankAccount SET Balance = Balance + @Balance WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'WITHDRAW'
+	BEGIN
+	UPDATE BankAccount SET Balance = Balance - @Balance WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'BALANCE'
+	BEGIN
+	SELECT Balance FROM BankAccount WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'ACCOUNTDETAILS'
+	BEGIN
+	SELECT * FROM BankAccount WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'APPLYATM'
+	BEGIN
+	UPDATE BankAccount SET ATMCard = 1 WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'APPLYPASSBOOK'
+	BEGIN
+	UPDATE BankAccount SET PassBook = 1 WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'UPDATECUSTOMER'
+	BEGIN
+	UPDATE BankAccount SET CustomerName = @CustomerName, BranchName = @BranchName WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'CLOSEACCOUNT'
+	BEGIN
+	DELETE FROM BankAccount WHERE AccountNo = @AccountNo;
+	END
+
+	ELSE IF @Action = 'GETALL'
+	BEGIN
+	SELECT * FROM BankAccount;
+	END
+END;
+
+Step 3 : Program.cs
+
+namespace Connected_Architecture
+{
+    class Program
+    {
+        static string cs = @"server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true;";
+
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("===================================");
+                Console.WriteLine("    BANK MANAGEMENT SYSTEM");
+                Console.WriteLine("===================================");
+
+                Console.WriteLine("1. Open New Account");
+                Console.WriteLine("2. Deposit Amount");
+                Console.WriteLine("3. Withdraw Amount");
+                Console.WriteLine("4. Balance Enquire");
+                Console.WriteLine("5. Account Details");
+                Console.WriteLine("6. Apply ATM Card");
+                Console.WriteLine("7. Apply PassBook");
+                Console.WriteLine("8. Update Customer");
+                Console.WriteLine("9. Close Account");
+                Console.WriteLine("10. View All Accounts");
+                Console.WriteLine("11. Exit");
+
+                Console.Write("\nEnter Choice : ");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        OpenAccount();
+                        break;
+                    case 2:
+                        Deposit();
+                        break;
+                    case 3:
+                        Withdraw();
+                        break;
+                    case 4:
+                        BalanceEnquiry();
+                        break;
+                    case 5:
+                        AccountDetails();
+                        break;
+                    case 6:
+                        ApplyATM();
+                        break;
+                    case 7:
+                        ApplyPassBook();
+                        break;
+                    case 8:
+                        UpdateCustomer();
+                        break;
+                    case 9:
+                        CloseAccount();
+                        break;
+                    case 10:
+                        GetAllAccounts();
+                        break;
+                    case 11:
+                        return;
+                    default:
+                        Console.WriteLine("Invalid Choice");
+                        break;
+                }
+                Console.WriteLine("\nPress Any Key....");
+                Console.ReadKey();
+            }
+        }
+
+        private static void GetAllAccounts()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void CloseAccount()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void UpdateCustomer()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ApplyPassBook()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ApplyATM()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void AccountDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void BalanceEnquiry()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Withdraw()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Deposit()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void OpenAccount()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

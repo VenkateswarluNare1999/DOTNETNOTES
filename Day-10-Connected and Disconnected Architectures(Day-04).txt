@@ -1,0 +1,189 @@
+Disconnected Architecture In Ado.NET
+------------------------------------
+
+* In Disconnected Architecture, the application connects to the database only for a short duration.
+
+Example :
+
+Step 1 : Database Creation
+
+CREATE Table Patients
+(
+	PatientId Int PRIMARY KEY,
+	PatientName varchar(100),
+	Age Int,
+	Gender varchar(20),
+	Disease varchar(100),
+	DoctorName varchar(100)
+);
+
+INSERT INTO Patients Values(1, 'Ashok', 35, 'Male', 'Fever', 'Kumar Varma');
+
+Select * from Patients;
+
+Step 2 : Disconnected Architecture In Program.cs
+
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Connected_Architecture
+{
+    class Program
+    {
+        static string cs = @"Server=(localdb)\MSSQLLocalDB;Database=DotNet11AmBatch;Integrated Security=true";
+
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("========== HOSPITAL MANAGEMENT SYSTEM ==========");
+
+                Console.WriteLine("1. Add Patient");
+                Console.WriteLine("2. Update Patient");
+                Console.WriteLine("3. Delete Patient");
+                Console.WriteLine("4. Search Patient");
+                Console.WriteLine("5. View All Patients");
+                Console.WriteLine("6. Exit");
+
+                Console.Write("Enter Choice : ");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        AddPatient();
+                        break;
+                    case 2:
+                        UpdatePatient();
+                        break;
+                    case 3:
+                        DeletePatient();
+                        break;
+                    case 4:
+                        SeachPatient();
+                        break;
+                    case 5:
+                        ViewAllPatients();
+                        break;
+                    case 6:
+                        return;
+                }
+            }
+        }
+
+        private static void ViewAllPatients()
+        {
+            SqlConnection conn = new SqlConnection(cs);
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Patients", conn);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds, "Patients");
+
+            DataTable dt = ds.Tables["Patients"];
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Console.WriteLine(row["PatientId"] + "\t" + row["PatientName"] + "\t" + row["Age"] + "\t" + row["Gender"] + "\t" + row["Disease"] + "\t" + row["DoctorName"]);
+            }
+        }
+
+        private static void SeachPatient()
+        {
+            Console.Write("Enter Patient Id : ");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            SqlConnection conn = new SqlConnection(cs);
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Patients WHERE PatientId = " + id, conn);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds, "Patients");
+
+            if (ds.Tables["Patients"].Rows.Count > 0)
+            {
+                DataRow row = ds.Tables["Patients"].Rows[0];
+
+                Console.WriteLine("Patient Name : " + row["PatientName"]);
+                Console.WriteLine("Patient Disease : " + row["Disease"]);
+                Console.WriteLine("Doctor Name : " + row["DoctorName"]);
+            }
+            else
+            {
+                Console.WriteLine("Patient Not Found");
+            }
+        }
+
+        private static void DeletePatient()
+        {
+            Console.Write("Enter Patient Id : ");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            SqlConnection conn = new SqlConnection(cs);
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Patients", conn);
+
+            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds, "Patients");
+
+            DataRow row = ds.Tables["Patients"].Select("PatientId=" + id)[0];
+
+            row.Delete();
+
+            da.Update(ds, "Patients");
+
+            Console.WriteLine("Patient Deleted");
+        }
+
+        private static void UpdatePatient()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void AddPatient()
+        {
+            SqlConnection conn = new SqlConnection(cs);
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Patients", conn);
+
+            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds, "Patients");
+
+            DataRow row = ds.Tables["Patients"].NewRow();
+
+            Console.Write("Patient Id : ");
+            row["PatientId"] = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Patient Name : ");
+            row["PatientName"] = Console.ReadLine();
+
+            Console.Write("Patient Age : ");
+            row["Age"] = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Patient Gender : ");
+            row["Gender"] = Console.ReadLine();
+
+            Console.Write("Patient Disease : ");
+            row["Disease"] = Console.ReadLine();
+
+            Console.Write("Doctor Name : ");
+            row["DoctorName"] = Console.ReadLine();
+
+            ds.Tables["Patients"].Rows.Add(row);
+
+            da.Update(ds, "Patients");
+
+            Console.WriteLine("Patient Added Successfully");
+        }
+    }
+}

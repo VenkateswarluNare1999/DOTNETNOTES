@@ -1,0 +1,229 @@
+ASP.NET Core MVC Introduction
+------------------------------
+
+* MVC stands for Model, View, Controller
+
+* The Model represents application data and business logic.
+
+* The View is responsible for displaying information to users.
+
+* The Controller acts as a bridge between Model and View.
+
+Complete Flow : Program.cs executes -> Builder creates application -> Services registered -> Application built -> Middleware configured -> Routes configured -> Run() starts Kestrel -> Browser sends request -> Request enters Middleware Pipeline -> Routing finds Controller -> Controller executes -> View generated -> Browser displays response.
+
+Environments Configuration Types
+--------------------------------
+1. Development
+
+2. Staging
+
+3. Production
+
+Passing Data From Controller to View In ASP.NET Core MVC
+--------------------------------------------------------
+
+* ASP.NET Core MVC provides several mechanisms for this purpose : 
+
+	1. ViewData
+	2. ViewBag
+	3. TempData
+	4. Strongly Typed Model
+
+MVC Flow : Browser -> Controller -> Database -> Controller -> ViewBag/ViewData -> View -> Browser
+
+1. ViewData In ASP.NET Core MVC
+
+* ViewData is a dictionary object used to transfer data from the Controller to the view.
+
+* It stores data as key-value pairs.
+
+Example :
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class PassingDataController : Controller
+    {
+        public IActionResult Index()
+        {
+            ViewData["EmployeeName"] = "Ravi Kumar";
+
+            return View();
+        }
+    }
+}
+
+<h2>@ViewData["EmployeeName"]</h2>
+
+How Does ViewData Work?
+
+Step 1 : User request : PassingData/Index
+
+Step 2 : Controller executes
+
+Step 3 : Controller creates, ViewData["EmployeeName"]
+
+Step 4 : MVC stores it inside the ViewData Dictionary
+
+Step 5 : The View receives ViewData
+
+Step 6 : The View displays, Ravi Kumar
+
+Example :
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class PassingDataController : Controller
+    {
+        public IActionResult Index()
+        {
+            ViewData["CustomerName"] = "Rahul Sharma";
+
+            ViewData["Balance"] = 250000;
+
+            return View();
+        }
+    }
+}
+
+<h2>@ViewData["CustomerName"]</h2>
+<h2>@ViewData["Balance"]</h2>
+
+Advantages of ViewData
+-----------------------
+1. Easy to use
+2. Suitable for small amounts of data
+3. No model creation required
+4. Built into MVC
+
+2. ViewBag In ASP.NET Core MVC
+
+* ViewBag is a dynamic object used to transfer data from the Controller to the View.
+
+Example :
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class PassingDataController : Controller
+    {
+        public IActionResult Index()
+        {
+            ViewBag.EmployeeName = "Ravi Kumar";
+
+            return View();
+        }
+    }
+}
+
+<h2>@ViewBag.EmployeeName</h2>
+
+Difference Between ViewBag and ViewData
+---------------------------------------
+
+1. ViewData : 
+	
+	* Type : Dictionary
+	* Access : Key-value
+	* Syntax : ViewData["name"]
+	* Type Casting : Sometimes Required
+	* Easy to Read : Moderate
+	* Internal Storage : Dictionary
+	
+2. ViewBag : 
+	
+	* Type : Dynamic Object
+	* Access : Property
+	* Syntax : ViewBag.name
+	* Type Casting : Usually Not Required
+	* Easy to Read : Very easy
+	* Internal Storage : Wrapper over ViewData	
+
+When Should We Use ViewData?
+
+* Use ViewData When : 
+		
+	1. Passing a few simple values
+	2. key-value format is acceptable
+	3. Existing codebase already uses ViewData
+
+When Should We Use ViewBag?
+
+* Use ViewBag when :
+		
+	1. Passing small amounts of data
+	2. Cleaner syntax is preffered
+	3. Quick development
+	4. Displaying messages, titles, counters, usernames, etc.,
+	
+3. Strongly Typed View In ASP.NET Core MVC
+
+ViewBag.Name
+
+ViewBag.EmployeeName
+
+ViewBag.EmpName
+
+@ViewBag.EmployeeNmae	
+
+* A Strongly Typed View is a view that is directly connected to Model class.
+
+Example :
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        public int EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public string Department { get; set; }
+        public string Salary { get; set; }
+        public string Email { get; set; }
+    }
+}
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class PassingDataController : Controller
+    {
+        public IActionResult Index()
+        {
+            Employee employee = new Employee();
+
+            employee.EmployeeId = 1;
+            employee.EmployeeName = "Test";
+            employee.Department = "IT";
+            employee.Salary = 65000;
+            employee.Email = "test@gmail.com";
+
+            return View(employee);
+        }
+    }
+}
+
+@model EmployeeManagementSystem.Models.Employee
+
+<h2>Employee Details</h2>
+
+Employee Id : @Model.EmployeeId
+<br />
+
+Employee Name : @Model.EmployeeName
+<br />
+
+Department : @Model.Department
+<br />
+
+Salary : @Model.Salary
+<br />
+
+Email : @Model.Email
+
+4. TempData In ASP.NET Core MVC

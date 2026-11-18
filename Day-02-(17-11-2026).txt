@@ -1,0 +1,474 @@
+TempData In ASP.NET Core MVC
+-----------------------------
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class PassingDataController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Save()
+        {
+            TempData["Success"] = "Employee Save Successfully";
+
+            return RedirectToAction("Index");
+        }
+    }
+}
+
+@if(TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+When Should We Use TempData?
+
+* Use TempData for : 
+	
+	1. Save Success Message
+	2. Delete Success Message
+	3. Update Confirmation
+	4. Login Success
+	5. Logout Message
+
+When Should We NOT Use TempData?
+		
+* Don't use TempData for :
+	
+	1. Employee Lists
+	2. Product Lists
+	3. Customer Details
+
+Interview Questions
+-------------------	
+1. What is TempData?
+2. Why do we need TempData?
+3. What is the difference between ViewBag and TempData?
+4. What is the difference between ViewData and TempData?
+5. Where is TempData commonly used in enterprise applications?
+
+Routing In ASP.NET Core MVC
+---------------------------
+
+* Routing is the process of mapping an incoming HTTP request to the appropriate Controller and Action Method.
+
+https://localhost:5001/Employee/Details/101
+
+Flow : Browser -> Kestrel Web Server -> Middleware Pipeline -> Endpoint Routing Middleware -> Controller Selection -> Action Selection -> Model Binding -> Controller Execution -> Business Logic -> Database -> Model Creation -> View Engine -> HTML Generation -> Browser
+
+What is Conventional Routing?
+
+* Its means all routing rules are written in one central place
+
+Where is Conventional Routing Written? Program.cs
+
+app.UseRouting()
+
+Pattern : {controller}/{action}/{id}
+
+Browser : /Employee/Details/101
+
+Example :
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class RoutingController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Details(int id)
+        {
+            ViewBag.Id = id;
+
+            return View();
+        }
+    }
+}
+
+<h2>Employee Details</h2>
+
+Employee Id : @ViewBag.Id
+
+Example :
+
+Step 1 :
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        public int EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public string Department { get; set; }
+        public decimal Salary { get; set; }
+        public string Email { get; set; }
+    }
+}
+
+Step 2 :
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class RoutingController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Details(int id)
+        {
+            Employee employee = new Employee()
+            {
+                EmployeeId = id,
+                EmployeeName = "Rahul",
+                Department = "IT",
+                Salary = 65000,
+                Email = "email@gmail.com"
+            };
+
+            return View(employee);
+        }
+    }
+}
+
+Step 3 : Index.cshtml
+
+<h2>Employee Home Page</h2>
+
+<h3>Welcome to Employee Module</h3>
+
+<a href="/Routing/Details/101">Employee 101</a>
+<br />
+<a href="/Routing/Details/102">Employee 102</a>
+<br />
+<a href="/Routing/Details/103">Employee 103</a>
+
+Step 4 : Details.cshtml
+
+@model EmployeeManagementSystem.Models.Employee
+
+<h2>Employee Details</h2>
+
+Employee Id : @Model.EmployeeId
+<br />
+<br />
+
+Employee Name : @Model.EmployeeName
+<br />
+<br />
+
+Department : @Model.Department
+<br />
+<br />
+
+Salary : @Model.Salary
+<br />
+<br />
+
+Email : @Model.Email
+
+Attribute Routing In ASP.NET Core MVC
+--------------------------------------
+* Attribute Routing is a routing technique where the route is defined directly on the Controller or Action Method using attributes.
+
+Example : [Route("employee")] or [Route("employee/details/{id}")]
+
+When Should We Use Attribute Routing?
+
+Use Attribute Routing when :
+
+	1. Different Controllers require different URL patterns
+	2. REST APIs are being developed
+	3. Business wants custom URLs
+	
+Example :
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    [Route("employee")]
+    public class EmployeeController : Controller
+    {       
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Route("details/{id}")]
+        // /employee/details/101
+        public IActionResult Details(int id)
+        {
+            ViewBag.Id = id;
+
+            return View();
+        }
+    }
+}
+
+<h2>Employee Details</h2>
+
+Employee Id : @ViewBag.Id
+
+Advantages of Attribute Routing
+-------------------------------
+1. Route is close to the Action Method
+2. Easy to maintain
+3. Ideal for REST APIs
+4. Supports custom URL structures
+5. Reduces complexity in Program.cs
+
+Interview Questions
+-------------------
+1. What is Attribute Routing?
+2. Which method enables Attribute Routing?
+3. WHere are Attribute Routes written?
+4. When should we use Attribute Routing?
+
+Views In ASP.NET Core MVC
+--------------------------
+
+1. Layout View In ASP.NET Core MVC
+
+* A Layout View is a master page that contains the common UI shared by multiple pages.
+
+Example :
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Employee Management System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EmployeeManagementSystem.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="bg-primary text-white p-3">
+        <h2>ABC Tehnologies</h2>
+    </div>
+
+    <div class="bg-dark p-2">
+        <a asp-controller="Home" asp-action="Index" class="text-white me-3">Home</a>
+        <a asp-controller="Employee" asp-action="Index" class="text-white me-3">Employee</a>
+        <a asp-controller="PassingData" asp-action="Index" class="text-white">PassingData</a>
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - ABC Technologies - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+Advantages
+----------
+1. Eliminates duplicate code
+2. Easy maintenance
+3. Common Header/Footer
+4. Common Navigation
+5. Consistent UI
+6. Faster development
+
+Interview Questions
+-------------------
+1. What is Layout View?
+2. What is RenderBody()?
+3. What is _ViewStart.cshtml?
+4. Advantages of Layout View?
+
+Sections In Layout View In ASP.NET Core MVC
+-------------------------------------------
+
+* A Section is a placeholder inside the Layout page where individual Views can insert their own content.
+
+* A Section is used for page-specific content like :
+		
+	1. JavaScript
+	2. CSS
+	3. Charts
+	4. Google Maps
+	5. Custom Scripts
+	6. Page-specific Footer Content
+
+When Should we use Sections?
+
+* Use Sections when :
+		
+	1. A page requires additional JavaScript.
+	2. A page requires additional CSS
+	3. A page requires charts
+	4. A page requires  Google Maps
+	5. A page requires page-specific scripts
+
+Where are Sections used?
+
+1. Employee Management 
+2. Banking
+3. Hospital
+4. Amazon
+
+Syntax : 
+
+Inside Layout : @RenderSectionAsync("Scripts", required : false)	
+
+Inside View : @section Scripts{}
+
+<h2>Employee List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>101</td>
+            <td>Rahul</td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        alert("Employee Page Loaded");
+    </script>
+}
+
+Advantages
+----------
+1. Loads page-specific scripts only
+2. Improves performance
+3. Avoids unnecessary JavaScript
+4. Better code organization
+5. Easy maintenance
+
+Interview Questions
+-------------------
+1. What is Section In Core MVC?
+2. Which helper is used inside Layout?
+3. Which keyword is used inside View?
+4. What is the purpose of 'required : false'?
+5. Difference between RenderBody() and RenderSectionAsync()?
+
+View State In ASP.NET Core MVC
+------------------------------
+* View State automatically stores the values of controls like :
+	
+	1. TextBox
+	2. DropDownList
+	3. CheckBox
+	4. RadioButton
+	
+Does ASP.NET Core MVC supports View State? NO
+
+ASP.NET Core MVC does not support View State.
+
+Microsoft completely removed View State from ASP.NET Core MVC.
+
+Why was View State removed?
+
+* View State had several disadvantages :
+	
+	1. Large Page Size
+	
+	2. Increased Network Traffic
+	
+	3. Performance Issues
+
+How do we maintain data in ASP.NET Core MVC?
+
+* Instead of View State, MVC uses other techniques :
+		
+	1. Model Binding
+	2. Hidden Fields
+	3. TempData
+	4. Session
+	5. Cookies
+	6. Query String
+	7. Database
+	
+Example :
+
+namespace EmployeeManagementSystem.Models
+{
+    public class LoginModel
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+}
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class AccountController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
+        {
+            ViewBag.Message = "Welcome " + model.UserName;
+
+            return View(model);
+        }
+    }
+}
+
+@model LoginModel
+
+<form method="post">
+    <label>User Name</label>
+    <input asp-for="UserName" /> <br /><br />
+
+    <label>Password</label>
+    <input asp-for="Password" /><br /><br />
+
+    <button type="submit">Login</button>
+</form>
+
+<h3>
+    @ViewBag.Message
+</h3>	
+	

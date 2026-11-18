@@ -1,0 +1,304 @@
+Partial Views In ASP.NET Core MVC
+----------------------------------
+
+* A Partial View is a reusable Razor View that contains a portion of UI and can be shared among multiple Views.
+
+* It helps reduce duplicate code and improves maintainability.
+
+When Should We use Partial Views?
+
+* Use Partial Views when the same UI is repeated on multiple pages.
+
+Example : 
+	
+	1. Login Form
+	2. Search Box
+	3. Header
+	4. Footer
+	5. Navigation Menu etc.,
+
+Where are Partial Views used?
+
+1. Amazon
+2. Banking
+
+Where are Partial Views stored?
+
+Views -> Shared -> _EmployeeCard.cshtml
+
+1. Controller :
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {       
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            Employee employee = new Employee()
+            {
+                EmployeeId = 101,
+                EmployeeName = "Rahul",
+                Department = "IT",
+                Salary = 65000,
+                Email = "email@gmail.com"
+            };
+
+            return View(employee);
+        }
+    }
+}
+
+2. _EmployeeCard.cshtml :
+
+@model Employee
+
+<div class="card p-3">
+    <h3>Employee Information</h3> <hr />
+
+    Employee Id : @Model.EmployeeId <br />
+
+    Employee Name : @Model.EmployeeName <br />
+
+    Department : @Model.Department <br />
+
+    Salary : @Model.Salary <br />
+
+    Email : @Model.Email
+</div>
+
+3. Details.cshtml :
+
+@model Employee
+
+<h2>Employee Details</h2>
+
+<partial name="_EmployeeCard" model="Model"></partial>
+
+Interview Questions
+-------------------
+1. What is a Partial View?
+2. Where are Partial Views Stored?
+3. How do you call a Partial View?
+
+Different Ways to Render Partial View In ASP.NET Core MVC
+---------------------------------------------------------
+
+* There are 4 common ways :
+	
+	1. Partial Tag Helper (Recommended)
+	
+	2. HTML.PartialAsync()
+	
+	Example :
+	
+	@model Employee
+
+	<h2>Employee Details</h2>
+
+	@await Html.PartialAsync("_EmployeeCard", Model)
+	
+	3. HTML.RenderPartialAsync()
+	
+	@model Employee
+
+	<h2>Employee Details</h2>
+
+	@{
+		await Html.RenderPartialAsync("_EmployeeCard", Model);
+	}
+	
+	4. Controller Returing a Partial View(AJAX)
+	
+	using EmployeeManagementSystem.Models;
+	using Microsoft.AspNetCore.Mvc;
+
+	namespace EmployeeManagementSystem.Controllers
+	{
+		public class EmployeeController : Controller
+		{       
+			public IActionResult Index()
+			{
+				return View();
+			}
+
+			public IActionResult Details()
+			{
+				Employee employee = new Employee()
+				{
+					EmployeeId = 101,
+					EmployeeName = "Rahul",
+					Department = "IT",
+					Salary = 65000,
+					Email = "email@gmail.com"
+				};
+
+				return View(employee);
+			}
+
+			public IActionResult EmployeeCard()
+			{
+				Employee employee = new Employee()
+				{
+					EmployeeId = 101,
+					EmployeeName = "Rahul",
+					Department = "IT",
+					Salary = 65000,
+					Email = "email@gmail.com"
+				};
+
+				return PartialView("_EmployeeCard", employee);
+			}
+		}
+	}
+
+View Components In ASP.NET Core MVC
+-----------------------------------
+
+* A View Component is a reusable component that contains both C# logic and a View.
+
+When should we use View Components?
+
+* Use View Components when :
+	
+	1. UI is reusable
+	2. Database access is required
+	3. Business logic is required
+	4. Same functionality appears on multiple pages.
+
+Example :
+
+Step 1 : EmployeeCountViewComponent.cs
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.ViewComponents
+{
+    public class EmployeeCountViewComponent : ViewComponent
+    {
+        public IViewComponentResult Invoke()
+        {
+            int employeeCount = 250;
+
+            return View(employeeCount);
+        }
+    }
+}
+
+Step 2 : Create View
+
+@model int
+
+<div class="alert alert-success">
+    Total Employees : @Model
+</div>
+
+Step 3 : Call View Component
+
+<h2>Dashboard</h2>
+
+@await Component.InvokeAsync("EmployeeCount");
+
+Interview Questions
+--------------------
+1. What is a View Component?
+2. Does a View Component depend on a Controller?
+3. Which class does a View Component inherit?
+4. Which method is commonly used?
+5. How do you call a View Component?
+
+Razor View Engine and Razor Syntax In ASP.NET Core MVC	
+-------------------------------------------------------
+
+1. What is Razor View Engine?
+
+* The Razor View Engine is the dafault View Engine in ASP.NET Core MVC that allows developers to write HTML and C# code together in the same file using Razor syntax.
+
+* Razor files have the extension : .cshtml
+
+2. What is Razor Syntax?
+
+* Razor Syntax is the syntax used to write C# code inside View.
+
+* It uses the @(at) symbol.
+
+Example : <h2>@ViewBag.Message</h2>
+
+Example :
+
+   public IActionResult Index()
+   {
+       ViewBag.Name = "Rahul";
+
+       return View();
+   }
+   
+   <h2>Welcome @ViewBag.Name</h2>
+   
+Example :
+
+public IActionResult Index()
+{
+    Employee employee = new Employee();
+
+    employee.EmployeeId = 101;
+    employee.EmployeeName = "Rahul";
+    employee.Department = "IT";
+    employee.Salary = 65000;
+    employee.Email = "rahul@gmail.com";
+
+    return View(employee);
+}
+
+@model Employee
+
+Employee Id : @Model.EmployeeId <br />
+Employee Name : @Model.EmployeeName <br />
+Department : @Model.Department <br />
+Salary : @Model.Salary <br />
+Email : @Model.Email
+
+How to Install Bootstrap In ASP.NET Core MVC
+---------------------------------------------
+
+* Bootstrap is one of the most popular CSS frameworks used for developing responsive web applications.
+
+Command : bootstrap
+
+Example :
+
+<div class="container mt-5">
+    <div class="card p-4">
+        <h3>Hospital Login</h3>
+
+        <input class="form-control mb-3" placeholder="Username"/>
+
+        <input class="form-control mb-3" placeholder="Password"/>
+
+        <button class="btn btn-primary">Login</button>
+    </div>
+</div>
+
+Advantages of Bootstrap
+------------------------
+1. Responsive Design
+2. Faster Development
+3. Professional UI
+4. Mobile friendly
+5. Ready-made Components
+6. Utility Classes
+
+Interview Questions
+------------------
+1. What is Bootstrap?
+2. WHere Should Bootstrap files be stored in ASP.NET Core MVC?
+3. Which file is used to reference Bootstrap?
+
+Tomorrow : HTML Tag Helpers  

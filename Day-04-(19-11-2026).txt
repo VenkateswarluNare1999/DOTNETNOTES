@@ -1,0 +1,564 @@
+HTML Helpers In ASP.NET Core MVC
+--------------------------------
+
+1. Whatis an HTML Helper?
+
+In HTML : <input type="text" name="username" />
+
+* An HTML Helper is a server-side method that generates HTML elements dynamically inside Razor Views.
+
+HTML : <input type="text" name="username" />
+
+HTML Helper : @Html.TextBox("username");
+
+* HTML Helper also integrate with : 
+	
+	1. Models
+	2. Model Binding
+	3. Validation
+	4. Data Annotations
+
+Example :
+
+@Html.TextBoxFor(m => m.CustomerName)	
+@Html.TextBoxFor(m => m.MobileNumber)	
+@Html.PasswordFor(m => m.Password)	
+@Html.DropDownListFor(m => m.AccountType, Model.AccountType)	
+
+Types of HTML Helpers
+---------------------
+* ASP.NET Core MVC provides three main categories.
+
+1. Standard (Weakly Typed) HTML Helpers
+
+* These helpers use the control name as a string.
+
+Example :
+	
+	@Html.TextBox("EmployeeName")
+	@Html.Password("Password")
+
+* They are simple but not connected to model properties.
+
+2. Strongly Typed HTML Helpers
+
+* These helpers work directly with model properties.
+
+Example : 
+		
+	@Html.TextBoxFor(m => m.EmployeeName)
+	@Html.PasswordFor(m => m.Password)
+
+3. Custom HTML Helpers
+
+* Developers can create their own reusable helper methods
+
+Example : @Html.CustomButton("Save Employee")
+
+Advantages of HTML Helpers
+--------------------------
+1. Generate HTML automatically.
+2. Reduce repetitive code
+3. Easy to read and maintain
+4. Support Validation
+5. Integrate with Data Annotations
+6. Improve productivity
+7. Reduce coding mistakes
+
+Disadvantages
+-------------
+1. Require knowledge of Razor syntax
+2. Less flexibility than writing raw HTML in some advanced UI scenarios.
+
+Common HTML Helpers
+-------------------
+	
+	1. TextBox()
+	2. TextBoxFor()
+	
+	3. TextArea()
+	
+	4. DropDownList()
+	5. DropDownListFor()
+	
+	6. RadioButton()
+	7. RadioButtonFor()
+	
+	8. CheckBox()
+	9. CheckBoxFor()
+	
+	10. ListBox()
+	
+	11. Password()
+	12. PasswordFor()
+	
+	13. Hidden()
+	14. HiddenFor()
+	
+	15. Editor()
+	16. EditorFor()
+
+Topic 1 : TextBox()	HTML Helper In ASP.NET Core MVC
+
+* The TextBox HTML Helper is a built-in method provided by ASP.NET Core MVC that generates an HTML 'input' element.
+
+Types of TextBox HTML Helpers
+-----------------------------
+
+* There are two common ways to generate a textbox.
+
+1. Weakly Typed HTML Helper : A Weakly types helper uses the property name as a string.
+
+	Syntax : @Html.TextBox("field")
+	
+2. Strongly Typed HTML Helper : A Strongly types helper works directly with model properties.
+
+	Syntax : @Html.TextBoxFor(m => m.field)
+	
+	Here : 
+		
+		'm' represents the model.
+		'field' is the property of the model
+
+Example :
+
+Step 1 : Create Model
+
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Employee Name </label>
+
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+    </div> <br />
+    <div>
+        <label>Employee Email </label>
+
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div> <br />
+
+    <button type="submit">Save</button>
+</form>
+
+Topic 2 : TextArea HTML Helper In ASP.NET Cor MVC		
+
+* The TextArea HTML Helper is a built-in helper method In ASP.NET Core MVC that generates an HTML 'textarea' element.
+
+* TextArea HTML Helper is used to generate a multi-line text input control that can be bound to a model property.
+
+Example :
+
+Step 1 : Create Model
+
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+    }
+}
+
+Step 2 : Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Employee Name </label>
+
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+    </div> <br />
+    <div>
+        <label>Employee Address </label>
+
+        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", rows = 5, cols = 50 })
+    </div> <br />
+
+    <button type="submit">Save</button>
+</form>
+
+Advantages of TextArea HTML Helper
+----------------------------------
+1. Generates a multi-line text input automatically
+2. Supports model binding
+3. Works with validation attributes
+4. Easy to style using Bootstrap
+5. Reduces repetitive HTML code
+
+Common Uses
+------------
+1. Address
+2. Feedback
+3. Medical History
+4. Leave Reason
+5. Complaint Description
+
+Topic 3 : DropDownList HTML Helper In ASP.NET Core MVC
+
+* A DropDownList HTML Helper generates an HTML 'select' element that allows users to choose one value from a predefined list.
+
+Example :
+
+Step 1 : Create Model
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        public string Department { get; set; }
+
+        public List<SelectListItem> Departments { get; set; }
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            Employee employee = new Employee();
+
+            employee.Departments = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="-- Select Department --", Value=""},
+                new SelectListItem{Text="HR", Value="HR"},
+                new SelectListItem{Text="IT", Value="IT"},
+                new SelectListItem{Text="Finance", Value="Finance"},
+                new SelectListItem{Text="Sales", Value="Sales"}
+            };
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            employee.Departments = new List<SelectListItem>()
+            {
+                new SelectListItem{Text="-- Select Department --", Value=""},
+                new SelectListItem{Text="HR", Value="HR"},
+                new SelectListItem{Text="IT", Value="IT"},
+                new SelectListItem{Text="Finance", Value="Finance"},
+                new SelectListItem{Text="Sales", Value="Sales"}
+            };
+
+            return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Employee Name </label>
+
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+    </div> <br />
+    <div>
+        <label>Department</label>
+
+        @Html.DropDownListFor(m => m.Department, Model.Departments, new { @class = "form-control" })
+    </div> <br />
+
+    <button type="submit">Save</button>
+</form>
+
+Advantages 
+----------
+1. Prevents invalid input
+2. Supports model binding
+3. Easy to populate from the database
+4. Works with validation
+5. Reduces typing mistakes
+
+Common Uses
+-----------
+1. Departments
+2. Country
+3. States
+4. Citys
+5. Blood group
+6. Gender
+7. Account Type
+8. Designation
+
+Topic 4 : Radio Button HTML Helper In ASP.NET Core MVC
+
+* Radio Button HTML Helper is used to generate radio buttons that allow the user to select exactly one value from a group of predefined options.
+
+Example :
+
+Step 1 : Create Model
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        public string Gender { get; set; }
+
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+           return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+           return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Employee Name </label>
+
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+    </div> <br />
+    <div>
+        <label>Gender</label>
+
+        <br />
+        @Html.RadioButtonFor(m => m.Gender, "Male") Male <br />
+        @Html.RadioButtonFor(m => m.Gender, "Female") Female <br />
+        @Html.RadioButtonFor(m => m.Gender, "Other") Other
+    </div> <br />
+
+    <button type="submit">Save</button>
+</form>
+
+Advantages
+----------
+1. Easy to understand
+2. Prevents invalid input
+3. Improves user experience
+4. Works with validation
+5. Supports model binding
+
+Topic 5 : CheckBox HTML Helper In ASP.NET Core MVC
+
+* A CheckBox HTML Helper is used to generate one or more checkboxes that allow users to make independent selections.
+
+Example :
+
+Step 1 : Create Model
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        public bool IsActive { get; set; }
+
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+           return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+           return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Employee Name </label>
+
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+    </div> <br />
+    <div>
+        @Html.CheckBoxFor(m => m.IsActive)
+        <label>Active Employee</label>
+    </div> <br />
+
+    <button type="submit">Save</button>
+</form>
+
+Advantages
+----------
+1. Supports Boolean Values
+2. Integrates with model binding
+3. Works with validation
+4. Generate HTML automatically
+5. Reduces repetitive coding
+
+When Should we use CheckBoxes?
+
+* Use CheckBoxes when : 
+	
+	1. Multiple selections are allowed
+	2. Each option is independent
+	3. You need a Yes/No flag
+
+Example : 
+
+	1. Skills
+	2. Hobbies
+	3. Languages
+	4. Terms & Conditions
+	5. Newsletter Subscription
+
+Tomorrow : Topic 6 : ListBox HTML Helper In ASP.NET Core MVC	

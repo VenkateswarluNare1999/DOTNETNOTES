@@ -1,0 +1,285 @@
+## 1. Create Model – BankAccountViewModel.cs
+
+using System.ComponentModel.DataAnnotations;
+
+namespace YourProject.Models
+{
+    public class BankAccountViewModel
+    {
+        [Required]
+        public string AccountType { get; set; }
+
+        [Required]
+        public decimal? MonthlySalary { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        public string Phone { get; set; }
+
+        [Required]
+        public string StreetAddress { get; set; }
+
+        public string StreetAddress2 { get; set; }
+
+        public string City { get; set; }
+
+        public string Region { get; set; }
+
+        public string PostalCode { get; set; }
+
+        public string Country { get; set; }
+
+        public bool IsSms { get; set; }
+    }
+}
+
+## 2. Create View – `Create.cshtml`
+
+@model YourProject.Models.BankAccountViewModel
+
+@{
+    ViewData["Title"] = "Bank Account Opening Form";
+}
+
+<style>
+    .bank-form {
+        max-width: 450px;
+        margin: 20px auto;
+        padding: 15px;
+        background: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    .bank-form h3 {
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        flex: 1;
+        min-width: 0;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #222;
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+        height: 34px;
+        padding: 6px 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 11px;
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #80bdff;
+    }
+
+    .form-check {
+        margin-top: 5px;
+    }
+
+    .form-check label {
+        font-size: 11px;
+    }
+
+    .text-danger {
+        font-size: 10px;
+    }
+
+    @@media (max-width: 400px) {
+        .bank-form {
+            padding: 10px;
+        }
+    }
+</style>
+
+<div class="bank-form">
+
+    <h3>Bank Account Opening Form</h3>
+
+    <form asp-action="Create" asp-controller="BankAccount"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <!-- Account Type and Monthly Salary -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label asp-for="AccountType">Account Type</label>
+
+                <select asp-for="AccountType" class="form-control">
+                    <option value="">General Account</option>
+                    <option value="Savings">Savings Account</option>
+                    <option value="Current">Current Account</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MonthlySalary">Monthly Salary</label>
+
+                <input asp-for="MonthlySalary"
+                       type="number"
+                       class="form-control"
+                       placeholder=" " />
+            </div>
+
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+            <label>Name</label>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <input asp-for="FirstName"
+                           class="form-control"
+                           placeholder="First" />
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="LastName"
+                           class="form-control"
+                           placeholder="Last" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <label asp-for="Phone">Phone</label>
+
+            <input asp-for="Phone"
+                   class="form-control"
+                   placeholder="### ### ####" />
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+            <label>Address</label>
+
+            <input asp-for="StreetAddress"
+                   class="form-control"
+                   placeholder="Street Address" />
+        </div>
+
+        <div class="form-group">
+            <input asp-for="StreetAddress2"
+                   class="form-control"
+                   placeholder="Street Address Line 2" />
+        </div>
+
+        <!-- City and Region -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <input asp-for="City"
+                       class="form-control"
+                       placeholder="City" />
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Region"
+                       class="form-control"
+                       placeholder="Region" />
+            </div>
+
+        </div>
+
+        <!-- Postal Code and Country -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <input asp-for="PostalCode"
+                       class="form-control"
+                       placeholder="Postal/Zip Code" />
+            </div>
+
+            <div class="form-group">
+                <select asp-for="Country" class="form-control">
+                    <option value="">Romania</option>
+                    <option value="India">India</option>
+                    <option value="USA">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Romania">Romania</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- How did you hear about us? -->
+        <div class="form-group">
+            <label>How did you hear about us?</label>
+
+            <div class="form-check">
+                <input asp-for="IsSms"
+                       type="checkbox"
+                       class="form-check-input" />
+
+                <label asp-for="IsSms" class="form-check-label">
+                    SMS
+                </label>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+## 3. Controller – `BankAccountController.cs`
+
+using Microsoft.AspNetCore.Mvc;
+using YourProject.Models;
+
+namespace YourProject.Controllers
+{
+    public class BankAccountController : Controller
+    {
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(BankAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Save bank account details to database
+
+                ViewBag.Message = "Account details submitted successfully!";
+
+                return View(model);
+            }
+
+            return View(model);
+        }
+    }
+}

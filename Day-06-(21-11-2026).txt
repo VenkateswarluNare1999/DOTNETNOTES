@@ -1,0 +1,302 @@
+Topic 6 : ListBox HTML Helper In ASP.NET Core MVC
+
+* The user can hold the Ctrl key and select multiple skills.
+
+* ListBox HTML Helper is used to generate a list of predefined values from which users can select one or more items.
+
+Example :
+
+Step 1 : Create Model
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        public List<string> SelectedSkills { get; set; }
+
+        public List<SelectListItem> SkillList { get; set; }
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            Employee employee = new Employee();
+
+            employee.SkillList = new List<SelectListItem>
+            {
+                new SelectListItem{Text="C#", Value="C#"},
+                new SelectListItem{Text="ASP.NET Core", Value="ASP.NET Core"},
+                new SelectListItem{Text="SQL Server", Value="SQL Server"},
+                new SelectListItem{Text="Angular", Value="Angular"},
+                new SelectListItem{Text="Azure", Value="Azure"},
+            };
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            employee.SkillList = new List<SelectListItem>
+            {
+                new SelectListItem{Text="C#", Value="C#"},
+                new SelectListItem{Text="ASP.NET Core", Value="ASP.NET Core"},
+                new SelectListItem{Text="SQL Server", Value="SQL Server"},
+                new SelectListItem{Text="Angular", Value="Angular"},
+                new SelectListItem{Text="Azure", Value="Azure"},
+            };
+
+            return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Employee Name</label>
+
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+    </div><br />
+
+    <div>
+        <label>Skills</label>
+
+        @Html.ListBoxFor(m => m.SelectedSkills, Model.SkillList, new { @class = "form-control", size = 6 })
+    </div><br />
+
+    <button type="submit">
+        Save
+    </button>
+</form>
+
+Advantages of ListBox HTML Helper
+---------------------------------
+* Supports multiple selection
+* Saves screen space when there are many options
+* Integrates with model binding
+* Works with validation
+* Suitable for long lists
+
+Topic 7 : Password HTML Helper In ASP.NET Core MVC
+
+* Password HTML Helper is used to generate a password input field that hides tha characters entered by the user.
+
+Example :
+
+Step 1 : Create Model
+
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class LoginViewModel
+    {
+        [Required(ErrorMessage ="Username us required.")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage ="Password is required.")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class AccountController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.UserName == "admin" && model.Password == "Admin@123")
+                {
+                    ViewBag.Message = "Login Successful";
+                }
+                else
+                {
+                    ViewBag.Message = "Invalid Username or Password";
+                }
+            }
+
+            return View(model);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.LoginViewModel
+
+<form asp-action="Login" method="post">
+    <div>
+        <label>User Name</label>
+
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+    </div><br />
+
+    <div>
+        <label>Password</label>
+
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div><br />
+    <button type="submit">Login</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+
+Advantages
+-----------
+1. Hides typed characters
+2. Supports model binding
+3. Integrates with validation
+4. Easy to style with Bootstrap
+5. Generates correct HTML automatically
+
+Common Uses
+-----------
+1. Login Page
+2. Registration Page
+3. Admin Login
+
+Topic 8 : EditorFor() In ASP.NET Core MVC
+
+* EditorFor HTML Helper is used to automatically generate an appropriate HTML input element for a model property based on its data type and metadata.
+
+Example :
+
+Step 1 : Create Model
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Required]
+        public string EmployeeName { get; set; }
+
+        public decimal Salary { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        public bool IsActive { get; set; }
+    }
+}
+
+Step 2 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            ViewBag.Message = "Employee Saved Successfully";
+
+            return View(employee);
+        }
+    }
+}
+
+Step 3 : Create View
+
+@model EmployeeManagementSystem.Models.Employee
+
+<form asp-action="Create" method="post">
+    <label>Employee Name</label>
+    @Html.EditorFor(m => m.EmployeeName)<br /><br />
+
+    <label>Salary</label>
+    @Html.EditorFor(m => m.Salary)<br /><br />
+
+    <label>Date Of Birth</label>
+    @Html.EditorFor(m => m.DateOfBirth)<br /><br />
+
+    <label>Email</label>
+    @Html.EditorFor(m => m.Email)<br /><br />
+
+    <label>Password</label>
+    @Html.EditorFor(m => m.Password)<br /><br />
+
+    <label>Active</label>
+    @Html.EditorFor(m => m.IsActive)<br /><br />
+    <button type="submit">
+        Save
+    </button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+

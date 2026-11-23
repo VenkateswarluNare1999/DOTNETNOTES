@@ -1,0 +1,792 @@
+Building an ASP.NET Core MVC application using the Repository Pattern
+----------------------------------------------------------------------
+Step 1 : Create Model
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EmployeeManagementSystem.Models
+{
+    public class Employee
+    {
+        [Key]
+        public int EmployeeId { get; set; }
+
+        [Required(ErrorMessage = "Employee Name is Required")]
+        [StringLength(100)]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Gender { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Department { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Designation { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Salary { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime JoiningDate { get; set; }
+
+        [StringLength(15)]
+        public string MobileNumber { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [StringLength(200)]
+        public string Address { get; set; }
+
+        public bool IsActive { get; set; }
+    }
+}
+
+Step 2 : AppDbContext.cs
+
+using EmployeeManagementSystem.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace EmployeeManagementSystem.Data
+{
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
+        public DbSet<Employee> Employees { get; set; }
+    }
+}
+
+Step 3 : Create Database
+
+CREATE TABLE Employee
+(
+	EmployeeId Int Identity(1,1) PRIMARY KEY,
+	EmployeeName varchar(100) NOT NULL,
+	Gender varchar(50) NOT NULL,
+	DateOfBirth DATE NOT NULL,
+	Department varchar(100) NOT NULL,
+	Designation varchar(100) NOT NULL,
+	Salary decimal(18,2) NOT NULL,
+	JoiningDate DATE NOT NULL,
+	MobileNumber varchar(15),
+	Email varchar(100),
+	Address varchar(200),
+	IsActive BIT NOT NULL
+);
+
+INSERT INTO Employee
+(
+    EmployeeName,
+    Gender,
+    DateOfBirth,
+    Department,
+    Designation,
+    Salary,
+    JoiningDate,
+    MobileNumber,
+    Email,
+    Address,
+    IsActive
+)
+VALUES
+('Rahul Sharma', 'Male', '1995-05-15', 'IT', 'Software Developer', 45000.00, '2022-01-10', '9876543210', 'rahul@gmail.com', 'Hyderabad, Telangana', 1),
+
+('Priya Reddy', 'Female', '1994-08-20', 'HR', 'HR Manager', 65000.00, '2021-03-15', '9876543211', 'priya@gmail.com', 'Secunderabad, Telangana', 1),
+
+('Amit Kumar', 'Male', '1992-11-12', 'Finance', 'Accountant', 40000.00, '2020-06-01', '9876543212', 'amit@gmail.com', 'Bangalore, Karnataka', 1),
+
+('Sneha Rao', 'Female', '1996-02-25', 'IT', 'Senior Developer', 75000.00, '2019-07-20', '9876543213', 'sneha@gmail.com', 'Hyderabad, Telangana', 1),
+
+('Vikram Singh', 'Male', '1990-04-10', 'Sales', 'Sales Executive', 35000.00, '2023-02-01', '9876543214', 'vikram@gmail.com', 'Mumbai, Maharashtra', 1),
+
+('Anjali Verma', 'Female', '1998-09-18', 'Marketing', 'Marketing Executive', 38000.00, '2022-11-15', '9876543215', 'anjali@gmail.com', 'Pune, Maharashtra', 1),
+
+('Kiran Kumar', 'Male', '1993-12-05', 'IT', 'Team Lead', 90000.00, '2018-05-10', '9876543216', 'kiran@gmail.com', 'Chennai, Tamil Nadu', 1),
+
+('Divya Sharma', 'Female', '1997-06-30', 'Finance', 'Financial Analyst', 55000.00, '2021-09-01', '9876543217', 'divya@gmail.com', 'Hyderabad, Telangana', 1),
+
+('Suresh Reddy', 'Male', '1989-01-22', 'HR', 'HR Executive', 42000.00, '2020-01-15', '9876543218', 'suresh@gmail.com', 'Vijayawada, Andhra Pradesh', 1),
+
+('Meena Patel', 'Female', '1995-03-14', 'IT', 'QA Engineer', 48000.00, '2022-04-18', '9876543219', 'meena@gmail.com', 'Ahmedabad, Gujarat', 1),
+
+('Arjun Nair', 'Male', '1991-07-19', 'Operations', 'Operations Manager', 85000.00, '2017-08-01', '9876543220', 'arjun@gmail.com', 'Kochi, Kerala', 1),
+
+('Pooja Gupta', 'Female', '1999-10-11', 'Sales', 'Sales Coordinator', 32000.00, '2023-06-12', '9876543221', 'pooja@gmail.com', 'Delhi, India', 1),
+
+('Ramesh Babu', 'Male', '1988-02-28', 'IT', 'Project Manager', 110000.00, '2016-03-21', '9876543222', 'ramesh@gmail.com', 'Hyderabad, Telangana', 1),
+
+('Swathi Reddy', 'Female', '1996-12-16', 'Marketing', 'Content Writer', 40000.00, '2021-12-01', '9876543223', 'swathi@gmail.com', 'Warangal, Telangana', 1),
+
+('Manoj Kumar', 'Male', '1994-05-09', 'Finance', 'Senior Accountant', 60000.00, '2019-10-14', '9876543224', 'manoj@gmail.com', 'Bangalore, Karnataka', 1),
+
+('Lakshmi Devi', 'Female', '1992-08-07', 'HR', 'HR Manager', 70000.00, '2018-11-05', '9876543225', 'lakshmi@gmail.com', 'Hyderabad, Telangana', 1),
+
+('Naveen Kumar', 'Male', '1997-04-23', 'IT', 'Junior Developer', 30000.00, '2024-01-08', '9876543226', 'naveen@gmail.com', 'Guntur, Andhra Pradesh', 1),
+
+('Keerthi Rao', 'Female', '1993-11-29', 'Operations', 'Operations Executive', 45000.00, '2020-07-13', '9876543227', 'keerthi@gmail.com', 'Mysore, Karnataka', 0),
+
+('Ajay Sharma', 'Male', '1990-06-17', 'Sales', 'Sales Manager', 80000.00, '2017-04-03', '9876543228', 'ajay@gmail.com', 'Jaipur, Rajasthan', 1),
+
+('Harika Reddy', 'Female', '1998-01-05', 'IT', 'UI Developer', 50000.00, '2023-09-11', '9876543229', 'harika@gmail.com', 'Hyderabad, Telangana', 0);
+
+Select * from Employee;
+
+Step 3 : Repository Pattern
+---------------------------
+1. What is a Repository?
+
+* The word Repository means a place where data is stired and managed.
+
+* A Repository is a class that perform all the database operations such as : 
+	
+	1. Insert
+	2. Update
+	3. Delete
+	4. Retrieve
+
+2. What is Repository Pattern?
+
+* A Repository Pattern is a software design pattern that created a separate layer between the Controller (Business Logic) and the Database (Data Access Layer).
+
+Advantages of Repository Pattern
+--------------------------------
+1. Separation of Concerns
+2. Loose Coupling
+3. Code Reusability
+4. Easy Maintenance
+5. Easier Database Replacement
+
+IRepository.cs :
+
+namespace EmployeeManagementSystem.Repositories
+{
+    public interface IRepository<T> where T : class
+    {
+        IEnumerable<T> GetAll();
+
+        T GetById(int id);
+
+        void Add(T entity);
+
+        void Update(T entity);
+
+        void Delete(int id);
+
+        void Save();
+    }
+}
+
+EmployeeRepository.cs :
+
+using EmployeeManagementSystem.Data;
+using EmployeeManagementSystem.Models;
+
+namespace EmployeeManagementSystem.Repositories
+{
+    public class EmployeeRepository : IRepository<Employee>
+    {
+        private readonly AppDbContext _context;
+
+        public EmployeeRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public void Add(Employee entity)
+        {
+            _context.Employee.Add(entity);
+        }
+
+        public void Delete(int id)
+        {
+            var employee = _context.Employee.Find(id);
+
+            if (employee != null)
+            {
+                _context.Employee.Remove(employee);
+            }
+        }
+
+        public IEnumerable<Employee> GetAll()
+        {
+            return _context.Employee.ToList();
+        }
+
+        public Employee GetById(int id)
+        {
+            return _context.Employee.Find(id);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public void Update(Employee entity)
+        {
+            _context.Employee.Update(entity);
+        }
+    }
+}
+
+Step 4 : Register Services
+
+Program.cs :
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
+
+Step 5 : Connection String	
+
+appSettings.json :
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=DotNet11AmBatch;Trusted_Connection=True;TrustServerCertificate=True;"
+  },
+  "AllowedHosts": "*"
+}
+
+Step 6 : Create Controller
+
+using EmployeeManagementSystem.Models;
+using EmployeeManagementSystem.Repositories;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeManagementSystem.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        private readonly IRepository<Employee> _repository;
+
+        public EmployeeController(IRepository<Employee> repository)
+        {
+            _repository = repository;
+        }
+
+        // READ
+        public IActionResult Index()
+        {
+            var employees = _repository.GetAll();
+            return View(employees);
+        }
+
+        // CREATE
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.Add(employee);
+                _repository.Save();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(employee);
+        }
+
+        // EDIT
+        public IActionResult Edit(int id)
+        {
+            var employee = _repository.GetById(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.Update(employee);
+                _repository.Save();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(employee);
+        }
+
+        // DETAILS
+        public IActionResult Details(int id)
+        {
+            var employee = _repository.GetById(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
+        // DELETE
+        public IActionResult Delete(int id)
+        {
+            var employee = _repository.GetById(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _repository.Delete(id);
+
+            _repository.Save();
+
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}
+
+Step 7 : Create Views
+
+1. Index.cshtml :
+
+@model IEnumerable<EmployeeManagementSystem.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Employee list</h2>
+
+    <a asp-action="Create" class="btn btn-primary">Add New Employee</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Salary</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Status</th>
+            <th width="250">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmployeeId</td>
+                <td>@item.EmployeeName</td>
+                <td>@item.Department</td>
+                <td>@item.Designation</td>
+                <td>@item.Salary</td>
+                <td>@item.Email</td>
+                <td>@item.MobileNumber</td>
+                <td>@(item.IsActive ? "Active" : "Inactive")</td>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+2. Create.cshtml :
+
+@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h2>Create Employee</h2>
+
+<hr />
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="EmployeeName" class="form-label"></label>
+        <input asp-for="EmployeeName" class="form-control" />
+        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <select asp-for="Gender" class="form-control">
+            <option>-- Select Gender --</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DateOfBirth" class="form-label"></label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Department" class="form-label"></label>
+        <input asp-for="Department" class="form-control" />
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Designation" class="form-label"></label>
+        <input asp-for="Designation" class="form-control" />
+        <span asp-validation-for="Designation" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="JoiningDate" class="form-label"></label>
+        <input asp-for="JoiningDate" type="date" class="form-control" />
+        <span asp-validation-for="JoiningDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MobileNumber" class="form-label"></label>
+        <input asp-for="MobileNumber" class="form-control" />
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+3. Edit.cshtml :
+
+@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h2>Edit Employee</h2>
+
+<hr />
+
+<form asp-action="Edit" method="post">
+
+    @* Hidden Primar Key *@
+
+    <input type="hidden" asp-for="EmployeeId" />
+
+    <div class="mb-3">
+        <label asp-for="EmployeeName" class="form-label"></label>
+        <input asp-for="EmployeeName" class="form-control" />
+        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <select asp-for="Gender" class="form-control">
+            <option>-- Select Gender --</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DateOfBirth" class="form-label"></label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Department" class="form-label"></label>
+        <input asp-for="Department" class="form-control" />
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Designation" class="form-label"></label>
+        <input asp-for="Designation" class="form-control" />
+        <span asp-validation-for="Designation" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="JoiningDate" class="form-label"></label>
+        <input asp-for="JoiningDate" type="date" class="form-control" />
+        <span asp-validation-for="JoiningDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MobileNumber" class="form-label"></label>
+        <input asp-for="MobileNumber" class="form-control" />
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-warning">Update</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+4. Details.cshtml :
+
+@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+
+<hr />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Employee Id</th>
+        <td>@Model.EmployeeId</td>
+    </tr>
+
+    <tr>
+        <th>Employee Name</th>
+        <td>@Model.EmployeeName</td>
+    </tr>
+
+    <tr>
+        <th>Gender</th>
+        <td>@Model.Gender</td>
+    </tr>
+
+    <tr>
+        <th>Date of Birth</th>
+        <td>@Model.DateOfBirth.ToShortDateString()</td>
+    </tr>
+
+    <tr>
+        <th>Department</th>
+        <td>@Model.Department</td>
+    </tr>
+
+    <tr>
+        <th>Designation</th>
+        <td>@Model.Designation</td>
+    </tr>
+
+    <tr>
+        <th>Salary</th>
+        <td>@Model.Salary.ToString("C")</td>
+    </tr>
+
+    <tr>
+        <th>Joining Date</th>
+        <td>@Model.JoiningDate.ToShortDateString()</td>
+    </tr>
+
+    <tr>
+        <th>Mobile Number</th>
+        <td>@Model.MobileNumber</td>
+    </tr>
+
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+
+    <tr>
+        <th>Address</th>
+        <td>@Model.Address</td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>@(Model.IsActive ? "Active" : "Inactive")</td>
+    </tr>
+</table>
+
+<a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-warning">Edit</a>
+
+<a asp-action="Index" class="btn btnh-secondary">Back to List</a>
+
+5. Delete.cshtml :
+
+@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Delete Employee";
+}
+
+<h2>Delete Employee</h2>
+
+<h4>Are you sure want to delete this employee?</h4>
+
+<hr />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Employee Id</th>
+        <td>@Model.EmployeeId</td>
+    </tr>
+
+    <tr>
+        <th>Employee Name</th>
+        <td>@Model.EmployeeName</td>
+    </tr>
+
+    <tr>
+        <th>Gender</th>
+        <td>@Model.Gender</td>
+    </tr>
+
+    <tr>
+        <th>Date of Birth</th>
+        <td>@Model.DateOfBirth.ToShortDateString()</td>
+    </tr>
+
+    <tr>
+        <th>Department</th>
+        <td>@Model.Department</td>
+    </tr>
+
+    <tr>
+        <th>Designation</th>
+        <td>@Model.Designation</td>
+    </tr>
+
+    <tr>
+        <th>Salary</th>
+        <td>@Model.Salary.ToString("C")</td>
+    </tr>
+
+    <tr>
+        <th>Joining Date</th>
+        <td>@Model.JoiningDate.ToShortDateString()</td>
+    </tr>
+
+    <tr>
+        <th>Mobile Number</th>
+        <td>@Model.MobileNumber</td>
+    </tr>
+
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+
+    <tr>
+        <th>Address</th>
+        <td>@Model.Address</td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>@(Model.IsActive ? "Active" : "Inactive")</td>
+    </tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="EmployeeId" />
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
